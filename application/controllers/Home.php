@@ -16,6 +16,11 @@ class Home extends CI_Controller
 	// List all your items
 	public function index($offset = 0)
 	{
+		$data = array(
+			'title' => 'ATK DPMPTSP Kabupaten Agam',
+			'konten' => 'v_home',
+		);
+		$this->load->view('layout/v_home_wrapper', $data, FALSE);
 	}
 
 	// Add a new item
