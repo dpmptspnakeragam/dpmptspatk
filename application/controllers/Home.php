@@ -1,8 +1,10 @@
-<?php 
+<?php
 
-defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Home extends CI_Controller {
+defined('BASEPATH') or exit('No direct script access allowed');
+
+class Home extends CI_Controller
+{
 
 	public function __construct()
 	{
@@ -12,30 +14,24 @@ class Home extends CI_Controller {
 	}
 
 	// List all your items
-	public function index( $offset = 0 )
+	public function index($offset = 0)
 	{
-
 	}
 
 	// Add a new item
 	public function add()
 	{
-
 	}
 
 	//Update one item
-	public function update( $id = NULL )
+	public function update($id = NULL)
 	{
-
 	}
 
 	//Delete one item
-	public function delete( $id = NULL )
+	public function delete($id = NULL)
 	{
-
 	}
 }
 
 /* End of file Home.php */
-
- ?>
