@@ -105,7 +105,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#" class="dropdown-item d-flex align-items-center justify-content-between">
+                    <a href="<?= base_url('logout'); ?>" class="dropdown-item d-flex align-items-center justify-content-between">
                         <div class="d-flex align-items-center">
                             <i class="fas fa-sign-out-alt mr-2"></i>
                             <span>Logout</span>

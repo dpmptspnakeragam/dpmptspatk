@@ -1,6 +1,6 @@
 <?php
 // Pemanggilan proteksi mencegah search URL
-// $this->l_user->proteksi_halaman();
+$this->lib_login->protection_url();
 
 // Pemanggilan template dan diurutkan
 require_once('v_home_header.php');
