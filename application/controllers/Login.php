@@ -26,7 +26,7 @@ class Login extends CI_Controller
         }
 
         $data = array(
-            'title' => 'Login',
+            'title' => 'Login | ATK DPMPTSP Kabupaten Agam',
         );
         $this->load->view('v_login', $data, FALSE);
     }

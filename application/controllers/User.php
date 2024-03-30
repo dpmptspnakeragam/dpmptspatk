@@ -9,7 +9,7 @@ class User extends CI_Controller
     {
         parent::__construct();
         //Load Dependencies
-
+        $this->load->model('M_login');
     }
 
     // List all your items

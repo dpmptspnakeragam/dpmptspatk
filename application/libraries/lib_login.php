@@ -16,14 +16,16 @@ class lib_login
         $cek = $this->ci->M_login->login($username, $password);
         // cek user saat login
         if ($cek) {
-            $nama = $cek->nama_user;
+            $id_user = $cek->id_user;
             $username = $cek->username;
+            $foto = $cek->foto_profile;
             $role = $cek->role_pegawai;
             $keaktifan = $cek->status_keaktifan;
 
             // buat session user saat login
-            $this->ci->session->set_userdata('nama_user', $nama);
+            $this->ci->session->set_userdata('id_user', $id_user);
             $this->ci->session->set_userdata('username', $username);
+            $this->ci->session->set_userdata('foto_profile', $foto);
             $this->ci->session->set_userdata('role_pegawai', $role);
             $this->ci->session->set_userdata('status_keaktifan', $keaktifan);
 
@@ -46,8 +48,7 @@ class lib_login
 
     public function logout_user()
     {
-        $this->ci->session->unset_userdata('nama_user');
-        $this->ci->session->unset_userdata('username');
+        $this->ci->session->unset_userdata('id_user');
         $this->ci->session->unset_userdata('role_pegawai');
         $this->ci->session->unset_userdata('status_keaktifan');
         $this->ci->session->set_flashdata('success', 'Logout berhasil!');

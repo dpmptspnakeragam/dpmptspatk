@@ -93,7 +93,8 @@
         <li class="nav-item dropdown">
             <a id="dropdownUser" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle">
                 <span class="mr-2">Habib Oktarian</span>
-                <i class="fas fa-user"></i>
+                <!-- <span class="mr-2"><?= $data_login->nama_user; ?></span> -->
+                <!-- <img src="<?= base_url('assets/image/profile/' . $data_login->foto_profile); ?>" alt="Avatar" class="img-circle elevation-2" style="width: 32px; height: 32px;"> -->
             </a>
             <ul aria-labelledby="dropdownUser" class="dropdown-menu border-0 shadow elevation-3 dropdown-menu-right dropdown-menu-sm">
                 <li>
@@ -132,7 +133,6 @@
             <img src="<?= base_url('assets/image/logo/agam.png'); ?>" alt="ATK Logo" class="brand-image">
             <span class="brand-text font-weight-light">ATK DPMPTSP</span>
         </div>
-
     </a>
 
     <!-- Sidebar -->
