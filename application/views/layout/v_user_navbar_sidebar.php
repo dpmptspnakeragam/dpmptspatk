@@ -7,6 +7,18 @@
         </li>
     </ul>
 
+    <?php
+    // Ambil id_user dari session
+    $id_user = $this->session->userdata('id_user');
+
+    // Query untuk mengambil data user berdasarkan id_user dari session
+    $this->db->select('*');
+    $this->db->from('tb_user');
+    $this->db->where('id_user', $id_user);
+    $data = $this->db->get();
+    $data_login = $data->row();
+    ?>
+
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
         <!-- Navbar Search -->
@@ -90,36 +102,28 @@
             </div>
         </li>
 
-        <li class="nav-item dropdown">
-            <a id="dropdownUser" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle">
-                <span class="mr-2">Habib Oktarian</span>
-                <!-- <span class="mr-2"><?= $data_login->nama_user; ?></span> -->
-                <!-- <img src="<?= base_url('assets/image/profile/' . $data_login->foto_profile); ?>" alt="Avatar" class="img-circle elevation-2" style="width: 32px; height: 32px;"> -->
+        <!-- Nav Item - User Information -->
+        <li class="nav-item dropdown no-arrow">
+            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <span class="mr-2 d-none d-lg-inline text-dark"><?= $data_login->nama_user; ?></span>
+                <img src="<?= base_url('assets/image/profile/' . $data_login->profile); ?>" class="img-profile rounded-circle elevation-3" style="max-width: 100%; max-height: 20px;">
             </a>
-            <ul aria-labelledby="dropdownUser" class="dropdown-menu border-0 shadow elevation-3 dropdown-menu-right dropdown-menu-sm">
-                <li>
-                    <a href="#" class="dropdown-item d-flex align-items-center justify-content-between">
-                        <div class="d-flex align-items-center">
-                            <i class="fas fa-user mr-2"></i>
-                            <span>My Profile</span>
-                        </div>
-                    </a>
-                </li>
-                <li>
-                    <a href="<?= base_url('logout'); ?>" class="dropdown-item d-flex align-items-center justify-content-between">
-                        <div class="d-flex align-items-center">
-                            <i class="fas fa-sign-out-alt mr-2"></i>
-                            <span>Logout</span>
-                        </div>
-                    </a>
-                </li>
-            </ul>
-        </li>
-
-        <li class="nav-item">
-            <a class="nav-link" data-widget="fullscreen" href="#" role="button">
-                <i class="fas fa-expand-arrows-alt"></i>
-            </a>
+            <!-- Dropdown - User Information -->
+            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+                <a class="dropdown-item" href="#">
+                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                    Profile
+                </a>
+                <a class="dropdown-item" href="#">
+                    <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
+                    Settings
+                </a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="<?= base_url('logout'); ?>" data-toggle="modal" data-target="#logoutModal">
+                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                    Logout
+                </a>
+            </div>
         </li>
     </ul>
 </nav>
@@ -137,6 +141,15 @@
 
     <!-- Sidebar -->
     <div class="sidebar">
+        <!-- Sidebar user (optional) -->
+        <!-- <div class="user-panel mt-2 pb-2 mb-2 d-flex">
+            <div class="image">
+                <img src="<?= base_url('assets/image/profile/' . $data_login->profile); ?>" class="img-circle elevation-2" alt="User Image">
+            </div>
+            <div class="info">
+                <a href="#" class="d-block"><?= $data_login->nama_user; ?></a>
+            </div>
+        </div> -->
 
         <!-- Sidebar Menu -->
         <nav class="mt-2">
@@ -151,8 +164,22 @@
 
                 <li class="user-panel mt-2 mb-2"></li>
 
-                <li class="nav-item <?php if ($this->uri->segment(1) == 'master_data') echo 'menu-open'; ?>">
-                    <a href="#" class="nav-link <?php if ($this->uri->segment(1) == 'master_data') echo 'active'; ?>">
+                <li class="nav-item <?= in_array(
+                                        $this->uri->segment(1),
+                                        [
+                                            'DataMaster',
+                                            'datauser',
+                                            'dataproduk',
+                                        ]
+                                    ) ? 'menu-open' : ''; ?>">
+                    <a href="#" class="nav-link <?= in_array(
+                                                    $this->uri->segment(1),
+                                                    [
+                                                        'DataMaster',
+                                                        'datauser',
+                                                        'dataproduk',
+                                                    ]
+                                                ) ? 'active' : ''; ?>">
                         <i class="nav-icon fas fa-database"></i>
                         <p>
                             Data Master
@@ -161,20 +188,19 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="#" class="nav-link <?php if ($this->uri->segment(2) == 'data_user') echo 'active'; ?>">
+                            <a href="<?= base_url('datauser'); ?>" class="nav-link <?= $this->uri->segment(1) == 'datauser' ? 'active' : ''; ?>">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Data User</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link <?php if ($this->uri->segment(2) == 'data_produk') echo 'active'; ?>">
+                            <a href="<?= base_url('dataproduk'); ?>" class="nav-link <?= $this->uri->segment(1) == 'dataproduk' ? 'active' : ''; ?>">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Data Produk</p>
                             </a>
                         </li>
                     </ul>
                 </li>
-
 
                 <li class="nav-item">
                     <a href="#" class="nav-link">
@@ -199,12 +225,24 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0"><?= $title; ?></h1>
+                    <h1 class="m-0"><?= $action; ?></h1>
                 </div><!-- /.col -->
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="<?= base_url('dashboard'); ?>"><?= $home; ?></a></li>
-                        <li class="breadcrumb-item active"><?= $title; ?></li>
+                        <li class="breadcrumb-item"><a href="<?= base_url($this->uri->segment(1)); ?>"><?= $home; ?></a></li>
+
+                        <!-- Breadcrumb untuk Uri Segment 1 atau 2 -->
+                        <?php if ($this->uri->segment(1) && !$this->uri->segment(2)) : ?>
+                            <li class="breadcrumb-item active"><?= $title; ?></li>
+                        <?php elseif ($this->uri->segment(1) && $this->uri->segment(2)) : ?>
+                            <li class="breadcrumb-item active"><a href="<?= base_url($this->uri->segment(1)); ?>"><?= $title; ?></a></li>
+                        <?php endif; ?>
+
+                        <!-- Breadcrumb untuk Halaman Tambah User, Update User, Hapus User -->
+                        <?php if ($this->uri->segment(2) == 'add' || $this->uri->segment(2) == 'update' || $this->uri->segment(2) == 'delete') : ?>
+                            <li class="breadcrumb-item active"><?= $action; ?></li>
+                        <?php endif; ?>
+
                     </ol>
                 </div><!-- /.col -->
             </div><!-- /.row -->

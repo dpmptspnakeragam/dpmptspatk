@@ -2,24 +2,25 @@
 
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class User extends CI_Controller
+class Dashboard extends CI_Controller
 {
 
     public function __construct()
     {
         parent::__construct();
         //Load Dependencies
-        $this->load->model('M_login');
     }
 
     // List all your items
-    public function dashboard()
+    public function index()
     {
-        $data = array(
+        $data = [
             'home' => 'Home',
             'title' => 'Dashboard',
+            'action' => 'Dashboard',
             'konten' => 'v_dashboard',
-        );
+        ];
+
         $this->load->view('layout/v_user_wrapper', $data, FALSE);
     }
 
@@ -39,4 +40,4 @@ class User extends CI_Controller
     }
 }
 
-/* End of file User.php */
+/* End of file Dashboard.php */

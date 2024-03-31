@@ -16,7 +16,18 @@
     <link rel="stylesheet" href="<?= base_url('assets/'); ?>plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
     <!-- Theme style -->
     <link rel="stylesheet" href="<?= base_url('assets/'); ?>dist/css/adminlte.min.css">
+
+    <!-- Select2 -->
+    <link rel="stylesheet" href="<?= base_url('assets/'); ?>plugins/select2/css/select2.min.css">
+    <link rel="stylesheet" href="<?= base_url('assets/'); ?>plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
+    <!-- SweetAlert2 -->
+    <link rel="stylesheet" href="<?= base_url('assets/'); ?>plugins/sweetalert2/sweetalert2.min.css">
+    <!-- Toastr -->
+    <link rel="stylesheet" href="<?= base_url('assets/'); ?>plugins/toastr/toastr.min.css">
+    <!-- Ekko Lightbox -->
+    <link rel="stylesheet" href="<?= base_url('assets/'); ?>plugins/ekko-lightbox/ekko-lightbox.css">
+
 </head>
 
-<body class="sidebar-mini-md sidebar-mini layout-navbar-fixed sidebar-mini-xs layout-footer-fixed text-sm sidebar-closed sidebar-collapse layout-fixed">
+<body class="sidebar-mini-md sidebar-mini layout-navbar-fixed  layout-footer-fixed text-sm sidebar-closed layout-fixed">
     <div class="wrapper">
