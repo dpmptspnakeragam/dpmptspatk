@@ -169,7 +169,7 @@
                                         [
                                             'DataMaster',
                                             'datauser',
-                                            'dataproduk',
+                                            'databarang',
                                         ]
                                     ) ? 'menu-open' : ''; ?>">
                     <a href="#" class="nav-link <?= in_array(
@@ -177,7 +177,7 @@
                                                     [
                                                         'DataMaster',
                                                         'datauser',
-                                                        'dataproduk',
+                                                        'databarang',
                                                     ]
                                                 ) ? 'active' : ''; ?>">
                         <i class="nav-icon fas fa-database"></i>
@@ -194,9 +194,9 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="<?= base_url('dataproduk'); ?>" class="nav-link <?= $this->uri->segment(1) == 'dataproduk' ? 'active' : ''; ?>">
+                            <a href="<?= base_url('databarang'); ?>" class="nav-link <?= $this->uri->segment(1) == 'databarang' ? 'active' : ''; ?>">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Data Produk</p>
+                                <p>Data Barang</p>
                             </a>
                         </li>
                     </ul>

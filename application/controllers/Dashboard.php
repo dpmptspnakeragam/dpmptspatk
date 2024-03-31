@@ -18,7 +18,7 @@ class Dashboard extends CI_Controller
             'home' => 'Home',
             'title' => 'Dashboard',
             'action' => 'Dashboard',
-            'konten' => 'v_dashboard',
+            'konten' => 'admin/v_dashboard',
         ];
 
         $this->load->view('layout/v_user_wrapper', $data, FALSE);

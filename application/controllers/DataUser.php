@@ -16,11 +16,11 @@ class DataUser extends CI_Controller
     public function index()
     {
         $data = [
-            'home'  => 'Data Master',
-            'title' => 'Data User',
-            'action' => 'Data User',
-            'user'  => $this->M_datauser->ambil_semua(),
-            'konten'   => 'v_datauser',
+            'home'      => 'Data Master',
+            'title'     => 'Data User',
+            'action'    => 'Data User',
+            'user'      => $this->M_datauser->ambil_semua(),
+            'konten'    => 'admin/v_datauser',
         ];
         $this->load->view('layout/v_user_wrapper', $data, FALSE);
 

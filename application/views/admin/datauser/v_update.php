@@ -57,28 +57,30 @@
                                     <small class="text-danger"><?= form_error('bidang'); ?></small>
                                 </div>
                             </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label>Role ID</label>
-                                    <select class="custom-select" name="role">
-                                        <option selected disabled>Pilih Role ID</option>
-                                        <option value="1" <?= $user_id->role == '1' ? 'selected' : ''; ?>>Administrator</option>
-                                        <option value="2" <?= $user_id->role == '2' ? 'selected' : ''; ?>>Pegawai</option>
-                                    </select>
-                                    <small class="text-danger"><?= form_error('role'); ?></small>
+                            <?php if ($user_id->id_user != 1) : ?>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Role ID</label>
+                                        <select class="custom-select" name="role">
+                                            <option selected disabled>Pilih Role ID</option>
+                                            <option value="1" <?= $user_id->role == '1' ? 'selected' : ''; ?>>Administrator</option>
+                                            <option value="2" <?= $user_id->role == '2' ? 'selected' : ''; ?>>Pegawai</option>
+                                        </select>
+                                        <small class="text-danger"><?= form_error('role'); ?></small>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label>Status</label>
-                                    <select class="custom-select" name="status">
-                                        <option selected disabled>Pilih Status</option>
-                                        <option value="1" <?= $user_id->status == '1' ? 'selected' : ''; ?>>Aktif</option>
-                                        <option value="2" <?= $user_id->status == '2' ? 'selected' : ''; ?>>Tidak Aktif</option>
-                                    </select>
-                                    <small class="text-danger"><?= form_error('status'); ?></small>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Status</label>
+                                        <select class="custom-select" name="status">
+                                            <option selected disabled>Pilih Status</option>
+                                            <option value="1" <?= $user_id->status == '1' ? 'selected' : ''; ?>>Aktif</option>
+                                            <option value="2" <?= $user_id->status == '2' ? 'selected' : ''; ?>>Tidak Aktif</option>
+                                        </select>
+                                        <small class="text-danger"><?= form_error('status'); ?></small>
+                                    </div>
                                 </div>
-                            </div>
+                            <?php endif; ?>
                         </div>
                         <div class="row">
                             <div class="col-md-3">
