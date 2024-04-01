@@ -17,19 +17,9 @@ class lib_login
         // cek user saat login
         if ($cek) {
             $id_user = $cek->id_user;
-            $nama_user = $cek->nama_user;
-            $username = $cek->username;
-            $profile = $cek->profile;
-            $role = $cek->role;
-            $status = $cek->status;
 
             // buat session user saat login
             $this->ci->session->set_userdata('id_user', $id_user);
-            $this->ci->session->set_userdata('nama_user', $nama_user);
-            $this->ci->session->set_userdata('username', $username);
-            $this->ci->session->set_userdata('profile', $profile);
-            $this->ci->session->set_userdata('role', $role);
-            $this->ci->session->set_userdata('status', $status);
 
             // arahkan ke halaman admin
             redirect('dashboard');
@@ -42,7 +32,7 @@ class lib_login
 
     public function protection_url()
     {
-        if ($this->ci->session->userdata('username') == '') {
+        if ($this->ci->session->userdata('id_user') == '') {
             $this->ci->session->set_flashdata('warning', 'Akses tidak valid!');
             redirect('login');
         }
@@ -51,10 +41,6 @@ class lib_login
     public function logout_user()
     {
         $this->ci->session->unset_userdata('id_user');
-        $this->ci->session->unset_userdata('username');
-        $this->ci->session->unset_userdata('profile');
-        $this->ci->session->unset_userdata('role');
-        $this->ci->session->unset_userdata('status');
         $this->ci->session->set_flashdata('success', 'Logout berhasil!');
         redirect('login');
     }

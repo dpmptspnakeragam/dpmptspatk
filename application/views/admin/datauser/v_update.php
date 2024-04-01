@@ -100,7 +100,7 @@
                     </div>
                     <!-- /.card-body -->
                     <div class="card-footer">
-                        <button type="submit" class="btn btn-outline-primary start">Perbarui</button>
+                        <button type="submit" class="btn btn-outline-success start">Perbarui</button>
                         <a href="<?= base_url('datauser'); ?>" class="btn btn-outline-secondary">Kembali</a>
                     </div>
                     <!-- /.card-footer -->

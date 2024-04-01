@@ -12,6 +12,46 @@ class M_databarang extends CI_Model
         $this->db->order_by('tb_barang.id_barang', 'desc');
         return $this->db->get()->result();
     }
+
+    public function kategori()
+    {
+        $this->db->select('*');
+        $this->db->from('tb_kategori');
+        $this->db->order_by('nama_kategori', 'asc');
+        return $this->db->get()->result();
+    }
+
+    public function satuan()
+    {
+        $this->db->select('*');
+        $this->db->from('tb_satuan');
+        $this->db->order_by('nama_satuan', 'asc');
+        return $this->db->get()->result();
+    }
+
+    public function ambil_id_barang($id_barang)
+    {
+        $this->db->where('id_barang', $id_barang);
+        return $this->db->get('tb_barang')->row();
+    }
+
+    public function tambah_barang($data_input)
+    {
+        return $this->db->insert('tb_barang', $data_input);
+    }
+
+    public function perbarui_barang($id_barang, $data_input)
+    {
+        $this->db->where('id_barang', $id_barang);
+        $this->db->update('tb_barang', $data_input);
+    }
+
+    public function hapus_barang($id_barang)
+    {
+        $this->db->where('id_barang', $id_barang);
+        $this->db->delete('tb_barang');
+        return $this->db->affected_rows() > 0;
+    }
 }
 
 /* End of file M_databarang.php */

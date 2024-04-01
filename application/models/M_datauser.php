@@ -71,7 +71,6 @@ class M_datauser extends CI_Model
     {
         $this->db->where('id_user', $id_user);
         $this->db->delete('tb_user');
-
         return $this->db->affected_rows() > 0;
     }
 }
