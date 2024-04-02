@@ -184,7 +184,7 @@
                                                         'satuanbarang',
                                                     ]
                                                 ) ? 'active' : ''; ?>">
-                        <i class="nav-icon fas fa-database"></i>
+                        <i class="nav-icon fas fa-folder-open"></i>
                         <p>
                             Data Master
                             <i class="right fas fa-angle-left"></i>
@@ -213,6 +213,36 @@
                             <a href="<?= base_url('satuanbarang'); ?>" class="nav-link <?= $this->uri->segment(1) == 'satuanbarang' ? 'active' : ''; ?>">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Satuan Barang</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li class="nav-item <?= in_array(
+                                        $this->uri->segment(1),
+                                        [
+                                            'Transaksi',
+                                            'permintaanbarang',
+                                        ]
+                                    ) ? 'menu-open' : ''; ?>">
+                    <a href="#" class="nav-link <?= in_array(
+                                                    $this->uri->segment(1),
+                                                    [
+                                                        'Transaksi',
+                                                        'permintaanbarang',
+                                                    ]
+                                                ) ? 'active' : ''; ?>">
+                        <i class="nav-icon fas fa-hand-holding-usd"></i>
+                        <p>
+                            Transaksi
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="<?= base_url('permintaanbarang'); ?>" class="nav-link <?= $this->uri->segment(1) == 'permintaanbarang' ? 'active' : ''; ?>">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Permintaan Barang</p>
                             </a>
                         </li>
                     </ul>
