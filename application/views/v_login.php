@@ -33,6 +33,13 @@
             <div class="card-body login-card-body rounded">
                 <p class="login-box-msg">Sign in to start your session</p>
 
+                <?= validation_errors(
+                    '<div class="alert alert-warning alert-dismissible small">
+                <i class="icon fas fa-exclamation-triangle"></i>
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>',
+                    '</div>'
+                ); ?>
+
                 <?= form_open('login') ?>
                 <div class="input-group mb-3">
                     <input name="username" type="text" class="form-control" placeholder="Username" value="<?= set_value('username'); ?>">
@@ -42,7 +49,6 @@
                         </div>
                     </div>
                 </div>
-                <small class="text-danger "><?= form_error('username'); ?></small>
                 <div class="input-group mb-3">
                     <input name="password" type="password" class="form-control" placeholder="Password">
                     <div class="input-group-append">
@@ -51,7 +57,6 @@
                         </div>
                     </div>
                 </div>
-                <small class="text-danger"><?= form_error('password'); ?></small>
 
                 <div class="dropdown-divider"></div>
 

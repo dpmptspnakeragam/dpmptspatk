@@ -170,6 +170,8 @@
                                             'DataMaster',
                                             'datauser',
                                             'databarang',
+                                            'kategoribarang',
+                                            'satuanbarang'
                                         ]
                                     ) ? 'menu-open' : ''; ?>">
                     <a href="#" class="nav-link <?= in_array(
@@ -178,6 +180,8 @@
                                                         'DataMaster',
                                                         'datauser',
                                                         'databarang',
+                                                        'kategoribarang',
+                                                        'satuanbarang',
                                                     ]
                                                 ) ? 'active' : ''; ?>">
                         <i class="nav-icon fas fa-database"></i>
@@ -197,6 +201,18 @@
                             <a href="<?= base_url('databarang'); ?>" class="nav-link <?= $this->uri->segment(1) == 'databarang' ? 'active' : ''; ?>">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Data Barang</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="<?= base_url('kategoribarang'); ?>" class="nav-link <?= $this->uri->segment(1) == 'kategoribarang' ? 'active' : ''; ?>">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Kategori Barang</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="<?= base_url('satuanbarang'); ?>" class="nav-link <?= $this->uri->segment(1) == 'satuanbarang' ? 'active' : ''; ?>">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Satuan Barang</p>
                             </a>
                         </li>
                     </ul>

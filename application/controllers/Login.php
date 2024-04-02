@@ -15,8 +15,12 @@ class Login extends CI_Controller
     // List all your items
     public function index()
     {
-        $this->form_validation->set_rules('username', 'Username', 'trim|required');
-        $this->form_validation->set_rules('password', 'Password', 'trim|required');
+        $this->form_validation->set_rules('username', 'Username', 'trim|required', [
+            'required'  => 'Masukan %s!',
+        ]);
+        $this->form_validation->set_rules('password', 'Password', 'trim|required', [
+            'required'  => 'Masukan %s!',
+        ]);
 
 
         if ($this->form_validation->run() == TRUE) {
