@@ -19,8 +19,13 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Nama Barang</label>
-                                    <input name="barang" type="text" class="form-control form-control-sm" value="<?= $barang_id->nama_barang; ?>">
-                                    <small class="text-danger"><?= form_error('nama_barang'); ?></small>
+                                    <select name="barang" class="form-control select2">
+                                        <option disabled>Pilih Nama Barang</option>
+                                        <?php foreach ($nama as $n) : ?>
+                                            <?php $selected_nama = ($n->id_nama == $barang_id->id_nama) ? 'selected' : ''; ?>
+                                            <option value="<?= $n->id_nama; ?>" <?= $selected_nama; ?>><?= $n->nama_barang; ?></option>
+                                        <?php endforeach; ?>
+                                    </select>
                                 </div>
                             </div>
                             <div class="col-md-6">
@@ -29,7 +34,7 @@
                                     <select name="kategori" class="form-control select2">
                                         <option disabled>Pilih Kategori Barang</option>
                                         <?php foreach ($kategori as $kat) : ?>
-                                            <?php $selected_kategori = ($kat->id_kategori == $barang->id_kategori) ? 'selected' : ''; ?>
+                                            <?php $selected_kategori = ($kat->id_kategori == $barang_id->id_kategori) ? 'selected' : ''; ?>
                                             <option value="<?= $kat->id_kategori; ?>" <?= $selected_kategori; ?>><?= $kat->nama_kategori; ?></option>
                                         <?php endforeach; ?>
                                     </select>
@@ -41,7 +46,7 @@
                                     <select name="satuan" class="form-control select2">
                                         <option disabled>Pilih Satuan Barang</option>
                                         <?php foreach ($satuan as $sat) : ?>
-                                            <?php $selected_satuan = ($sat->id_satuan == $barang->id_satuan) ? 'selected' : ''; ?>
+                                            <?php $selected_satuan = ($sat->id_satuan == $barang_id->id_satuan) ? 'selected' : ''; ?>
                                             <option value="<?= $sat->id_satuan; ?>" <?= $selected_satuan; ?>><?= $sat->nama_satuan; ?></option>
                                         <?php endforeach; ?>
                                     </select>

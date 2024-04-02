@@ -19,8 +19,12 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Nama Barang</label>
-                                    <input name="barang" type="text" class="form-control form-control-sm" value="<?= set_value('nama_barang'); ?>">
-                                    <small class="text-danger"><?= form_error('nama_barang'); ?></small>
+                                    <select name="barang" class="form-control select2">
+                                        <option selected="selected" disabled>Pilih Nama Barang</option>
+                                        <?php foreach ($nama as $nm) : ?>
+                                            <option value="<?= $nm->id_nama; ?>"><?= $nm->nama_barang; ?></option>
+                                        <?php endforeach; ?>
+                                    </select>
                                 </div>
                             </div>
                             <div class="col-md-6">

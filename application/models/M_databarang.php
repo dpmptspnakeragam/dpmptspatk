@@ -7,9 +7,18 @@ class M_databarang extends CI_Model
     {
         $this->db->select('*');
         $this->db->from('tb_barang');
+        $this->db->join('tb_nama', 'tb_nama.id_nama = tb_barang.id_nama', 'left');
         $this->db->join('tb_kategori', 'tb_kategori.id_kategori = tb_barang.id_kategori', 'left');
         $this->db->join('tb_satuan', 'tb_satuan.id_satuan = tb_barang.id_satuan', 'left');
         $this->db->order_by('tb_barang.id_barang', 'desc');
+        return $this->db->get()->result();
+    }
+
+    public function nama()
+    {
+        $this->db->select('*');
+        $this->db->from('tb_nama');
+        $this->db->order_by('nama_barang', 'asc');
         return $this->db->get()->result();
     }
 

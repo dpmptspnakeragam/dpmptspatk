@@ -75,7 +75,7 @@ class DataBarang extends CI_Controller
                 $this->image_lib->resize();
 
                 $data_input = [
-                    'nama_barang'   => $this->input->post('barang'),
+                    'id_nama'   => $this->input->post('barang'),
                     'id_kategori'   => $this->input->post('kategori'),
                     'id_satuan'     => $this->input->post('satuan'),
                     'harga'         => $this->input->post('harga'),
@@ -103,7 +103,7 @@ class DataBarang extends CI_Controller
                         $this->image_lib->resize();
 
                         $data_input = [
-                            'nama_barang'   => $this->input->post('barang'),
+                            'id_nama'   => $this->input->post('barang'),
                             'id_kategori'   => $this->input->post('kategori'),
                             'id_satuan'     => $this->input->post('satuan'),
                             'harga'         => $this->input->post('harga'),
@@ -128,6 +128,7 @@ class DataBarang extends CI_Controller
             'home'      => 'Data Master',
             'title'     => 'Data Barang',
             'action'    => 'Tambah Barang',
+            'nama'      => $this->M_databarang->nama(),
             'kategori'  => $this->M_databarang->kategori(),
             'satuan'    => $this->M_databarang->satuan(),
             'konten'    => 'admin/databarang/v_add',
@@ -171,7 +172,7 @@ class DataBarang extends CI_Controller
             if (!$this->upload->do_upload($nama_barang)) {
                 // copy dan upload gambar barang default
                 $data_input = [
-                    'nama_barang'   => $this->input->post('barang'),
+                    'id_nama'   => $this->input->post('barang'),
                     'id_kategori'   => $this->input->post('kategori'),
                     'id_satuan'     => $this->input->post('satuan'),
                     'harga'         => $this->input->post('harga'),
@@ -199,7 +200,7 @@ class DataBarang extends CI_Controller
                 $this->image_lib->resize();
 
                 $data_input = [
-                    'nama_barang'   => $this->input->post('barang'),
+                    'id_nama'       => $this->input->post('barang'),
                     'id_kategori'   => $this->input->post('kategori'),
                     'id_satuan'     => $this->input->post('satuan'),
                     'harga'         => $this->input->post('harga'),
@@ -218,6 +219,7 @@ class DataBarang extends CI_Controller
             'home'      => 'Data Master',
             'title'     => 'Data Barang',
             'action'    => 'Perbarui Barang',
+            'nama'      => $this->M_databarang->nama(),
             'kategori'  => $this->M_databarang->kategori(),
             'satuan'    => $this->M_databarang->satuan(),
             'barang_id' => $this->M_databarang->ambil_id_barang($id_barang),
