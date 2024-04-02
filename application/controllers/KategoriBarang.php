@@ -20,7 +20,7 @@ class KategoriBarang extends CI_Controller
             'title'     => 'Kategori Barang',
             'action'    => 'Kategori Barang',
             'kategori'    => $this->M_kategoribarang->ambil_semua(),
-            'konten'    => 'admin/v_kategori-barang',
+            'konten'    => 'admin/v_kategoribarang',
         ];
         $this->load->view('layout/v_user_wrapper', $data, FALSE);
 
@@ -53,7 +53,7 @@ class KategoriBarang extends CI_Controller
             'title'     => 'Kategori Barang',
             'action'    => 'Kategori Barang',
             'kategori'    => $this->M_kategoribarang->ambil_semua(),
-            'konten'    => 'admin/v_kategori-barang',
+            'konten'    => 'admin/v_kategoribarang',
         ];
         $this->load->view('layout/v_user_wrapper', $data, FALSE);
 
@@ -86,7 +86,7 @@ class KategoriBarang extends CI_Controller
             'title'     => 'Kategori Barang',
             'action'    => 'Kategori Barang',
             'kategori'    => $this->M_kategoribarang->ambil_semua(),
-            'konten'    => 'admin/v_kategori-barang',
+            'konten'    => 'admin/v_kategoribarang',
         ];
         $this->load->view('layout/v_user_wrapper', $data, FALSE);
 
