@@ -68,9 +68,13 @@
         function initializeDataTable(selectors) {
             selectors.forEach(function(selector) {
                 $(selector).DataTable({
-                    "responsive": true,
-                    "lengthChange": true,
+                    "paging": true,
+                    "lengthChange": false,
+                    "searching": false,
+                    "ordering": true,
+                    "info": true,
                     "autoWidth": false,
+                    "responsive": true,
                     // "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
                 }).buttons().container().appendTo($(selector + '_wrapper .col-md-6:eq(0)'));
             });
@@ -183,6 +187,90 @@
             reader.readAsDataURL(input.files[0]);
         }
     };
+</script>
+
+<!-- Script menampilkan tb_barang secara otomatis -->
+<script>
+    $(document).ready(function() {
+        // Ketika dropdown dipilih
+        $('#id_barang').change(function() {
+            var selectedOption = $(this).find(':selected');
+            var kategori = selectedOption.data('kategori');
+            var satuan = selectedOption.data('satuan');
+            var harga = selectedOption.data('harga');
+
+            $('#kategori_barang').val(kategori);
+            $('#satuan_barang').val(satuan);
+            // Ubah format harga menjadi Rupiah
+            $('#harga').val(formatRupiah(harga));
+        });
+
+        // Ketika halaman dimuat
+        var selectedOption = $('#id_barang').find(':selected');
+        var kategori = selectedOption.data('kategori');
+        var satuan = selectedOption.data('satuan');
+        var harga = selectedOption.data('harga');
+
+        $('#kategori_barang').val(kategori);
+        $('#satuan_barang').val(satuan);
+        // Ubah format harga menjadi Rupiah
+        $('#harga').val(formatRupiah(harga));
+    });
+
+    // Fungsi untuk mengubah format harga menjadi Rupiah
+    function formatRupiah(angka) {
+        var number_string = angka.toString();
+        var split = number_string.split(',');
+        var sisa = split[0].length % 3;
+        var rupiah = split[0].substr(0, sisa);
+        var ribuan = split[0].substr(sisa).match(/\d{3}/gi);
+
+        if (ribuan) {
+            separator = sisa ? '.' : '';
+            rupiah += separator + ribuan.join('.');
+        }
+
+        rupiah = split[1] != undefined ? rupiah + ',' + split[1] : rupiah;
+        return 'Rp ' + rupiah;
+    }
+</script>
+
+<script>
+    $(document).ready(function() {
+        $('#jumlah').on('input', function() {
+            hitungTotalHarga();
+        });
+
+        $('#id_barang').change(function() {
+            hitungTotalHarga();
+        });
+
+        function hitungTotalHarga() {
+            var jumlah = parseInt($('#jumlah').val());
+            var harga = parseInt($('#harga').val().replace(/\D/g, '')); // Menghilangkan semua karakter non-digit dari harga
+            var total = jumlah * harga;
+
+            // Ubah format total harga menjadi Rupiah
+            $('#total_harga').val(formatRupiah(total));
+        }
+
+        // Fungsi untuk mengubah format harga menjadi Rupiah
+        function formatRupiah(angka) {
+            var number_string = angka.toString();
+            var split = number_string.split(',');
+            var sisa = split[0].length % 3;
+            var rupiah = split[0].substr(0, sisa);
+            var ribuan = split[0].substr(sisa).match(/\d{3}/gi);
+
+            if (ribuan) {
+                separator = sisa ? '.' : '';
+                rupiah += separator + ribuan.join('.');
+            }
+
+            rupiah = split[1] != undefined ? rupiah + ',' + split[1] : rupiah;
+            return 'Rp ' + rupiah;
+        }
+    });
 </script>
 
 </body>
