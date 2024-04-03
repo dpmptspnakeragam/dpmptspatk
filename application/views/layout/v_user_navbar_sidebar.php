@@ -170,6 +170,7 @@
                                             'DataMaster',
                                             'datauser',
                                             'databarang',
+                                            'namabarang',
                                             'kategoribarang',
                                             'satuanbarang'
                                         ]
@@ -180,6 +181,7 @@
                                                         'DataMaster',
                                                         'datauser',
                                                         'databarang',
+                                                        'namabarang',
                                                         'kategoribarang',
                                                         'satuanbarang',
                                                     ]
@@ -201,6 +203,12 @@
                             <a href="<?= base_url('databarang'); ?>" class="nav-link <?= $this->uri->segment(1) == 'databarang' ? 'active' : ''; ?>">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Data Barang</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="<?= base_url('namabarang'); ?>" class="nav-link <?= $this->uri->segment(1) == 'namabarang' ? 'active' : ''; ?>">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Nama Barang</p>
                             </a>
                         </li>
                         <li class="nav-item">

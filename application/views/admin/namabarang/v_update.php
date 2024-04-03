@@ -1,0 +1,27 @@
+    <?php foreach ($nama as $ki => $value) : ?>
+        <div class="modal fade" id="updateNama<?= $value->id_nama; ?>" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="staticBackdropLabel">Perbarui <?= $action; ?></h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <?= form_open('namabarang/update/' . $value->id_nama); ?>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label>Nama Barang</label>
+                            <input name="nama_barang" type="text" class="form-control" value="<?= $value->nama_barang; ?>">
+                            <small class="text-danger"><?= form_error('nama_barang'); ?></small>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Kembali</button>
+                        <?= form_submit('submit', 'Perbarui', 'class="btn btn-outline-info"'); ?>
+                    </div>
+                    <?= form_close() ?>
+                </div>
+            </div>
+        </div>
+    <?php endforeach; ?>

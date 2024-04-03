@@ -41,28 +41,16 @@
                                 <?php $count = 1; ?>
                                 <?php $prev_tanggal_permintaan = ''; ?>
                                 <?php foreach ($permintaan as $pm => $value) : ?>
-                                    <?php $rowspan_count = count(array_filter($permintaan, function ($item) use ($value) {
-                                        return $item->tanggal_permintaan == $value->tanggal_permintaan;
-                                    })); ?>
                                     <tr>
                                         <td class="text-center align-middle"><?= $count++; ?></td>
 
-                                        <?php if ($prev_tanggal_permintaan != $value->tanggal_permintaan) : ?>
-                                            <?php
-                                            // Set locale ke bahasa Indonesia
-                                            setlocale(LC_TIME, 'id_ID.UTF-8');
-                                            // Buat objek IntlDateFormatter untuk format tanggal
-                                            $dateFormatter = new IntlDateFormatter('id_ID', IntlDateFormatter::FULL, IntlDateFormatter::FULL);
-                                            // Set format tanggal
-                                            $dateFormatter->setPattern('EEEE d MMMM y');
-                                            // Konversi tanggal dari string ke objek DateTime
-                                            $tanggal_permintaan = new DateTime($value->tanggal_permintaan);
-                                            // Format tanggal dengan objek IntlDateFormatter
-                                            $tanggal_indonesia = $dateFormatter->format($tanggal_permintaan);
-                                            ?>
-                                            <td class="text-center" rowspan="<?= $rowspan_count; ?>"><?= $tanggal_indonesia; ?></td>
-                                            <?php $prev_tanggal_permintaan = $value->tanggal_permintaan; ?>
-                                        <?php endif; ?>
+                                        <?php
+                                        $dateFormatter = new IntlDateFormatter('id_ID', IntlDateFormatter::FULL, IntlDateFormatter::FULL);
+                                        $dateFormatter->setPattern('EEEE d MMMM y');
+                                        $tanggal_permintaan = new DateTime($value->tanggal_permintaan);
+                                        $tanggal_indonesia = $dateFormatter->format($tanggal_permintaan);
+                                        ?>
+                                        <td class="text-center"><?= $tanggal_indonesia; ?></td>
 
                                         <td class="text-center align-middle"><?= $value->nama_user; ?></td>
                                         <td class="text-center align-middle"><?= $value->nama_barang; ?></td>
