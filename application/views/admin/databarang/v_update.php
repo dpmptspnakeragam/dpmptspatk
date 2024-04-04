@@ -12,7 +12,7 @@
                             </button>
                         </div>
                     </div>
-                    <?= form_open_multipart('databarang/update/' . $barang_id->id_barang); ?>
+                    <?= form_open('databarang/update/' . $barang_id->id_barang); ?>
                     <!-- /.card-header -->
                     <div class="card-body">
                         <div class="row">
@@ -54,14 +54,14 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label>Harga Barang</label>
+                                    <label>Harga Barang/Opsional</label>
                                     <input name="harga" type="number" class="form-control form-control-sm" value="<?= $barang_id->harga; ?>">
                                     <small class="text-danger"><?= form_error('harga'); ?></small>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label>Stok Barang</label>
+                                    <label>Stok Barang/Opsional</label>
                                     <input name="stok" type="number" class="form-control form-control-sm" value="<?= $barang_id->stok; ?>">
                                     <small class="text-danger"><?= form_error('stok'); ?></small>
                                 </div>
@@ -70,22 +70,6 @@
                                 <div class="form-group">
                                     <label>Deskripsi</label>
                                     <textarea name="deskripsi" class="form-control form-control-sm" rows="1"><?= $barang_id->deskripsi; ?></textarea>
-                                </div>
-                            </div>
-
-                        </div>
-                        <div class="row">
-                            <div class="col-md-3">
-                                <div class="form-group">
-                                    <label>Pilih Gambar</label>
-                                    <input name="gambar" type="file" class="form-control-file" id="profileUpload" accept="image/*">
-                                </div>
-                            </div>
-                            <div class="col-md-3 text-center">
-                                <!-- Pratinjau gambar -->
-                                <label>Pratinjau Gambar</label>
-                                <div class="form-group">
-                                    <img src="<?= base_url('assets/image/barang/' . $barang_id->gambar); ?>" id="profilePreview" style="max-width: 100%; max-height: 200px;">
                                 </div>
                             </div>
                         </div>

@@ -1,5 +1,5 @@
 <?php foreach ($permintaan as $id => $value) : ?>
-    <div class="modal fade" id="signPermintaan<?= $value->id_permintaan; ?>" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal fade" id="signPermintaan<?= $value->tanggal_permintaan; ?>" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">

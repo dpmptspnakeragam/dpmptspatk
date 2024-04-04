@@ -26,7 +26,6 @@
                                     <th class="text-center align-middle">Kategori</th>
                                     <th class="text-center align-middle">Harga Satuan</th>
                                     <th class="text-center align-middle">Stok</th>
-                                    <th class="text-center align-middle">Gambar</th>
                                     <th class="text-center align-middle">Action</th>
                                 </tr>
                             </thead>
@@ -39,11 +38,6 @@
                                         <td class="text-center align-middle"><?= $value->nama_kategori; ?></td>
                                         <td class="text-center align-middle">Rp. <?= number_format($value->harga, 0, ',', '.'); ?>,- / <?= $value->nama_satuan; ?></td>
                                         <td class="text-center align-middle"><?= $value->stok; ?></td>
-                                        <td class="text-center align-middle">
-                                            <a href="<?= base_url('assets/image/barang/' . $value->gambar); ?>" data-toggle="lightbox">
-                                                <img src="<?= base_url('assets/image/barang/' . $value->gambar); ?>" alt="Foto Profile" class="img-size-50">
-                                            </a>
-                                        </td>
 
                                         <td class="text-center align-middle">
                                             <button type="button" data-toggle="modal" data-target="#detailBarang<?= $value->id_barang; ?>" class="btn btn-outline-primary btn-sm"><i class="fas fa-search"></i></button>

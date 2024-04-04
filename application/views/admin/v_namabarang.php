@@ -31,6 +31,7 @@
                                 <tr>
                                     <th class="text-center align-middle">No</th>
                                     <th class="text-center align-middle">Nama Barang</th>
+                                    <th class="text-center align-middle">Gambar Barang</th>
                                     <th class="text-center align-middle">Action</th>
                                 </tr>
                             </thead>
@@ -40,6 +41,11 @@
                                     <tr>
                                         <td class="text-center align-middle"><?= $count++; ?></td>
                                         <td class="text-center align-middle"><?= $value->nama_barang; ?></td>
+                                        <td class="text-center align-middle">
+                                            <a href="<?= base_url('assets/image/barang/' . $value->gambar); ?>" data-toggle="lightbox">
+                                                <img src="<?= base_url('assets/image/barang/' . $value->gambar); ?>" alt="Foto Profile" class="img-size-50">
+                                            </a>
+                                        </td>
 
                                         <td class="text-center align-middle">
                                             <button type="button" data-toggle="modal" data-target="#updateNama<?= $value->id_nama; ?>" class="btn btn-outline-info btn-sm"><i class="fas fa-edit"></i></button>

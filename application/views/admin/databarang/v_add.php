@@ -12,7 +12,7 @@
                             </button>
                         </div>
                     </div>
-                    <?= form_open_multipart('databarang/add'); ?>
+                    <?= form_open('databarang/add'); ?>
                     <!-- /.card-header -->
                     <div class="card-body">
                         <div class="row">
@@ -22,9 +22,12 @@
                                     <select name="barang" class="form-control select2">
                                         <option selected="selected" disabled>Pilih Nama Barang</option>
                                         <?php foreach ($nama as $nm) : ?>
-                                            <option value="<?= $nm->id_nama; ?>"><?= $nm->nama_barang; ?></option>
+                                            <option value="<?= $nm->id_nama; ?>" <?= set_select('barang', $nm->id_nama); ?>>
+                                                <?= $nm->nama_barang; ?>
+                                            </option>
                                         <?php endforeach; ?>
                                     </select>
+                                    <small class="text-danger"><?= form_error('barang'); ?></small>
                                 </div>
                             </div>
                             <div class="col-md-6">
@@ -36,6 +39,7 @@
                                             <option value="<?= $kat->id_kategori; ?>"><?= $kat->nama_kategori; ?></option>
                                         <?php endforeach; ?>
                                     </select>
+                                    <small class="text-danger"><?= form_error('kategori'); ?></small>
                                 </div>
                             </div>
                             <div class="col-md-6">
@@ -47,18 +51,19 @@
                                             <option value="<?= $sat->id_satuan; ?>"><?= $sat->nama_satuan; ?></option>
                                         <?php endforeach; ?>
                                     </select>
+                                    <small class="text-danger"><?= form_error('satuan'); ?></small>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label>Harga Barang</label>
+                                    <label>Harga Barang/Opsional</label>
                                     <input name="harga" type="number" class="form-control form-control-sm" value="<?= set_value('harga'); ?>">
                                     <small class="text-danger"><?= form_error('harga'); ?></small>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label>Stok Barang</label>
+                                    <label>Stok Barang/Opsional</label>
                                     <input name="stok" type="number" class="form-control form-control-sm" value="<?= set_value('stok'); ?>">
                                     <small class="text-danger"><?= form_error('stok'); ?></small>
                                 </div>
@@ -67,22 +72,6 @@
                                 <div class="form-group">
                                     <label>Deskripsi</label>
                                     <textarea name="deskripsi" class="form-control form-control-sm" rows="1"></textarea>
-                                </div>
-                            </div>
-
-                        </div>
-                        <div class="row">
-                            <div class="col-md-3">
-                                <div class="form-group">
-                                    <label>Pilih Gambar</label>
-                                    <input name="gambar" type="file" class="form-control-file" id="profileUpload" accept="image/*">
-                                </div>
-                            </div>
-                            <div class="col-md-3 text-center">
-                                <!-- Pratinjau gambar -->
-                                <label>Pratinjau Gambar</label>
-                                <div class="form-group">
-                                    <img src="<?= base_url('assets/image/barang/barang-default.png'); ?>" id="profilePreview" style="max-width: 100%; max-height: 200px;">
                                 </div>
                             </div>
                         </div>

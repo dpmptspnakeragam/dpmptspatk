@@ -37,9 +37,11 @@
                                     <th class="text-center align-middle">Sign PDF</th>
                                 </tr>
                             </thead>
+
                             <tbody>
                                 <?php $count = 1; ?>
                                 <?php $prev_tanggal_permintaan = ''; ?>
+                                <?php $show_sign_button = true; ?>
                                 <?php foreach ($permintaan as $pm => $value) : ?>
                                     <tr>
                                         <td class="text-center align-middle"><?= $count++; ?></td>
@@ -50,23 +52,26 @@
                                         $tanggal_permintaan = new DateTime($value->tanggal_permintaan);
                                         $tanggal_indonesia = $dateFormatter->format($tanggal_permintaan);
                                         ?>
-                                        <td class="text-center"><?= $tanggal_indonesia; ?></td>
 
+                                        <td class="text-center"><?= $tanggal_indonesia; ?></td>
                                         <td class="text-center align-middle"><?= $value->nama_user; ?></td>
                                         <td class="text-center align-middle"><?= $value->nama_barang; ?></td>
-                                        <!-- <td class="text-center align-middle">Rp. <?= number_format($value->harga, 0, ',', '.'); ?>,- / <?= $value->jumlah; ?> <?= $value->nama_satuan; ?></td> -->
-                                        <!-- <td class="text-center align-middle">Rp. <?= number_format($value->total_harga, 0, ',', '.'); ?></td> -->
                                         <td class="text-center align-middle">
                                             <button type="button" data-toggle="modal" data-target="#detailPermintaan<?= $value->id_permintaan; ?>" class="btn btn-outline-success btn-sm"><i class="fas fa-search"></i></button>
                                             <button type="button" data-toggle="modal" data-target="#updatePermintaan<?= $value->id_permintaan; ?>" class="btn btn-outline-info btn-sm"><i class="fas fa-edit"></i></button>
                                             <button type="button" data-toggle="modal" data-target="#deletePermintaan<?= $value->id_permintaan; ?>" class="btn btn-outline-danger btn-sm"><i class="fas fa-trash-alt"></i></button>
                                         </td>
                                         <td class="text-center align-middle">
-                                            <button type="button" data-toggle="modal" data-target="#signPermintaan<?= $value->id_permintaan; ?>" class="btn btn-outline-primary btn-sm"><i class="fas fa-check-double"></i></i> Sign Here</button>
+                                            <!-- Button "Sign Here" hanya ditampilkan pada baris pertama dengan tanggal_permintaan yang berbeda -->
+                                            <?php if ($prev_tanggal_permintaan != $value->tanggal_permintaan) : ?>
+                                                <button type="button" data-toggle="modal" data-target="#signPermintaan<?= $value->tanggal_permintaan; ?>" class="btn btn-outline-primary btn-sm"><i class="fas fa-check-double"></i> Sign Here</button>
+                                            <?php endif; ?>
                                         </td>
                                     </tr>
+                                    <?php $prev_tanggal_permintaan = $value->tanggal_permintaan; ?>
                                 <?php endforeach; ?>
                             </tbody>
+
 
                         </table>
                     </div>

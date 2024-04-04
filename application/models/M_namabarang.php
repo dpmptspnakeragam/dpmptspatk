@@ -7,7 +7,7 @@ class M_namabarang extends CI_Model
     {
         $this->db->select('');
         $this->db->from('tb_nama');
-        $this->db->order_by('id_nama', 'desc');
+        $this->db->order_by('nama_barang', 'ASC');
         return $this->db->get()->result();
     }
 
@@ -20,6 +20,13 @@ class M_namabarang extends CI_Model
     {
         $this->db->where('id_nama', $id_nama);
         return $this->db->get('tb_nama')->row();
+    }
+
+    public function cek_nama_barang($id_nama, $nama_barang)
+    {
+        $this->db->where('nama_barang', $nama_barang);
+        $this->db->where('id_nama !=', $id_nama);
+        return $this->db->get('tb_nama')->num_rows() == 0;
     }
 
     public function perbarui_nama($id_nama, $data_input)
