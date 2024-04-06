@@ -15,7 +15,9 @@
                 <li class="nav-item dropdown">
                     <a id="dropdownProduk" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle">Produk</a>
                     <ul aria-labelledby="dropdownProduk" class="dropdown-menu border-0 shadow">
-                        <li><a href="#" class="dropdown-item">Kertas HVS A4</a></li>
+                        <?php foreach ($kategori as $item) : ?>
+                            <li><a href="#" class="dropdown-item"><?= $item->nama_kategori; ?></a></li>
+                        <?php endforeach; ?>
                     </ul>
                 </li>
                 <li class="nav-item dropdown">

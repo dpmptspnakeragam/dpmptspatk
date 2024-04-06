@@ -6,13 +6,13 @@
                 <div class="card">
                     <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
                         <ol class="carousel-indicators">
-                            <?php for ($i = 0; $i < min(5, count($permintaan)); $i++) : ?>
+                            <?php for ($i = 0; $i < min(5, count($view_barang)); $i++) : ?>
                                 <li data-target="#carouselExampleIndicators" data-slide-to="<?= $i ?>" <?= $i == 0 ? 'class="active"' : '' ?>></li>
                             <?php endfor; ?>
                         </ol>
                         <div class="carousel-inner">
                             <?php $count = 0; ?>
-                            <?php foreach ($permintaan as $b => $value) : ?>
+                            <?php foreach ($view_barang as $b => $value) : ?>
                                 <?php if ($count < 5) : ?>
                                     <div class="carousel-item <?= $count == 0 ? 'active' : '' ?>">
                                         <img class="d-block" style="width: 100%;" src="<?= base_url('assets/image/barang/' . $value->gambar); ?>">
@@ -37,34 +37,42 @@
                 </div>
                 <!-- /.card -->
             </div>
+        </div>
+        <!-- /.row -->
+    </div><!-- /.container-fluid -->
+</div>
+
+<div class="content">
+    <div class="container">
+        <div class="row">
             <div class="col-lg-12">
+                <div class="text-center mb-3">
+                    <span class="h2">
+                        Produk
+                    </span>
+                </div>
                 <div class="row">
-                    <?php foreach ($permintaan as $b => $value) : ?>
-                        <div class="col-6 col-md-6 col-lg-6 col-xl-3 mb-2">
+                    <?php foreach ($view_barang as $b => $value) : ?>
+                        <div class="col-6 col-md-12 col-lg-6 col-xl-3 mb-2">
                             <div class="card-barang">
                                 <div class="gambar-barang">
-                                    <img src="<?= base_url('assets/image/barang/' . $value->gambar); ?>">
+                                    <img src="<?= base_url('assets/image/barang/' . $value->gambar); ?>" class="img-circle img-thumbnail">
                                 </div>
                                 <div class="konten-card">
-                                    <h4><?= $value->nama_barang; ?></h4>
-                                    <p class="deskripsi-desktop"><?= $value->deskripsi; ?></p>
-                                    <div class="row">
-                                        <div class="col-12 text-center mb-2">
-                                            <a href="#" class="text-white">
-                                                Rp. <?= number_format($value->harga, 0, ',', '.'); ?>,-
-                                            </a>
-                                        </div>
-                                        <div class="col-12 text-center mb-2">
-                                            <a href="#" class="text-white">
-                                                Satuan: <?= $value->nama_satuan; ?>
-                                            </a>
-                                        </div>
-                                        <div class="col-6 text-center">
-                                            <a href="#" class="btn btn-sm btn-info"><i class="fas fa-search"></i></a>
-                                        </div>
-                                        <div class="col-6 text-center">
-                                            <a href="#" class="btn btn-sm btn-primary"><i class="fas fa-cart-plus"></i></a>
-                                        </div>
+                                    <h6>
+                                        <strong>
+                                            <?= $value->nama_barang; ?>
+                                        </strong>
+                                    </h6>
+                                    <hr class="bg-white mt-1 mb-1">
+                                    <div class="text-center mb-2">
+                                        <a href="#" class="text-white">
+                                            Rp. <?= number_format($value->harga, 0, ',', '.'); ?> / <?= $value->nama_satuan; ?>
+                                        </a>
+                                    </div>
+                                    <div class="text-center">
+                                        <a href="#" class="btn btn-sm btn-info"><i class="fas fa-search"></i></a>
+                                        <a href="#" class="btn btn-sm btn-primary"><i class="fas fa-cart-plus"></i></a>
                                     </div>
                                 </div>
                             </div>
@@ -101,10 +109,6 @@
         transition: filter 0.3s ease-in-out;
     }
 
-    .card-barang:hover .gambar-barang img {
-        filter: grayscale(1) brightness(0.6);
-    }
-
     .konten-card {
         position: absolute;
         bottom: 20px;
@@ -121,8 +125,7 @@
         opacity: 1;
     }
 
-    .konten-card h4,
-    .konten-card p,
+    .konten-card h6,
     .konten-card a {
         color: white;
         margin: 0;
@@ -131,16 +134,8 @@
         opacity: 0;
     }
 
-    .card-barang:hover .konten-card h4,
-    .card-barang:hover .konten-card p,
+    .card-barang:hover .konten-card h6,
     .card-barang:hover .konten-card a {
         opacity: 1;
-    }
-
-    /* Media queries untuk menyembunyikan deskripsi pada mode handphone */
-    @media (max-width: 576px) {
-        .deskripsi-desktop {
-            display: none;
-        }
     }
 </style>

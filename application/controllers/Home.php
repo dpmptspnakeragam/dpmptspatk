@@ -10,16 +10,17 @@ class Home extends CI_Controller
 	{
 		parent::__construct();
 		//Load Dependencies
-		$this->load->model('M_permintaanbarang');
+		$this->load->model('M_home');
 	}
 
 	// List all your items
-	public function index($offset = 0)
+	public function index()
 	{
 		$data = array(
 			'title'			=> 'ATK DPMPTSP Kabupaten Agam',
 			'konten'		=> 'v_home',
-			'permintaan'	=> $this->M_permintaanbarang->ambil_semua(),
+			'view_barang'	=> $this->M_home->ambil_barang(),
+			'kategori'		=> $this->M_home->kategori(),
 		);
 		$this->load->view('layout/v_home_wrapper', $data, FALSE);
 	}
