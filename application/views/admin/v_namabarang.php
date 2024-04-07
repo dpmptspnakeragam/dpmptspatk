@@ -9,7 +9,7 @@
 
                         <div class="card-tools">
 
-                            <button type="button" data-toggle="modal" data-target="#tambahNama" class="btn btn-outline-primary btn-sm">Tambah</button>
+                            <a href="<?= base_url('namabarang/add'); ?>" class="btn btn-outline-primary btn-sm">Tambah</a>
 
                             <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
                                 <i class="fas fa-minus"></i>
@@ -48,7 +48,7 @@
                                         </td>
 
                                         <td class="text-center align-middle">
-                                            <button type="button" data-toggle="modal" data-target="#updateNama<?= $value->id_nama; ?>" class="btn btn-outline-info btn-sm"><i class="fas fa-edit"></i></button>
+                                            <a href="<?= base_url('namabarang/update/' . $value->id_nama); ?>" class="btn btn-outline-info btn-sm"><i class="fas fa-edit"></i></a>
                                             <button type="button" data-toggle="modal" data-target="#deleteNama<?= $value->id_nama; ?>" class="btn btn-outline-danger btn-sm"><i class="fas fa-trash-alt"></i></button>
                                         </td>
                                     </tr>

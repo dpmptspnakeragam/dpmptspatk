@@ -21,6 +21,14 @@ class M_home extends CI_Model
         $this->db->order_by('nama_kategori', 'ASC');
         return $this->db->get()->result();
     }
+
+    public function produk()
+    {
+        $this->db->select('*');
+        $this->db->from('tb_nama');
+        $this->db->order_by('nama_barang', 'ASC');
+        return $this->db->get()->result();
+    }
 }
 
 /* End of file M_home.php */

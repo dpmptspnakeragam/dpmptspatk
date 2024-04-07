@@ -83,14 +83,14 @@
                             <div class="col-md-3">
                                 <div class="form-group">
                                     <label>Pilih Gambar</label>
-                                    <input type="file" class="form-control-file" id="profileUpload" name="profile" accept="image/*">
+                                    <input type="file" class="form-control-file" id="upload" name="profile" accept="image/*">
                                 </div>
                             </div>
                             <div class="col-md-3 text-center">
                                 <!-- Pratinjau gambar -->
                                 <label>Pratinjau Gambar</label>
                                 <div class="form-group">
-                                    <img src="<?= base_url('assets/image/profile/user-default.png'); ?>" id="profilePreview" style="max-width: 100%; max-height: 200px;">
+                                    <img src="<?= base_url('assets/image/profile/user-default.png'); ?>" id="preview" style="max-width: 100%; max-height: 200px;">
                                 </div>
                             </div>
                         </div>

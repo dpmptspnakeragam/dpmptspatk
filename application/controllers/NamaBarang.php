@@ -24,9 +24,7 @@ class NamaBarang extends CI_Controller
         ];
         $this->load->view('layout/v_user_wrapper', $data, FALSE);
 
-        // load view modal nama barang
-        $this->load->view('admin/namabarang/v_add', $data, FALSE);
-        $this->load->view('admin/namabarang/v_update', $data, FALSE);
+        // load view modal delete nama barang
         $this->load->view('admin/namabarang/v_delete', $data, FALSE);
     }
 
@@ -102,16 +100,11 @@ class NamaBarang extends CI_Controller
         $data = [
             'home'      => 'Data Master',
             'title'     => 'Nama Barang',
-            'action'    => 'Nama Barang',
+            'action'    => 'Tambah Nama Barang',
             'nama'    => $this->M_namabarang->ambil_semua(),
-            'konten'    => 'admin/v_namabarang',
+            'konten'    => 'admin/namabarang/v_add',
         ];
         $this->load->view('layout/v_user_wrapper', $data, FALSE);
-
-        // load view modal nama barang
-        $this->load->view('admin/namabarang/v_add', $data, FALSE);
-        $this->load->view('admin/namabarang/v_update', $data, FALSE);
-        $this->load->view('admin/namabarang/v_delete', $data, FALSE);
     }
 
     //Update one item
@@ -178,20 +171,15 @@ class NamaBarang extends CI_Controller
             redirect('namabarang', 'refresh');
         }
 
-        // Load data untuk ditampilkan pada view
         $data = [
             'home'      => 'Data Master',
             'title'     => 'Nama Barang',
-            'action'    => 'Nama Barang',
-            'nama'      => $this->M_namabarang->ambil_semua(),
-            'konten'    => 'admin/v_namabarang',
+            'action'    => 'Perbarui Nama Barang',
+            'nama'    => $this->M_namabarang->ambil_semua(),
+            'nama_id'   => $this->M_namabarang->ambil_id_nama($id_nama),
+            'konten'    => 'admin/namabarang/v_update',
         ];
-
-        // Load view untuk menampilkan form update nama barang
         $this->load->view('layout/v_user_wrapper', $data, FALSE);
-        $this->load->view('admin/namabarang/v_add', $data, FALSE);
-        $this->load->view('admin/namabarang/v_update', $data, FALSE);
-        $this->load->view('admin/namabarang/v_delete', $data, FALSE);
     }
 
     //Delete one item

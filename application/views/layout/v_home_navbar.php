@@ -9,23 +9,28 @@
         <div class="collapse navbar-collapse order-3" id="navbarCollapse">
             <!-- Left navbar links -->
             <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                    <a href="<?= base_url('/'); ?>" class="nav-link">Home</a>
+                <li class="nav-item active">
+                    <button type="button" class="nav-link btn btn-link" onclick="scrollToElement('myCarousel');">Home</button>
                 </li>
+
                 <li class="nav-item dropdown">
                     <a id="dropdownProduk" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle">Produk</a>
-                    <ul aria-labelledby="dropdownProduk" class="dropdown-menu border-0 shadow">
-                        <?php foreach ($kategori as $item) : ?>
-                            <li><a href="#" class="dropdown-item"><?= $item->nama_kategori; ?></a></li>
+                    <ul aria-labelledby="dropdownProduk" class="dropdown-menu border-0 shadow" style="max-height: 300px; overflow-y: auto;">
+                        <?php foreach ($produk as $item) : ?>
+                            <li><a id="kategori<?= $item->id_nama; ?>" href="<?= base_url('kategori/' . $item->id_nama); ?>" class="dropdown-item"><?= $item->nama_barang; ?></a></li>
                         <?php endforeach; ?>
                     </ul>
                 </li>
+
                 <li class="nav-item dropdown">
                     <a id="dropdownKategori" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle">Kategori</a>
-                    <ul aria-labelledby="dropdownKategori" class="dropdown-menu border-0 shadow">
-                        <li><a href="#" class="dropdown-item">Kertas HVS</a></li>
+                    <ul aria-labelledby="dropdownKategori" class="dropdown-menu border-0 shadow" style="max-height: 300px; overflow-y: auto;">
+                        <?php foreach ($kategori as $item) : ?>
+                            <li><a id="kategori<?= $item->id_kategori; ?>" href="<?= base_url('kategori/' . $item->id_kategori); ?>" class="dropdown-item"><?= $item->nama_kategori; ?></a></li>
+                        <?php endforeach; ?>
                     </ul>
                 </li>
+
                 <li class="nav-item">
                     <a href="#" class="nav-link">Contact</a>
                 </li>
@@ -33,18 +38,6 @@
                     <a href="<?= base_url('login'); ?>" class="nav-link">Login</a>
                 </li>
             </ul>
-
-            <!-- SEARCH FORM -->
-            <!-- <form class="form-inline ml-0 ml-md-3">
-                        <div class="input-group input-group-sm">
-                            <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
-                            <div class="input-group-append">
-                                <button class="btn btn-navbar" type="submit">
-                                    <i class="fas fa-search"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </form> -->
         </div>
 
         <!-- Right navbar links -->

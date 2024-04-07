@@ -194,14 +194,14 @@
 
 <!-- Script untuk menampilkan pratinjau gambar -->
 <script>
-    document.getElementById('profileUpload').onchange = function(e) {
+    document.getElementById('upload').onchange = function(e) {
         var input = e.target;
 
         if (input.files && input.files[0]) {
             var reader = new FileReader();
 
             reader.onload = function(event) {
-                document.getElementById('profilePreview').src = event.target.result;
+                document.getElementById('preview').src = event.target.result;
             };
 
             reader.readAsDataURL(input.files[0]);

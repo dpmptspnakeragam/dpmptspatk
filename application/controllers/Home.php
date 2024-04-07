@@ -21,6 +21,7 @@ class Home extends CI_Controller
 			'konten'		=> 'v_home',
 			'view_barang'	=> $this->M_home->ambil_barang(),
 			'kategori'		=> $this->M_home->kategori(),
+			'produk'		=> $this->M_home->produk(),
 		);
 		$this->load->view('layout/v_home_wrapper', $data, FALSE);
 	}
