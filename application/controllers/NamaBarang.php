@@ -22,10 +22,11 @@ class NamaBarang extends CI_Controller
             'nama'    => $this->M_namabarang->ambil_semua(),
             'konten'    => 'admin/v_namabarang',
         ];
-        $this->load->view('layout/v_user_wrapper', $data, FALSE);
 
         // load view modal delete nama barang
         $this->load->view('admin/namabarang/v_delete', $data, FALSE);
+
+        $this->load->view('layout/v_user_wrapper', $data, FALSE);
     }
 
     // Add a new item
