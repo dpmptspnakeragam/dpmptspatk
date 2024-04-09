@@ -2,7 +2,7 @@
 <section class="content">
     <div class="container-fluid">
         <div class="row">
-            <div class="col-12">
+            <div class="col-sm-12">
                 <div class="card card-outline card-primary">
                     <div class="card-header">
                         <h3 class="card-title">Form <?= $action; ?></h3>
@@ -22,7 +22,7 @@
                                     <input name="gambar" type="file" class="form-control-file" id="upload" accept="image/*">
                                 </div>
                             </div>
-                            <div class="col-md-6 text-center">
+                            <div class="col-md-6">
                                 <!-- Pratinjau gambar -->
                                 <label>Pratinjau Gambar</label>
                                 <div class="form-group">

@@ -2,7 +2,7 @@
 <section class="content">
     <div class="container-fluid">
         <div class="row">
-            <div class="col-12">
+            <div class="col-sm-12">
                 <div class="card card-outline card-primary">
                     <div class="card-header">
                         <h3 class="card-title">Form <?= $action; ?></h3>
@@ -20,7 +20,7 @@
                                 <div class="form-group">
                                     <label>Nama Barang</label>
                                     <select name="barang" class="form-control select2">
-                                        <option selected="selected" disabled>Pilih Nama Barang</option>
+                                        <option selected disabled>Pilih Nama Barang</option>
                                         <?php foreach ($nama as $nm) : ?>
                                             <option value="<?= $nm->id_nama; ?>" <?= set_select('barang', $nm->id_nama); ?>>
                                                 <?= $nm->nama_barang; ?>
@@ -33,8 +33,8 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Kategori Barang</label>
-                                    <select name="kategori" class="form-control select2">
-                                        <option selected="selected" disabled>Pilih Kategori Barang</option>
+                                    <select name="kategori" class="form-control select2 ">
+                                        <option selected disabled>Pilih Kategori Barang</option>
                                         <?php foreach ($kategori as $kat) : ?>
                                             <option value="<?= $kat->id_kategori; ?>"><?= $kat->nama_kategori; ?></option>
                                         <?php endforeach; ?>
@@ -71,7 +71,7 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Deskripsi</label>
-                                    <textarea name="deskripsi" class="form-control form-control-sm" rows="1"></textarea>
+                                    <textarea name="deskripsi" class="form-control form-control-sm" rows="2"></textarea>
                                 </div>
                             </div>
                         </div>

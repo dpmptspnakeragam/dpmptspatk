@@ -13,20 +13,18 @@ class KategoriBarang extends CI_Controller
     }
 
     // List all your items
-    public function index($offset = 0)
+    public function index()
     {
         $data = [
             'home'      => 'Data Master',
             'title'     => 'Kategori Barang',
             'action'    => 'Kategori Barang',
-            'kategori'    => $this->M_kategoribarang->ambil_semua(),
+            'kategori'  => $this->M_kategoribarang->ambil_semua(),
             'konten'    => 'admin/v_kategoribarang',
         ];
         $this->load->view('layout/v_user_wrapper', $data, FALSE);
 
-        // load view modal kategori barang
-        $this->load->view('admin/kategoribarang/v_add', $data, FALSE);
-        $this->load->view('admin/kategoribarang/v_update', $data, FALSE);
+        // load view modal delete kategori barang
         $this->load->view('admin/kategoribarang/v_delete', $data, FALSE);
     }
 
@@ -53,14 +51,9 @@ class KategoriBarang extends CI_Controller
             'title'     => 'Kategori Barang',
             'action'    => 'Kategori Barang',
             'kategori'    => $this->M_kategoribarang->ambil_semua(),
-            'konten'    => 'admin/v_kategoribarang',
+            'konten'    => 'admin/kategoribarang/v_add',
         ];
         $this->load->view('layout/v_user_wrapper', $data, FALSE);
-
-        // load view modal kategori barang
-        $this->load->view('admin/kategoribarang/v_add', $data, FALSE);
-        $this->load->view('admin/kategoribarang/v_update', $data, FALSE);
-        $this->load->view('admin/kategoribarang/v_delete', $data, FALSE);
     }
 
     //Update one item

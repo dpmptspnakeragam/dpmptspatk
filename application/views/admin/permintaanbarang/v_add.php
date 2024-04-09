@@ -2,7 +2,7 @@
 <section class="content">
     <div class="container-fluid">
         <div class="row">
-            <div class="col-12">
+            <div class="col-sm-12">
                 <div class="card card-outline card-primary">
                     <div class="card-header">
                         <h3 class="card-title">Form <?= $action; ?></h3>
@@ -85,7 +85,7 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Keterangan</label>
-                                    <textarea name="keterangan" class="form-control form-control-sm" rows="1"><?= set_value('keterangan'); ?></textarea>
+                                    <textarea name="keterangan" class="form-control form-control-sm" rows="2"><?= set_value('keterangan'); ?></textarea>
                                     <small class="text-danger"><?= form_error('keterangan'); ?></small>
                                 </div>
                             </div>

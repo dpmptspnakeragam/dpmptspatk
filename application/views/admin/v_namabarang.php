@@ -8,12 +8,7 @@
                         <h3 class="card-title">Tabel <?= $action; ?></h3>
 
                         <div class="card-tools">
-
                             <a href="<?= base_url('namabarang/add'); ?>" class="btn btn-outline-primary btn-sm">Tambah</a>
-
-                            <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
-                                <i class="fas fa-minus"></i>
-                            </button>
                         </div>
                     </div>
                     <!-- /.card-header -->
@@ -22,8 +17,8 @@
 
                             <?= validation_errors(
                                 '<div class="alert alert-warning alert-dismissible small">
-                                <i class="icon fas fa-exclamation-triangle"></i>
-                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>',
+                        <i class="icon fas fa-exclamation-triangle"></i>
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>',
                                 '</div>'
                             ); ?>
 
@@ -63,6 +58,7 @@
             <!-- /.col -->
         </div>
         <!-- /.row -->
+
     </div>
     <!-- /.container-fluid -->
 </section>

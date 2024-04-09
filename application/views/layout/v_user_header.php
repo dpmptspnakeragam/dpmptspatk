@@ -29,5 +29,5 @@
 
 </head>
 
-<body class="sidebar-mini-md sidebar-mini layout-navbar-fixed  layout-footer-fixed text-sm sidebar-closed layout-fixed">
+<body class="sidebar-mini-md sidebar-mini layout-navbar-fixed text-sm sidebar-closed layout-fixed">
     <div class="wrapper">
