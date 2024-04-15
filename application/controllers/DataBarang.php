@@ -26,6 +26,7 @@ class DataBarang extends CI_Controller
 
         // load view modal delete data barang
         $this->load->view('admin/databarang/v_delete', $data, FALSE);
+        $this->load->view('admin/databarang/v_detail', $data, FALSE);
     }
 
     // Add Data Barang

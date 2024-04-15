@@ -49,7 +49,7 @@ class KategoriBarang extends CI_Controller
         $data = [
             'home'      => 'Data Master',
             'title'     => 'Kategori Barang',
-            'action'    => 'Kategori Barang',
+            'action'    => 'Tambah Kategori Barang',
             'kategori'    => $this->M_kategoribarang->ambil_semua(),
             'konten'    => 'admin/kategoribarang/v_add',
         ];
@@ -77,7 +77,7 @@ class KategoriBarang extends CI_Controller
         $data = [
             'home'      => 'Data Master',
             'title'     => 'Kategori Barang',
-            'action'    => 'Kategori Barang',
+            'action'    => 'Perbarui Kategori Barang',
             'kategori'    => $this->M_kategoribarang->ambil_semua(),
             'konten'    => 'admin/v_kategoribarang',
         ];

@@ -30,10 +30,6 @@
                         <?php endforeach; ?>
                     </ul>
                 </li>
-
-                <li class="nav-item">
-                    <a href="#" class="nav-link">Contact</a>
-                </li>
                 <li class="nav-item">
                     <a href="<?= base_url('login'); ?>" class="nav-link">Login</a>
                 </li>

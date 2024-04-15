@@ -6,11 +6,6 @@
                 <div class="card card-outline card-primary">
                     <div class="card-header">
                         <h3 class="card-title">Form <?= $action; ?></h3>
-                        <div class="card-tools">
-                            <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
-                                <i class="fas fa-minus"></i>
-                            </button>
-                        </div>
                     </div>
                     <?= form_open('databarang/update/' . $barang_id->id_barang); ?>
                     <!-- /.card-header -->
@@ -69,7 +64,7 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Deskripsi</label>
-                                    <textarea name="deskripsi" class="form-control form-control-sm" rows="1"><?= $barang_id->deskripsi; ?></textarea>
+                                    <textarea name="deskripsi" class="form-control form-control-sm" rows="4"><?= $barang_id->deskripsi; ?></textarea>
                                 </div>
                             </div>
                         </div>

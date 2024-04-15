@@ -8,12 +8,7 @@
                         <h3 class="card-title">Tabel <?= $action; ?></h3>
 
                         <div class="card-tools">
-
                             <a href="<?= base_url('datauser/add'); ?>" class="btn btn-outline-primary btn-sm">Tambah</a>
-
-                            <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
-                                <i class="fas fa-minus"></i>
-                            </button>
                         </div>
                     </div>
                     <!-- /.card-header -->

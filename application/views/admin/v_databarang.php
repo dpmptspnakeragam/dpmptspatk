@@ -8,12 +8,7 @@
                         <h3 class="card-title">Tabel <?= $action; ?></h3>
 
                         <div class="card-tools">
-
                             <a href="<?= base_url('databarang/add'); ?>" class="btn btn-outline-primary btn-sm">Tambah</a>
-
-                            <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
-                                <i class="fas fa-minus"></i>
-                            </button>
                         </div>
                     </div>
                     <!-- /.card-header -->
@@ -25,7 +20,6 @@
                                     <th class="text-center align-middle">Nama Barang</th>
                                     <th class="text-center align-middle">Kategori</th>
                                     <th class="text-center align-middle">Harga Satuan</th>
-                                    <th class="text-center align-middle">Stok</th>
                                     <th class="text-center align-middle">Action</th>
                                 </tr>
                             </thead>
@@ -36,8 +30,7 @@
                                         <td class="text-center align-middle"><?= $count++; ?></td>
                                         <td class="text-center align-middle"><?= $value->nama_barang; ?></td>
                                         <td class="text-center align-middle"><?= $value->nama_kategori; ?></td>
-                                        <td class="text-center align-middle">Rp. <?= number_format($value->harga, 0, ',', '.'); ?>,- / <?= $value->nama_satuan; ?></td>
-                                        <td class="text-center align-middle"><?= $value->stok; ?></td>
+                                        <td class="text-center align-middle">Rp. <?= number_format($value->harga, 0, ',', '.'); ?> / <?= $value->nama_satuan; ?></td>
 
                                         <td class="text-center align-middle">
                                             <button type="button" data-toggle="modal" data-target="#detailBarang<?= $value->id_barang; ?>" class="btn btn-outline-primary btn-sm"><i class="fas fa-search"></i></button>

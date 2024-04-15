@@ -81,13 +81,33 @@
             </div>
         </li>
 
+        <!-- Nav Item - User Role -->
+        <li class="nav-item">
+            <span class="nav-link active">
+                <?php if ($data_login->role == 1) : ?>
+                    Administrator
+                <?php elseif ($data_login->role == 2) : ?>
+                    Admin
+                <?php elseif ($data_login->role == 3) : ?>
+                    Pegawai
+                <?php endif; ?>
+            </span>
+        </li>
+
         <!-- Nav Item - User Information -->
-        <li class="nav-item dropdown no-arrow">
-            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span class="mr-2 d-none d-lg-inline text-dark"><?= $data_login->nama_user; ?></span>
+        <!-- <li class="nav-item dropdown no-arrow">
+            <a class="nav-link dropdown-toggle" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <span class="mr-2 d-none d-lg-inline text-dark">
+                    <?php if ($data_login->role == 1) : ?>
+                        Administrator
+                    <?php elseif ($data_login->role == 2) : ?>
+                        Admin
+                    <?php elseif ($data_login->role == 3) : ?>
+                        Pegawai
+                    <?php endif; ?>
+                </span>
                 <img src="<?= base_url('assets/image/profile/' . $data_login->profile); ?>" class="img-profile rounded-circle elevation-3" style="max-width: 100%; max-height: 20px;">
             </a>
-            <!-- Dropdown - User Information -->
             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
                 <a class="dropdown-item" href="#">
                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
@@ -99,38 +119,49 @@
                     Logout
                 </a>
             </div>
-        </li>
+        </li> -->
     </ul>
 </nav>
 <!-- /.navbar -->
 
 <!-- Main Sidebar Container -->
-<aside class="main-sidebar sidebar-light-primary elevation-3">
+<aside class="main-sidebar sidebar-light-primary">
     <!-- Brand Logo -->
     <a href="<?= base_url($this->uri->segment(1)); ?>" class="brand-link">
-        <div class="image">
-            <img src="<?= base_url('assets/'); ?>image/logo/atk.png" alt="DPMTPSP Logo ATK" class="brand-image">
-        </div>
+        <img src="<?= base_url('assets/'); ?>image/logo/agam.png" alt="AdminLTE Logo" class="brand-image">
+        <span class="brand-text">
+            <strong>ATK DPMPTSP</strong>
+        </span>
     </a>
 
     <!-- Sidebar -->
     <div class="sidebar">
 
+        <!-- Sidebar user panel (optional) -->
+        <div class="user-panel mt-2 pb-2 mb-2 d-flex">
+            <div style="margin-left: 10px;">
+                <img src="<?= base_url('assets/image/profile/' . $data_login->profile); ?>" class="img-circle elevation-2" alt="User Image">
+            </div>
+            <div class="info d-flex justify-content-between align-items-center w-100">
+                <a href="<?= base_url('myprofile'); ?>" class="d-block"><?= $data_login->nama_user; ?></a>
+                <a href="<?= base_url('logout'); ?>" data-toggle="modal" data-target="#logoutModal">
+                    <i class="fas fa-sign-out-alt"></i>
+                </a>
+            </div>
+        </div>
+
         <!-- Sidebar Menu -->
         <nav class="mt-0">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-                <li class="nav-header"><small>Home</small></li>
                 <li class="nav-item">
                     <a href="<?= base_url('dashboard'); ?>" class="nav-link <?php if (in_array($this->uri->segment(1), ['dashboard'])) echo "active"; ?>">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
                         <p>Dashboard</p>
                     </a>
-
                 </li>
 
-                <li class="user-panel"></li>
+                <div class="user-panel mt-1 mb-1 d-flex"></div>
 
-                <li class="nav-header"><small>Menu Management</small></li>
                 <li class="nav-item <?= in_array(
                                         $this->uri->segment(1),
                                         [
@@ -162,31 +193,31 @@
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
                             <a href="<?= base_url('datauser'); ?>" class="nav-link <?= $this->uri->segment(1) == 'datauser' ? 'active' : ''; ?>">
-                                <i class="<?= $this->uri->segment(1) == 'datauser' ? 'fas' : 'far'; ?> fa-circle nav-icon text-primary"></i>
+                                <i class="<?= $this->uri->segment(1) == 'datauser' ? 'fas' : 'far'; ?> fa-circle nav-icon"></i>
                                 <p>Data User</p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a href="<?= base_url('databarang'); ?>" class="nav-link <?= $this->uri->segment(1) == 'databarang' ? 'active' : ''; ?>">
-                                <i class="<?= $this->uri->segment(1) == 'databarang' ? 'fas' : 'far'; ?> fa-circle nav-icon text-primary"></i>
+                                <i class="<?= $this->uri->segment(1) == 'databarang' ? 'fas' : 'far'; ?> fa-circle nav-icon"></i>
                                 <p>Data Barang</p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a href="<?= base_url('namabarang'); ?>" class="nav-link <?= $this->uri->segment(1) == 'namabarang' ? 'active' : ''; ?>">
-                                <i class="<?= $this->uri->segment(1) == 'namabarang' ? 'fas' : 'far'; ?> fa-circle nav-icon text-primary"></i>
+                                <i class="<?= $this->uri->segment(1) == 'namabarang' ? 'fas' : 'far'; ?> fa-circle nav-icon"></i>
                                 <p>Nama Barang</p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a href="<?= base_url('kategoribarang'); ?>" class="nav-link <?= $this->uri->segment(1) == 'kategoribarang' ? 'active' : ''; ?>">
-                                <i class="<?= $this->uri->segment(1) == 'kategoribarang' ? 'fas' : 'far'; ?> fa-circle nav-icon text-primary"></i>
+                                <i class="<?= $this->uri->segment(1) == 'kategoribarang' ? 'fas' : 'far'; ?> fa-circle nav-icon"></i>
                                 <p>Kategori Barang</p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a href="<?= base_url('satuanbarang'); ?>" class="nav-link <?= $this->uri->segment(1) == 'satuanbarang' ? 'active' : ''; ?>">
-                                <i class="<?= $this->uri->segment(1) == 'satuanbarang' ? 'fas' : 'far'; ?> fa-circle nav-icon text-primary"></i>
+                                <i class="<?= $this->uri->segment(1) == 'satuanbarang' ? 'fas' : 'far'; ?> fa-circle nav-icon"></i>
                                 <p>Satuan Barang</p>
                             </a>
                         </li>
@@ -234,6 +265,7 @@
                         </p>
                     </a>
                 </li>
+
             </ul>
         </nav>
         <!-- /.sidebar-menu -->
