@@ -6,14 +6,13 @@
                 <div class="card card-outline card-primary">
                     <div class="card-header">
                         <h3 class="card-title">Tabel <?= $action; ?></h3>
-
                         <div class="card-tools">
                             <a href="<?= base_url('databarang/add'); ?>" class="btn btn-outline-primary btn-sm">Tambah</a>
                         </div>
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">
-                        <table id="TabelData1" class="table table-bordered table-striped table-hover">
+                        <table id="TabelData1" class="table table-bordered table-sm table-hover">
                             <thead>
                                 <tr>
                                     <th class="text-center align-middle">No</th>

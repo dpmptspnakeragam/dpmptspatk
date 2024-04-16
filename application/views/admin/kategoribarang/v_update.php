@@ -1,27 +1,34 @@
-    <?php foreach ($kategori as $ki => $value) : ?>
-        <div class="modal fade" id="updateKategori<?= $value->id_kategori; ?>" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="staticBackdropLabel">Perbarui <?= $action; ?></h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <?= form_open('kategoribarang/update/' . $value->id_kategori); ?>
-                    <div class="modal-body">
-                        <div class="form-group">
-                            <label>Nama Kategori</label>
-                            <input name="nama_kategori" type="text" class="form-control" value="<?= $value->nama_kategori; ?>">
-                            <small class="text-danger"><?= form_error('nama_kategori'); ?></small>
+<!-- Main content -->
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="card-header">
+                    <h3 class="card-title">Form <?= $action; ?></h3>
+                </div>
+                <?= form_open('kategoribarang/update/' . $kategori_id->id_kategori); ?>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Nama Kategori</label>
+                                <input name="nama_kategori" type="text" class="form-control form-control-sm" value="<?= $kategori_id->nama_kategori; ?>">
+                                <small class="text-danger"><?= form_error('nama_kategori'); ?></small>
+                            </div>
                         </div>
                     </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Kembali</button>
-                        <?= form_submit('submit', 'Perbarui', 'class="btn btn-outline-info"'); ?>
-                    </div>
-                    <?= form_close() ?>
                 </div>
+                <div class="card-footer bg-transparent">
+                    <?= form_submit('submit', 'Perbarui', 'class="btn btn-outline-info"'); ?>
+                    <a href="<?= base_url('kategoribarang'); ?>" class="btn btn-outline-secondary">Kembali</a>
+                </div>
+                <?= form_close() ?>
+
             </div>
+            <!-- /.col -->
         </div>
-    <?php endforeach; ?>
+        <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+</section>
+<!-- /.content -->

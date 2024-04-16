@@ -75,18 +75,14 @@ class KategoriBarang extends CI_Controller
         }
 
         $data = [
-            'home'      => 'Data Master',
-            'title'     => 'Kategori Barang',
-            'action'    => 'Perbarui Kategori Barang',
-            'kategori'    => $this->M_kategoribarang->ambil_semua(),
-            'konten'    => 'admin/v_kategoribarang',
+            'home'          => 'Data Master',
+            'title'         => 'Kategori Barang',
+            'action'        => 'Perbarui Kategori Barang',
+            'kategori'      => $this->M_kategoribarang->ambil_semua(),
+            'kategori_id'   => $this->M_kategoribarang->ambil_id_kategori($id_kategori),
+            'konten'        => 'admin/kategoribarang/v_update',
         ];
         $this->load->view('layout/v_user_wrapper', $data, FALSE);
-
-        // load view modal kategori barang
-        $this->load->view('admin/kategoribarang/v_add', $data, FALSE);
-        $this->load->view('admin/kategoribarang/v_update', $data, FALSE);
-        $this->load->view('admin/kategoribarang/v_delete', $data, FALSE);
     }
 
     //Delete one item

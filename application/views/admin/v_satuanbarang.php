@@ -8,12 +8,12 @@
                         <h3 class="card-title">Tabel <?= $action; ?></h3>
 
                         <div class="card-tools">
-                            <button type="button" data-toggle="modal" data-target="#tambahSatuan" class="btn btn-outline-primary btn-sm">Tambah</button>
+                            <a href="<?= base_url('satuanbarang/add'); ?>" class="btn btn-outline-primary btn-sm">Tambah</a>
                         </div>
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">
-                        <table id="TabelData1" class="table table-bordered table-striped table-hover">
+                        <table id="TabelData1" class="table table-bordered table-sm table-hover">
 
                             <?= validation_errors(
                                 '<div class="alert alert-warning alert-dismissible small">
@@ -37,7 +37,7 @@
                                         <td class="text-center align-middle"><?= $value->nama_satuan; ?></td>
 
                                         <td class="text-center align-middle">
-                                            <button type="button" data-toggle="modal" data-target="#updateSatuan<?= $value->id_satuan; ?>" class="btn btn-outline-info btn-sm"><i class="fas fa-edit"></i></button>
+                                            <a href="<?= base_url('satuanbarang/update/' . $value->id_satuan); ?>" class="btn btn-outline-info btn-sm"><i class="fas fa-edit"></i></a>
                                             <button type="button" data-toggle="modal" data-target="#deleteSatuan<?= $value->id_satuan; ?>" class="btn btn-outline-danger btn-sm"><i class="fas fa-trash-alt"></i></button>
                                         </td>
                                     </tr>

@@ -18,7 +18,7 @@
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">
-                        <table id="TabelData1" class="table table-bordered table-striped table-hover">
+                        <table id="TabelData1" class="table table-bordered table-sm table-hover">
 
                             <?= validation_errors(
                                 '<div class="alert alert-warning alert-dismissible small">

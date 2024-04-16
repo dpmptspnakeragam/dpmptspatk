@@ -14,17 +14,21 @@ class lib_login
     public function login_user($username, $password)
     {
         $cek = $this->ci->M_login->login($username, $password);
-        // cek user saat login
         if ($cek) {
             $id_user = $cek->id_user;
+            $user_email = $cek->email;
+            $user_username = $cek->username;
+            $user_role = $cek->role;
 
-            // buat session user saat login
             $this->ci->session->set_userdata('id_user', $id_user);
+            $this->ci->session->set_userdata('email', $user_email);
+            $this->ci->session->set_userdata('username', $user_username);
+            $this->ci->session->set_userdata('role', $user_role);
 
-            // arahkan ke halaman admin
+
+            $this->ci->session->set_flashdata('success', 'Login berhasil.');
             redirect('dashboard');
         } else {
-            // jika cek salah
             $this->ci->session->set_flashdata('error', 'Username atau Password salah!');
             redirect('login');
         }
@@ -41,6 +45,9 @@ class lib_login
     public function logout_user()
     {
         $this->ci->session->unset_userdata('id_user');
+        $this->ci->session->unset_userdata('email');
+        $this->ci->session->unset_userdata('username');
+        $this->ci->session->unset_userdata('role');
         $this->ci->session->set_flashdata('success', 'Logout berhasil!');
         redirect('login');
     }

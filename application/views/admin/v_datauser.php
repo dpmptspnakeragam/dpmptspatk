@@ -13,7 +13,7 @@
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">
-                        <table id="TabelData1" class="table table-bordered table-striped table-hover">
+                        <table id="TabelData1" class="table table-bordered table-sm table-hover">
                             <thead>
                                 <tr>
                                     <th class="text-center align-middle">No</th>
@@ -41,7 +41,7 @@
                                         </td>
                                         <td class="text-center align-middle">
                                             <a href="<?= base_url('assets/image/profile/' . $value->profile); ?>" data-toggle="lightbox">
-                                                <img src="<?= base_url('assets/image/profile/' . $value->profile); ?>" alt="Foto Profile" class="img-size-50">
+                                                <img src="<?= base_url('assets/image/profile/' . $value->profile); ?>" alt="Foto Profile" class="img-circle elevation-2 img-size-32">
                                             </a>
                                         </td>
                                         <td class="text-center align-middle">

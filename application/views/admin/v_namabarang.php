@@ -13,7 +13,7 @@
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">
-                        <table id="TabelData1" class="table table-bordered table-striped table-hover">
+                        <table id="TabelData1" class="table table-bordered table-sm table-hover">
 
                             <?= validation_errors(
                                 '<div class="alert alert-warning alert-dismissible small">
@@ -38,7 +38,7 @@
                                         <td class="text-center align-middle"><?= $value->nama_barang; ?></td>
                                         <td class="text-center align-middle">
                                             <a href="<?= base_url('assets/image/barang/' . $value->gambar); ?>" data-toggle="lightbox">
-                                                <img src="<?= base_url('assets/image/barang/' . $value->gambar); ?>" alt="Foto Profile" class="img-size-50">
+                                                <img src="<?= base_url('assets/image/barang/' . $value->gambar); ?>" alt="Foto Profile" class="img-circle elevation-2 img-size-32">
                                             </a>
                                         </td>
 

@@ -24,9 +24,6 @@ class SatuanBarang extends CI_Controller
         ];
         $this->load->view('layout/v_user_wrapper', $data, FALSE);
 
-        // load view modal satuan barang
-        $this->load->view('admin/satuanbarang/v_add', $data, FALSE);
-        $this->load->view('admin/satuanbarang/v_update', $data, FALSE);
         $this->load->view('admin/satuanbarang/v_delete', $data, FALSE);
     }
 
@@ -51,16 +48,11 @@ class SatuanBarang extends CI_Controller
         $data = [
             'home'      => 'Data Master',
             'title'     => 'Satuan Barang',
-            'action'    => 'Satuan Barang',
+            'action'    => 'Tambah Satuan Barang',
             'satuan'    => $this->M_satuanbarang->ambil_semua(),
-            'konten'    => 'admin/v_satuanbarang',
+            'konten'    => 'admin/satuanbarang/v_add',
         ];
         $this->load->view('layout/v_user_wrapper', $data, FALSE);
-
-        // load view modal satuan barang
-        $this->load->view('admin/satuanbarang/v_add', $data, FALSE);
-        $this->load->view('admin/satuanbarang/v_update', $data, FALSE);
-        $this->load->view('admin/satuanbarang/v_delete', $data, FALSE);
     }
 
     //Update one item
@@ -84,16 +76,12 @@ class SatuanBarang extends CI_Controller
         $data = [
             'home'      => 'Data Master',
             'title'     => 'Satuan Barang',
-            'action'    => 'Satuan Barang',
+            'action'    => 'Perbarui Satuan Barang',
             'satuan'    => $this->M_satuanbarang->ambil_semua(),
-            'konten'    => 'admin/v_satuanbarang',
+            'satuan_id' => $this->M_satuanbarang->ambil_id_satuan($id_satuan),
+            'konten'    => 'admin/satuanbarang/v_update',
         ];
         $this->load->view('layout/v_user_wrapper', $data, FALSE);
-
-        // load view modal satuan barang
-        $this->load->view('admin/satuanbarang/v_add', $data, FALSE);
-        $this->load->view('admin/satuanbarang/v_update', $data, FALSE);
-        $this->load->view('admin/satuanbarang/v_delete', $data, FALSE);
     }
 
     //Delete one item

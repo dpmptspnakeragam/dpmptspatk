@@ -42,7 +42,9 @@ class DataUser extends CI_Controller
 
     public function username_check($username, $id_user)
     {
-        $result = $this->M_datauser->username_unik($username, $id_user);
+        $role = $this->session->userdata('role'); // Ambil peran pengguna dari sesi
+
+        $result = $this->M_datauser->username_unik($username, $id_user, $role);
         if ($result) {
             $this->form_validation->set_message('username_check', 'Username sudah digunakan.');
             return FALSE;
@@ -53,7 +55,9 @@ class DataUser extends CI_Controller
 
     public function email_check($email, $id_user)
     {
-        $result = $this->M_datauser->email_unik($email, $id_user);
+        $role = $this->session->userdata('role'); // Ambil peran pengguna dari sesi
+
+        $result = $this->M_datauser->email_unik($email, $id_user, $role);
         if ($result) {
             $this->form_validation->set_message('email_check', 'Email sudah digunakan.');
             return FALSE;
@@ -194,6 +198,12 @@ class DataUser extends CI_Controller
     //Update Data User
     public function update($id_user = NULL)
     {
+        // cek id pengguna yang sedang login
+        // $id_user_login = $this->session->userdata('id_user');
+        // if ($id_user != $id_user_login) {
+        //     show_error('Anda tidak memiliki izin untuk mengakses halaman ini.', 403);
+        // }
+
         $this->form_validation->set_rules('nama_user', 'Nama Lengkap', 'trim|required', [
             'required'       => '%s harus diisi!',
         ]);
@@ -225,13 +235,13 @@ class DataUser extends CI_Controller
         $this->form_validation->set_rules('bidang', 'Bidang', 'trim|required', [
             'required'       => '%s harus diisi!',
         ]);
+
         $this->form_validation->set_rules('role', 'Role ID', 'trim|required', [
-            'required'       => '%s harus diisi!',
+            'required' => '%s harus diisi!',
         ]);
         $this->form_validation->set_rules('status', 'Status', 'trim|required', [
-            'required'       => '%s harus diisi!',
+            'required' => '%s harus diisi!',
         ]);
-
 
         if ($this->form_validation->run() == TRUE) {
             $config['upload_path'] = './assets/image/profile/';
@@ -244,6 +254,7 @@ class DataUser extends CI_Controller
             if (!$this->upload->do_upload($nama_gambar)) {
                 // upload gambar defaultnya profile user
                 $data_input = [
+                    'id_user'   => $this->input->post('id_user'),
                     'nama_user' => $this->input->post('nama_user'),
                     'email'     => $this->input->post('email'),
                     'username'  => $this->input->post('username'),
@@ -273,6 +284,7 @@ class DataUser extends CI_Controller
                 $this->image_lib->resize();
 
                 $data_input = [
+                    'id_user'   => $this->input->post('id_user'),
                     'nama_user' => $this->input->post('nama_user'),
                     'email'     => $this->input->post('email'),
                     'username'  => $this->input->post('username'),
@@ -290,12 +302,12 @@ class DataUser extends CI_Controller
         }
 
         $data = [
-            'home'  => 'Data Master',
-            'title' => 'Data User',
-            'action' => 'Perbarui User',
-            'user'  => $this->M_datauser->ambil_semua(),
-            'user_id'  => $this->M_datauser->ambil_id_user($id_user),
-            'konten'   => 'admin/datauser/v_update',
+            'home'      => 'Data Master',
+            'title'     => 'Data User',
+            'action'    => 'Perbarui User',
+            'user'      => $this->M_datauser->ambil_semua(),
+            'user_id'   => $this->M_datauser->ambil_id_user($id_user),
+            'konten'    => 'admin/datauser/v_update',
         ];
         $this->load->view('layout/v_user_wrapper', $data, FALSE);
     }

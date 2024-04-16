@@ -36,19 +36,30 @@ class M_datauser extends CI_Model
         return $data ? $data->username : null;
     }
 
-    public function username_unik($username, $id_user)
+    public function username_unik($username, $id_user, $role)
     {
+        if ($role != 1) {
+            // Jika role adalah admin, tidak perlu validasi unik
+            return FALSE;
+        }
+
         $this->db->where('username', $username);
         $this->db->where_not_in('id_user', $id_user);
         return $this->db->get('tb_user')->row();
     }
 
-    public function email_unik($email, $id_user)
+    public function email_unik($email, $id_user, $role)
     {
+        if ($role != 1) {
+            // Jika role adalah admin, tidak perlu validasi unik
+            return FALSE;
+        }
+
         $this->db->where('email', $email);
         $this->db->where_not_in('id_user', $id_user);
         return $this->db->get('tb_user')->row();
     }
+
 
     public function ambil_id_user($id_user)
     {

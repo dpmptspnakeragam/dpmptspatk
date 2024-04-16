@@ -13,7 +13,7 @@
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">
-                        <table id="TabelData1" class="table table-bordered table-striped table-hover">
+                        <table id="TabelData1" class="table table-bordered table-sm table-hover">
 
                             <?= validation_errors(
                                 '<div class="alert alert-warning alert-dismissible small">
@@ -37,7 +37,7 @@
                                         <td class="text-center align-middle"><?= $value->nama_kategori; ?></td>
 
                                         <td class="text-center align-middle">
-                                            <button type="button" data-toggle="modal" data-target="#updateKategori<?= $value->id_kategori; ?>" class="btn btn-outline-info btn-sm"><i class="fas fa-edit"></i></button>
+                                            <a href="<?= base_url('kategoribarang/update/' . $value->id_kategori); ?>" class="btn btn-outline-info btn-sm"><i class="fas fa-edit"></i></a>
                                             <button type="button" data-toggle="modal" data-target="#deleteKategori<?= $value->id_kategori; ?>" class="btn btn-outline-danger btn-sm"><i class="fas fa-trash-alt"></i></button>
                                         </td>
                                     </tr>
