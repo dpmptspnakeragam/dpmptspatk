@@ -5,7 +5,7 @@ class M_permintaanbarang extends CI_Model
 {
     public function ambil_semua()
     {
-        $this->db->select('tb_permintaan.*, tb_barang.*, tb_user.nama_user, tb_nama.nama_barang, tb_kategori.nama_kategori, tb_satuan.nama_satuan');
+        $this->db->select('tb_permintaan.*, tb_barang.*, tb_user.nama_user, tb_nama.nama_barang, tb_nama.gambar, tb_kategori.nama_kategori, tb_satuan.nama_satuan');
         $this->db->from('tb_permintaan');
         $this->db->join('tb_barang', 'tb_permintaan.id_barang = tb_barang.id_barang');
         $this->db->join('tb_user', 'tb_permintaan.id_user = tb_user.id_user');
