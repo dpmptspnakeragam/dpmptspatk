@@ -6,13 +6,17 @@
                 <div class="card card-outline card-primary">
                     <div class="card-header">
                         <h3 class="card-title">Tabel <?= $action; ?></h3>
-
-                        <div class="card-tools">
-                            <a href="<?= base_url('datauser/add'); ?>" class="btn btn-outline-primary btn-sm">Tambah</a>
-                        </div>
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">
+
+                        <div class="d-flex mb-3">
+                            <a href="<?= base_url('datauser/add'); ?>" class="btn btn-outline-primary btn-sm">
+                                <i class="fas fa-plus p-1"></i>
+                                Tambah Data
+                            </a>
+                        </div>
+
                         <table id="TabelData1" class="table table-bordered table-sm table-hover">
                             <thead>
                                 <tr>

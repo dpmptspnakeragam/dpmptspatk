@@ -1,3 +1,23 @@
+<!-- Main content -->
+<div class="content">
+    <div class="container mb-4">
+        <div class="row d-flex justify-content-end">
+            <div class="col-md-6">
+                <form action="<?= base_url('home/search'); ?>">
+                    <div class="input-group">
+                        <input type="search" class="form-control form-control-sm" placeholder="Cari barang">
+                        <div class="input-group-append">
+                            <button type="submit" class="btn btn-sm btn-default">
+                                <i class="fa fa-search"></i>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
 <div class="content">
     <div class="container">
         <div class="row">
@@ -34,7 +54,6 @@
 </div>
 <!-- /.content -->
 
-
 <style>
     .card-barang {
         width: 100%;
@@ -51,7 +70,7 @@
 
     .card-barang .gambar-barang img {
         width: 100%;
-        height: auto;
+        height: 250px;
         object-fit: cover;
         border-radius: 8px;
         transition: filter 0.3s ease-in-out;
