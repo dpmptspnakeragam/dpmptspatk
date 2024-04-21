@@ -27,9 +27,9 @@
                             <thead>
                                 <tr>
                                     <th class="text-center align-middle" col>No</th>
-                                    <th class="text-center align-middle">Tanggal Permintaan</th>
+                                    <th class="text-center align-middle">Kode Permintaan</th>
                                     <th class="text-center align-middle">Nama Peminta</th>
-                                    <th class="text-center align-middle">Nama Barang</th>
+                                    <th class="text-center align-middle">Detail Barang</th>
                                     <th class="text-center align-middle">Action</th>
                                     <th class="text-center align-middle">Konfirmasi</th>
                                 </tr>
@@ -37,50 +37,32 @@
 
                             <tbody>
                                 <?php $count = 1; ?>
-                                <?php $prev_id_validasi = ''; ?>
-                                <?php $prev_nama_user = ''; ?>
-                                <?php foreach ($permintaan as $pm => $value) : ?>
-                                    <?php if ($value->status == 'menunggu') : ?>
+                                <?php foreach ($data_permintaan as $pm => $value) : ?>
+                                    <?php if ($value->status_konfperm == 'Menunggu') : ?>
 
                                         <?php
-                                        // Mendapatkan bagian tanggal dari id_validasi
-                                        $id_validasi_parts = explode('_', $value->id_validasi);
-                                        $tanggal_permintaan = $id_validasi_parts[1]; // Bagian kedua adalah tanggal
-
-                                        // Mendapatkan hari dari tanggal dalam bahasa Indonesia
-                                        $hariIndonesia = [
-                                            'Sunday' => 'Minggu',
-                                            'Monday' => 'Senin',
-                                            'Tuesday' => 'Selasa',
-                                            'Wednesday' => 'Rabu',
-                                            'Thursday' => 'Kamis',
-                                            'Friday' => 'Jumat',
-                                            'Saturday' => 'Sabtu'
-                                        ];
-                                        $hari = date('l', strtotime($tanggal_permintaan));
+                                        // Panggil query untuk mendapatkan nama user berdasarkan kode permintaan
+                                        $nama_user = $this->M_permintaan->tampilkan_nama_user_by_kode_perm($value->kode_perm);
                                         ?>
 
                                         <tr>
                                             <td class="text-center align-middle"><?= $count++; ?></td>
-                                            <td class="text-center"><?= $hariIndonesia[$hari] . ', ' . date('d F Y', strtotime($tanggal_permintaan)); ?></td>
-                                            <td class="text-center align-middle"><?= $value->nama_user; ?></td>
-                                            <td class="text-center align-middle"><?= $value->nama_barang; ?></td>
+                                            <td class="text-center align-middle"><?= substr($value->kode_perm, 0, strlen($value->kode_perm) - 16); ?></td>
+                                            <td class="text-center align-middle"><?= $nama_user ? $nama_user->nama_user : ''; ?></td>
+
                                             <td class="text-center align-middle">
-                                                <button type="button" data-toggle="modal" data-target="#detailPermintaan<?= $value->id_permintaan; ?>" class="btn btn-outline-success btn-sm"><i class="fas fa-search"></i></button>
-                                                <button type="button" data-toggle="modal" data-target="#updatePermintaan<?= $value->id_permintaan; ?>" class="btn btn-outline-info btn-sm"><i class="fas fa-edit"></i></button>
-                                                <button type="button" data-toggle="modal" data-target="#deletePermintaan<?= $value->id_permintaan; ?>" class="btn btn-outline-danger btn-sm"><i class="fas fa-trash-alt"></i></button>
+                                                <button type="button" data-toggle="modal" data-target="#detailPermintaan<?= $value->id_konfperm; ?>" class="btn btn-outline-success btn-sm"><i class="fas fa-search"></i></button>
+                                            </td>
+                                            <td class="text-center align-middle">
+                                                <button type="button" data-toggle="modal" data-target="#updatePermintaan<?= $value->id_konfperm; ?>" class="btn btn-outline-info btn-sm"><i class="fas fa-edit"></i></button>
+                                                <button type="button" data-toggle="modal" data-target="#deletePermintaan<?= $value->id_konfperm; ?>" class="btn btn-outline-danger btn-sm"><i class="fas fa-trash-alt"></i></button>
                                             </td>
 
                                             <!-- Button "Sign Here" hanya ditampilkan pada baris pertama dengan id_validasi atau nama_user yang berbeda -->
                                             <td class="text-center align-middle">
-                                                <?php if ($prev_id_validasi != $value->id_validasi || $prev_nama_user != $value->nama_user) : ?>
-                                                    <button type="button" data-toggle="modal" data-target="#signPermintaan<?= $value->id_validasi; ?>" class="btn btn-outline-primary btn-sm"><i class="fas fa-check-double"></i></button>
-                                                <?php endif; ?>
+                                                <button type="button" data-toggle="modal" data-target="#konfirmasi<?= $value->id_konfperm; ?>" class="btn btn-outline-primary btn-sm"><i class="fas fa-check-double"></i></button>
                                             </td>
                                         </tr>
-
-                                        <?php $prev_id_validasi = $value->id_validasi; ?>
-                                        <?php $prev_nama_user = $value->nama_user; ?>
                                     <?php endif; ?>
 
                                 <?php endforeach; ?>
@@ -93,21 +75,11 @@
                 <!-- /.card -->
             </div>
             <!-- /.col -->
-        </div>
-        <!-- /.row -->
-    </div>
-    <!-- /.container-fluid -->
-</section>
-<!-- /.content -->
 
-<!-- Main content -->
-<section class="content">
-    <div class="container-fluid">
-        <div class="row">
             <div class="col-12">
                 <div class="card card-outline card-primary">
                     <div class="card-header">
-                        <h3 class="card-title">Tabel <?= $action2; ?></h3>
+                        <h3 class="card-title">Tabel Riwayat <?= $action; ?></h3>
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">
@@ -123,71 +95,32 @@
                             <thead>
                                 <tr>
                                     <th class="text-center align-middle" col>No</th>
-                                    <th class="text-center align-middle">Tanggal Permintaan</th>
+                                    <th class="text-center align-middle">Kode Permintaan</th>
                                     <th class="text-center align-middle">Nama Peminta</th>
-                                    <th class="text-center align-middle">Nama Barang</th>
-                                    <th class="text-center align-middle">QR Code</th>
-                                    <th class="text-center align-middle">Status</th>
+                                    <th class="text-center align-middle">Status Permintaan</th>
                                     <th class="text-center align-middle">Action</th>
                                 </tr>
                             </thead>
 
-                            <?php
-                            $prev_id_validasi = '';
-                            $prev_nama_user = '';
-                            ?>
-
                             <tbody>
                                 <?php $count = 1; ?>
-                                <?php foreach ($permintaan as $pm => $value) : ?>
-                                    <?php if ($value->status == 'dikonfirmasi') : ?>
+                                <?php foreach ($data_permintaan as $pm => $value) : ?>
+                                    <?php if ($value->status_konfperm == 'Dikonfirmasi' || 'Ditolak') : ?>
 
                                         <?php
-                                        // Mendapatkan bagian tanggal dari id_validasi
-                                        $id_validasi_parts = explode('_', $value->id_validasi);
-                                        $tanggal_permintaan = $id_validasi_parts[1]; // Bagian kedua adalah tanggal
-
-                                        // Mendapatkan hari dari tanggal dalam bahasa Indonesia
-                                        $hariIndonesia = [
-                                            'Sunday' => 'Minggu',
-                                            'Monday' => 'Senin',
-                                            'Tuesday' => 'Selasa',
-                                            'Wednesday' => 'Rabu',
-                                            'Thursday' => 'Kamis',
-                                            'Friday' => 'Jumat',
-                                            'Saturday' => 'Sabtu'
-                                        ];
-                                        $hari = date('l', strtotime($tanggal_permintaan));
+                                        // Panggil query untuk mendapatkan nama user berdasarkan kode permintaan
+                                        $nama_user = $this->M_permintaan->tampilkan_nama_user_by_kode_perm($value->kode_perm);
                                         ?>
-                                        <?php if ($prev_id_validasi != $value->id_validasi || $prev_nama_user != $value->nama_user) : ?>
-                                            <tr>
-                                                <td class="text-center align-middle">
-                                                    <?= $count++; ?>
-                                                </td>
-                                                <td class="text-center">
-                                                    <?= $hariIndonesia[$hari] . ', ' . date('d F Y', strtotime($tanggal_permintaan)); ?>
-                                                </td>
-                                                <td class="text-center align-middle">
-                                                    <?= $value->nama_user; ?>
-                                                </td>
-                                                <td class="text-center align-middle">
-                                                    <?= $value->nama_barang; ?>
-                                                </td>
-                                                <td class="text-center align-middle">
-                                                    <a href="<?= base_url('assets/image/qrcode/' . $value->qr_code); ?>" data-toggle="lightbox">
-                                                        <img src="<?= base_url('assets/image/qrcode/' . $value->qr_code); ?>" alt="Foto Profile" class="img-size-32">
-                                                    </a>
-                                                </td>
-                                                <td class="text-center align-middle">
-                                                    Terkonfirmasi
-                                                </td>
-                                                <td class="text-center align-middle">
-                                                    <button type="button" data-toggle="modal" data-target="#deletePermintaan<?= $value->id_validasi; ?>" class="btn btn-outline-danger btn-sm"><i class="fas fa-trash-alt"></i></button>
-                                                </td>
-                                            </tr>
-                                        <?php endif; ?>
-                                        <?php $prev_id_validasi = $value->id_validasi; ?>
-                                        <?php $prev_nama_user = $value->nama_user; ?>
+
+                                        <tr>
+                                            <td class="text-center align-middle"><?= $count++; ?></td>
+                                            <td class="text-center align-middle"><?= substr($value->kode_perm, 0, strlen($value->kode_perm) - 16); ?></td>
+                                            <td class="text-center align-middle"><?= $nama_user ? $nama_user->nama_user : ''; ?></td>
+                                            <td class="text-center align-middle"><?= $value->status_konfperm; ?></td>
+                                            <td class="text-center align-middle">
+                                                <button type="button" data-toggle="modal" data-target="#konfirmasi<?= $value->id_konfperm; ?>" class="btn btn-outline-danger btn-sm"><i class="fas fa-trash-alt"></i></button>
+                                            </td>
+                                        </tr>
                                     <?php endif; ?>
 
                                 <?php endforeach; ?>

@@ -29,6 +29,9 @@
     <!-- Ekko Lightbox -->
     <link rel="stylesheet" href="<?= base_url('assets/'); ?>plugins/ekko-lightbox/ekko-lightbox.css">
 
+    <!-- jQuery -->
+    <script src="<?= base_url('assets/'); ?>plugins/jquery/jquery.min.js"></script>
+
 </head>
 
 <body class="sidebar-mini layout-fixed control-sidebar-slide-open layout-navbar-fixed sidebar-closed text-sm">

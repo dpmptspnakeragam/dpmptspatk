@@ -14,7 +14,7 @@ class Qr_code
     public function generate_qr_code($data, $filename = FALSE, $size = 10, $level = 'H')
     {
         // Load library QR Code PHP
-        require_once APPPATH . 'third_party/phpqrcode/qrlib.php';
+        require_once APPPATH . 'libraries/phpqrcode/qrlib.php';
 
         // Konfigurasi QR Code
         $config['cacheable']    = true; // cacheable QR Code

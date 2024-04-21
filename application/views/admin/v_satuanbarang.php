@@ -11,7 +11,7 @@
                     <div class="card-body">
 
                         <div class="d-flex mb-3">
-                            <a href="<?= base_url('databarang/add'); ?>" class="btn btn-outline-primary btn-sm">
+                            <a href="<?= base_url('satuanbarang/add'); ?>" class="btn btn-outline-primary btn-sm">
                                 <i class="fas fa-plus p-1"></i>
                                 Tambah Data
                             </a>
