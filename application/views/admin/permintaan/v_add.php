@@ -23,10 +23,25 @@
                         </div>
 
                         <input id="peminta" name="peminta" type="text" class="form-control form-control-sm" value="<?= $this->session->userdata('id_user'); ?>" hidden>
-                        <input id="kategori_barang" type="text" class="form-control form-control-sm" readonly>
-                        <input id="satuan_barang" type="text" class="form-control form-control-sm" readonly>
-                        <input id="harga" name="harga" type="text" class="form-control form-control-sm" readonly>
-                        <input id="total_harga" name="total" type="text" class="form-control form-control-sm" readonly>
+
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label for="kategori_barang">Kategori Barang</label>
+                                    <input id="kategori_barang" type="text" class="form-control form-control-sm" disabled>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label for="satuan_barang">Satuan Barang</label>
+                                    <input id="satuan_barang" type="text" class="form-control form-control-sm" disabled>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="harga">Harga Satuan</label>
+                            <input id="harga" name="harga" type="text" class="form-control form-control-sm" disabled>
+                        </div>
                         <!-- End of input fields -->
 
                         <!-- Jumlah Permintaan -->
@@ -71,6 +86,12 @@
                     <div class="card-footer">
                         <!-- Form untuk menyimpan permintaan -->
                         <form id="form_simpan_permintaan" action="<?= base_url('permintaan/simpan_permintaan'); ?>" method="POST">
+
+                            <div class="form-group">
+                                <label for="total_harga">Total Bayar</label>
+                                <input id="total_harga" name="total" type="text" class="form-control form-control-sm" disabled>
+                            </div>
+
                             <div class="form-group">
                                 <label for="keterangan">Keterangan</label>
                                 <textarea id="keterangan" name="keterangan" class="form-control form-control-sm" rows="2"><?= set_value('keterangan'); ?></textarea>
@@ -94,6 +115,57 @@
 </section>
 <!-- /.content -->
 
+<!-- Script menampilkan tb_barang secara otomatis -->
+<script>
+    $(document).ready(function() {
+        // Handle dropdown change
+        $('#id_barang').change(function() {
+            var selectedOption = $(this).find(':selected');
+            var kategori = selectedOption.data('kategori');
+            var satuan = selectedOption.data('satuan');
+            var harga = selectedOption.data('harga');
+
+            $('#kategori_barang').val(kategori);
+            $('#satuan_barang').val(satuan);
+            // Ubah format harga menjadi Rupiah
+            $('#harga').val(formatRupiah(harga));
+            hitungTotalHarga(); // Hitung total harga saat dropdown berubah
+        });
+
+        // Fungsi untuk mengubah format harga menjadi Rupiah
+        function formatRupiah(angka) {
+            var number_string = angka.toString();
+            var split = number_string.split(',');
+            var sisa = split[0].length % 3;
+            var rupiah = split[0].substr(0, sisa);
+            var ribuan = split[0].substr(sisa).match(/\d{3}/gi);
+
+            if (ribuan) {
+                separator = sisa ? '.' : '';
+                rupiah += separator + ribuan.join('.');
+            }
+
+            rupiah = split[1] != undefined ? rupiah + ',' + split[1] : rupiah;
+            return 'Rp. ' + rupiah;
+        }
+
+        // Hitung total harga saat input jumlah berubah
+        $('#jumlah').on('input', function() {
+            hitungTotalHarga();
+        });
+
+        // Fungsi hitung total harga
+        function hitungTotalHarga() {
+            var jumlah = parseInt($('#jumlah').val());
+            var harga = parseInt($('#harga').val().replace(/\D/g, '')); // Menghilangkan semua karakter non-digit dari harga
+            var total = jumlah * harga;
+
+            // Ubah format total harga menjadi Rupiah
+            $('#total_harga').val(formatRupiah(total));
+        }
+    });
+</script>
+
 <script>
     $(document).ready(function() {
         var nomor = 1; // Variabel untuk penomoran otomatis
@@ -106,6 +178,8 @@
             var nama_barang = $('#id_barang option:selected').text();
             var harga_barang = parseFloat($('#id_barang option:selected').data('harga'));
             var jumlah_permintaan = $('#jumlah').val();
+
+            var satuan_barang = $('#id_barang option:selected').data('satuan');
 
             // Validasi barang harus dipilih
             if (id_barang === null || id_barang === '') {
@@ -170,8 +244,25 @@
                 return;
             }
 
+            function formatRupiah(angka) {
+                var number_string = angka.toString();
+                var split = number_string.split(',');
+                var sisa = split[0].length % 3;
+                var ribuan = split[0].substr(0, sisa);
+                var ribuan_baru = split[0].substr(sisa).match(/\d{3}/g);
+
+                if (ribuan_baru) {
+                    separator = sisa ? '.' : '';
+                    ribuan += separator + ribuan_baru.join('.');
+                }
+
+                ribuan = split[1] != undefined ? ribuan + ',' + split[1] : ribuan;
+                return 'Rp. ' + ribuan;
+            }
+
             // Hitung subtotal
             var sub_total = harga_barang * parseInt(jumlah_permintaan);
+            var formatted_sub_total = formatRupiah(sub_total.toFixed(2));
 
             // Tambahkan data ke array dataBarang
             dataBarang.push({
@@ -185,16 +276,22 @@
             $('#tabel_data_permintaan tbody').append(
                 '<tr>' +
                 '<td class="text-center align-middle">' + nomor++ + '</td>' +
-                '<td class="text-center align-middle">' + nama_barang + '</td>' +
-                '<td class="text-center align-middle">' + jumlah_permintaan + '</td>' +
-                '<td class="text-center align-middle">' + sub_total.toFixed(2) + '</td>' +
+                '<td class="td-nama-barang align-middle">' + nama_barang + '</td>' +
+                '<td class="text-center align-middle">' + jumlah_permintaan + ' ' + satuan_barang + '</td > ' +
+                '<td class="text-right align-middle">' + formatted_sub_total + '</td>' +
                 '<td class="text-center align-middle"><button type="button" class="btn btn-outline-danger btn-sm hapus-barang"><i class="fas fa-trash-alt"></i></button></td>' +
                 '</tr>'
             );
 
             // Bersihkan input setelah ditambahkan ke tabel
-            $('#id_barang').val('');
             $('#jumlah').val('');
+            $('#satuan_barang').val('');
+            $('#kategori_barang').val('');
+            $('#harga').val('');
+            // Setelah seleksi selesai, kembalikan ke opsi default
+            $('#id_barang').val('');
+            $('#id_barang option:selected').prop('selected', false);
+            $('#id_barang option:disabled').prop('selected', true);
 
             // Hitung ulang total harga dari semua barang yang ditambahkan
             var total_harga = 0;
@@ -202,12 +299,15 @@
                 total_harga += parseFloat(item.sub_total);
             });
 
-            // Tampilkan total harga pada input hidden
-            $('#total_harga').val(total_harga.toFixed(2));
+            var formatted_total_harga = formatRupiah(total_harga.toFixed(2));
+
+            // Tampilkan total harga yang diformat pada input hidden
+            $('#total_harga').val(formatted_total_harga);
+
 
             // Hitung total bayar
-            var total_bayar = total_harga; // Total bayar sama dengan total harga
-            $('#total_bayar').text('Total Bayar: ' + total_bayar.toFixed(2));
+            // var total_bayar = total_harga; // Total bayar sama dengan total harga
+            // $('#total_bayar').text('Total Bayar: ' + total_bayar.toFixed(2));
         });
 
         // Ketika tombol hapus pada tabel barang sementara diklik
@@ -313,5 +413,32 @@
                 }
             });
         });
+    });
+</script>
+
+<style>
+    .td-nama-barang {
+        max-width: 100px;
+        /* Lebar maksimum sebelum diklik */
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        cursor: pointer;
+        /* Ubah kursor saat diarahkan ke nama barang */
+    }
+
+    .td-nama-barang-full {
+        max-width: none;
+        /* Menghapus batasan lebar maksimum */
+        white-space: normal;
+        /* Memastikan teks ditampilkan dengan normal (tidak terpotong) */
+    }
+</style>
+
+<script>
+    // Tambahkan event click pada nama_barang
+    $(document).on('click', '.td-nama-barang', function() {
+        // Toggle class untuk menampilkan/menutup nama barang dengan full
+        $(this).toggleClass('td-nama-barang-full');
     });
 </script>

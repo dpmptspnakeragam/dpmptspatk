@@ -1,9 +1,9 @@
-<?php foreach ($permintaan as $id => $value) : ?>
-    <div class="modal fade" id="detailPermintaan<?= $value->id_permintaan; ?>" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+<?php foreach ($data_konfperm as $id => $value) : ?>
+    <div class="modal fade" id="detail<?= $value->id_konfperm; ?>" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="staticBackdropLabel">Detail <?= $action; ?></h5>
+                    <h5 class="modal-title" id="staticBackdropLabel"><?= $value->kode_perm; ?></h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -12,35 +12,32 @@
                     <!-- Default box -->
                     <div class="card card-solid">
                         <div class="card-body">
-                            <div class="row">
-                                <div class="col-12 col-sm-6">
-                                    <div class="col-12">
-                                        <img src="<?= base_url('assets/image/barang/' . $value->gambar); ?>" class="product-image" alt="Product Image">
-                                    </div>
-                                </div>
-                                <div class="col-12 col-sm-6">
-                                    <h3 class="my-3"><?= $value->nama_barang; ?></h3>
+                            <table id="TabelData1" class="table table-bordered table-sm table-hover">
+                                <thead>
+                                    <tr>
+                                        <th class="text-center align-middle" col>No</th>
+                                        <th class="text-center align-middle">Nama Barang</th>
+                                        <th class="text-center align-middle">QTY</th>
+                                        <th class="text-center align-middle">Sub Total</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php $nama_barang = $this->M_permintaan->nama_barang($value->kode_perm); ?>
 
-                                    <hr>
+                                    <?php $count = 1; ?>
+                                    <?php foreach ($nama_barang as  $barang) : ?>
+                                        <tr>
+                                            <td class="text-center align-middle"><?= $count++; ?></td>
+                                            <td class="text-center align-middle nama-barang"><?= $barang->nama_barang; ?></td>
+                                            <td class="text-center align-middle"><?= $barang->jumlah_perm; ?></td>
+                                            <td class="text-right align-middle">Rp. <?= number_format($barang->sub_total, 0, ',', '.'); ?></td>
 
-                                    <div class="bg-gray py-2 px-3 mt-2">
-                                        <h5 class="mb-0">
-                                            Rp. <?= number_format($value->harga, 0, ',', '.'); ?>,- / <?= $value->nama_satuan; ?>
-                                        </h5>
-                                        <h5 class="mt-0">
-                                            <small>x <?= $value->jumlah; ?> <?= $value->nama_satuan; ?></small>
-                                        </h5>
-                                        <h5 class="mt-0 mb-0">
-                                            <small>Total Bayar:</small>
-                                        </h5>
-                                        <h5 class="mt-0">
-                                            <small>Rp. <?= number_format($value->total_harga, 0, ',', '.'); ?></small>
-                                        </h5>
-                                    </div>
-
-                                </div>
-                            </div>
-                            <div class="row mt-4">
+                                        </tr>
+                                    <?php endforeach; ?>
+                                    <td class="text-right" colspan="4">Rp. <?= number_format($value->total_bayar, 0, ',', '.'); ?></td>
+                                </tbody>
+                            </table>
+                            <div class=" mt-4">
                                 <nav class="w-100">
                                     <div class="nav nav-tabs" id="product-tab" role="tablist">
                                         <a class="nav-item nav-link active" id="product-desc-tab" data-toggle="tab" href="#product-desc" role="tab" aria-controls="product-desc" aria-selected="true">Deskripsi</a>
@@ -49,7 +46,7 @@
                                 </nav>
                                 <div class="tab-content p-3" id="nav-tabContent">
                                     <div class="tab-pane fade show active" id="product-desc" role="tabpanel" aria-labelledby="product-desc-tab">
-                                        <?= $value->deskripsi; ?>
+
                                     </div>
                                     <div class="tab-pane fade" id="product-comments" role="tabpanel" aria-labelledby="product-comments-tab">
                                         <?= $value->keterangan; ?>
@@ -68,3 +65,30 @@
         </div>
     </div>
 <?php endforeach; ?>
+
+<style>
+    .nama-barang {
+        max-width: 100px;
+        /* Lebar maksimum sebelum diklik */
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        cursor: pointer;
+        /* Ubah kursor saat diarahkan ke nama barang */
+    }
+
+    .nama-barang-full {
+        max-width: none;
+        /* Menghapus batasan lebar maksimum */
+        white-space: normal;
+        /* Memastikan teks ditampilkan dengan normal (tidak terpotong) */
+    }
+</style>
+
+<script>
+    // Tambahkan event click pada nama_barang
+    $(document).on('click', '.nama-barang', function() {
+        // Toggle class untuk menampilkan/menutup nama barang dengan full
+        $(this).toggleClass('nama-barang-full');
+    });
+</script>

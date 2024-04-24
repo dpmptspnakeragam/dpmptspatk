@@ -186,57 +186,6 @@
     };
 </script>
 
-<!-- Script menampilkan tb_barang secara otomatis -->
-<script>
-    $(document).ready(function() {
-        // Handle dropdown change
-        $('#id_barang').change(function() {
-            var selectedOption = $(this).find(':selected');
-            var kategori = selectedOption.data('kategori');
-            var satuan = selectedOption.data('satuan');
-            var harga = selectedOption.data('harga');
-
-            $('#kategori_barang').val(kategori);
-            $('#satuan_barang').val(satuan);
-            // Ubah format harga menjadi Rupiah
-            $('#harga').val(formatRupiah(harga));
-            hitungTotalHarga(); // Hitung total harga saat dropdown berubah
-        });
-
-        // Fungsi untuk mengubah format harga menjadi Rupiah
-        function formatRupiah(angka) {
-            var number_string = angka.toString();
-            var split = number_string.split(',');
-            var sisa = split[0].length % 3;
-            var rupiah = split[0].substr(0, sisa);
-            var ribuan = split[0].substr(sisa).match(/\d{3}/gi);
-
-            if (ribuan) {
-                separator = sisa ? '.' : '';
-                rupiah += separator + ribuan.join('.');
-            }
-
-            rupiah = split[1] != undefined ? rupiah + ',' + split[1] : rupiah;
-            return 'Rp ' + rupiah;
-        }
-
-        // Hitung total harga saat input jumlah berubah
-        $('#jumlah').on('input', function() {
-            hitungTotalHarga();
-        });
-
-        // Fungsi hitung total harga
-        function hitungTotalHarga() {
-            var jumlah = parseInt($('#jumlah').val());
-            var harga = parseInt($('#harga').val().replace(/\D/g, '')); // Menghilangkan semua karakter non-digit dari harga
-            var total = jumlah * harga;
-
-            // Ubah format total harga menjadi Rupiah
-            $('#total_harga').val(formatRupiah(total));
-        }
-    });
-</script>
-
 
 </body>
 

@@ -19,12 +19,15 @@ class Permintaan extends CI_Controller
             'title' => 'Permintaan ATK',
             'action' => 'Permintaan ATK',
             'konten'    => 'admin/v_permintaan',
-            'data_permintaan' => $this->M_permintaan->tampilkan_tabel_konfperm()
+            'data_konfperm' => $this->M_permintaan->tampilkan_tabel_konfperm(),
         ];
         $this->load->view('layout/v_user_wrapper', $data, FALSE);
 
-        // load model konfirmasi permintaan
+        // load model konfirmasi, delete permintaan
         $this->load->view('admin/permintaan/v_konfirmasi', $data, FALSE);
+        $this->load->view('admin/permintaan/v_tolak_konf', $data, FALSE);
+        $this->load->view('admin/permintaan/v_detail', $data, FALSE);
+        $this->load->view('admin/permintaan/v_delete_rkp', $data, FALSE);
     }
 
 
@@ -47,7 +50,8 @@ class Permintaan extends CI_Controller
         $id_user = $this->session->userdata('id_user');
 
         // Pembentukan kode permintaan yang unik
-        $kode_perm = "PERM" . '_' . date('dmY') . '_' . $id_user . '_' . uniqid();
+        // $kode_perm = "PERM" . '_' . date('dmY') . '_' . $id_user . '_' . uniqid();
+        $kode_perm = "PERM" . '_' . $id_user . '_' . uniqid();
 
         // Hitung total bayar dari hasil penambahan sub_total
         $total_bayar = 0;
@@ -72,7 +76,8 @@ class Permintaan extends CI_Controller
             'kode_perm' => $kode_perm,
             'status_konfperm' => 'Menunggu',
             'total_bayar' => $total_bayar,
-            'keterangan' => $keterangan
+            'keterangan' => $keterangan,
+            'tanggal_konfperm' => date('Y-m-d H:i:s')
         );
         $this->db->insert('tb_konfperm', $data_konf);
     }
@@ -84,14 +89,77 @@ class Permintaan extends CI_Controller
             'status_konfperm' => 'Dikonfirmasi',
         ];
 
+        $qr_name = "PERM" . '_' . $id_konfperm;
+
         // Generate QR Code
-        $image_name = $this->qr_code->generate_qr_code($id_konfperm, 'qr_' . $id_konfperm . '.png', 10, 'H');
+        $image_name = $this->qr_code->generate_qr_code($id_konfperm, 'QR_' . $qr_name . '.png', 10, 'H');
 
         // Simpan nama file QR Code dan data konfirmasi ke database
         $this->M_permintaan->simpan_qr_code($id_konfperm, $image_name);
         $this->M_permintaan->konfirmasi_permintaan($id_konfperm, $data_konfirmasi);
         $this->session->set_flashdata('success', 'Permintaan berhasil dikonfirmasi dan ditanda tangan!');
         redirect('permintaan', 'refresh');
+    }
+
+    public function tolak_konf($id_konfperm)
+    {
+        $data = [
+            'tanggal_konfperm' => date('Y-m-d H:i:s'),
+            'status_konfperm' => 'Ditolak'
+        ];
+
+        $this->M_permintaan->tolak_konf_permintaan($id_konfperm, $data);
+        $this->session->set_flashdata('success', 'Permintaan berhasil ditolak dan data terhapus!');
+        redirect('permintaan', 'refresh');
+    }
+
+    public function delete_riwayat_konfperm($id_konfperm)
+    {
+        // Hapus QR code terlebih dahulu sebelum menghapus data dari tabel
+        $this->hapus_qr_code($id_konfperm);
+
+        // ambil kode_perm dari tabel tb_konfperm berdasarkan id_konfperm
+        $kode_perm = $this->M_permintaan->ambil_kode_perm($id_konfperm);
+
+        if ($kode_perm) {
+            $this->M_permintaan->hapus_riwayat_konfperm($id_konfperm);
+            $this->M_permintaan->hapus_riwayat_perm($kode_perm);
+            $this->session->set_flashdata('success', 'Data berhasil dihapus.');
+        } else {
+            $this->session->set_flashdata('error', 'Gagal menghapus data. Kode permintaan tidak ditemukan.');
+        }
+
+        redirect('permintaan', 'refresh');
+    }
+
+    private function hapus_qr_code($id_konfperm)
+    {
+
+        // Lokasi QR code yang akan dihapus
+        $lokasi_qr_code = FCPATH . 'assets/image/qrcode/';
+
+        // Format nama file QR code
+        $qr_name = "QR_PERM_" . $id_konfperm . ".png";
+
+        // Path lengkap file QR code yang akan dihapus
+        $file_path = $lokasi_qr_code . $qr_name;
+
+        // Hapus QR code jika ada
+        if (file_exists($file_path)) {
+            unlink($file_path);
+        }
+    }
+
+    public function print_permintaan($kode_perm)
+    {
+        $data = [
+            'home' => FALSE,
+            'title' => FALSE,
+            'action' => $kode_perm,
+            'konten'    => 'admin/permintaan/laporan/v_cetak',
+            'data_konfperm' => $this->M_permintaan->tampilkan_tabel_konfperm(),
+        ];
+        $this->load->view('layout/v_user_wrapper', $data, FALSE);
     }
 }
 

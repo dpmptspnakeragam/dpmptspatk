@@ -146,7 +146,7 @@
                                             'satuanbarang'
                                         ]
                                     ) ? 'menu-open' : ''; ?>">
-                    <a href="#" class="nav-link <?= in_array(
+                    <a href="" class="nav-link <?= in_array(
                                                     $this->uri->segment(1),
                                                     [
                                                         'DataMaster',
@@ -206,7 +206,7 @@
                                             'permintaan',
                                         ]
                                     ) ? 'menu-open' : ''; ?>">
-                    <a href="#" class="nav-link <?= in_array(
+                    <a href="" class="nav-link <?= in_array(
                                                     $this->uri->segment(1),
                                                     [
                                                         'Transaksi',
@@ -232,12 +232,9 @@
                 <div class="user-panel mb-1 d-flex"></div>
 
                 <li class="nav-item">
-                    <a href="#" class="nav-link">
-                        <i class="nav-icon fas fa-th"></i>
-                        <p>
-                            Simple Link
-                            <span class="right badge badge-danger">New</span>
-                        </p>
+                    <a href="<?= base_url('report'); ?>" class="nav-link <?php if (in_array($this->uri->segment(1), ['report'])) echo "active"; ?>">
+                        <i class="nav-icon fas fa-file-alt"></i>
+                        <p>Report</p>
                     </a>
                 </li>
 
