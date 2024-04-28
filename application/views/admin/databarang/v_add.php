@@ -30,7 +30,7 @@
                                 <select name="kategori" class="form-control select2">
                                     <option selected disabled>Pilih Kategori Barang</option>
                                     <?php foreach ($kategori as $kat) : ?>
-                                        <option value="<?= $kat->id_kategori; ?>" <?= ($kat->id_kategori == set_value('kategori', $kategori_terpilih)) ? 'selected' : ''; ?>>
+                                        <option value="<?= $kat->id_kategori; ?>" <?= set_select('kategori', $kat->id_kategori); ?>>
                                             <?= $kat->nama_kategori; ?>
                                         </option>
                                     <?php endforeach; ?>
@@ -44,7 +44,7 @@
                                 <select name="satuan" class="form-control select2">
                                     <option selected disabled>Pilih Satuan Barang</option>
                                     <?php foreach ($satuan as $sat) : ?>
-                                        <option value="<?= $sat->id_satuan; ?>" <?= ($sat->id_satuan == set_value('satuan', $satuan_terpilih)) ? 'selected' : ''; ?>>
+                                        <option value="<?= $sat->id_satuan; ?>" <?= set_select('satuan', $sat->id_satuan); ?>>
                                             <?= $sat->nama_satuan; ?>
                                         </option>
                                     <?php endforeach; ?>
