@@ -10,8 +10,6 @@ class DataUser extends CI_Controller
         parent::__construct();
         //Load Dependencies
         $this->load->model('M_datauser');
-        // Check role and redirect back to previous page if needed
-        $this->lib_valid->check_role();
     }
 
     // List all items Data User

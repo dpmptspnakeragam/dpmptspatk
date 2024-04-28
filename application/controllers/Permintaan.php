@@ -151,7 +151,7 @@ class Permintaan extends CI_Controller
         }
     }
 
-    public function print($kode_perm)
+    public function cetak($kode_perm)
     {
         $data['data_konfperm'] = $this->M_permintaan->tampilkan_tabel_konfperm();
         $data['nama_user'] = $this->M_permintaan->nama_user($kode_perm);

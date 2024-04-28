@@ -10,8 +10,6 @@ class DataBarang extends CI_Controller
         parent::__construct();
         //Load Dependencies
         $this->load->model('M_databarang');
-        // Check role and redirect back to previous page if needed
-        $this->lib_valid->check_role();
     }
 
     // List all items Data Barang
