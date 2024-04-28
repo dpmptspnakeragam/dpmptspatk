@@ -153,7 +153,7 @@
                                                     </button>
                                                 <?php endif; ?>
                                                 <?php if ($value->status_konfperm == 'Dikonfirmasi') : ?>
-                                                    <a href="<?= base_url('permintaan/print/' . $value->kode_perm); ?>" class="btn btn-outline-success btn-sm"><i class="fas fa-print"></i></a>
+                                                    <a href="<?= base_url('permintaan/cetak/' . $value->kode_perm); ?>" class="btn btn-outline-success btn-sm"><i class="fas fa-print"></i></a>
                                                 <?php endif ?>
                                             </td>
                                         </tr>
