@@ -12,7 +12,6 @@ class NamaBarang extends CI_Controller
         $this->load->model('M_namabarang');
     }
 
-    // List all your items
     public function index()
     {
         $data = [
@@ -28,14 +27,12 @@ class NamaBarang extends CI_Controller
         $this->load->view('admin/namabarang/v_delete', $data, FALSE);
     }
 
-    // Add a new item
     public function add()
     {
         $this->form_validation->set_rules('nama_barang', 'Nama Barang', 'trim|required|is_unique[tb_nama.nama_barang]', [
             'required'  => '%s harus diisi!',
             'is_unique' => '%s sudah ada!',
         ]);
-
 
         if ($this->form_validation->run() == TRUE) {
 
@@ -107,7 +104,6 @@ class NamaBarang extends CI_Controller
         $this->load->view('layout/v_user_wrapper', $data, FALSE);
     }
 
-    //Update one item
     public function update($id_nama = NULL)
     {
         $this->form_validation->set_rules('nama_barang', 'Nama Barang', 'trim|required', [
@@ -182,7 +178,6 @@ class NamaBarang extends CI_Controller
         $this->load->view('layout/v_user_wrapper', $data, FALSE);
     }
 
-    //Delete one item
     public function delete($id_nama = NULL)
     {
         // hapus gambar

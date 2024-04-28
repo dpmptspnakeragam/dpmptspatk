@@ -2,7 +2,7 @@
 
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class DataBarang extends CI_Controller
+class Databarang extends CI_Controller
 {
 
     public function __construct()
@@ -127,4 +127,4 @@ class DataBarang extends CI_Controller
     }
 }
 
-/* End of file DataBarang.php */
+/* End of file Databarang.php */

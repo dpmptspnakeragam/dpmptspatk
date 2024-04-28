@@ -73,7 +73,7 @@
                     </a>
                 </li>
                 <div class="user-panel mb-1 d-flex"></div>
-                <?php if ($data_login->role == '1') : ?>
+                <?php if ($data_login->role == 1) : ?>
 
                     <li class="nav-item <?= in_array(
                                             $this->uri->segment(1),

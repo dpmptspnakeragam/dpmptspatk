@@ -31,7 +31,6 @@ class Permintaan extends CI_Controller
         $this->load->view('admin/permintaan/v_batalkan_perm', $data, FALSE);
     }
 
-
     public function add()
     {
         $data = [
@@ -51,7 +50,6 @@ class Permintaan extends CI_Controller
         $id_user = $this->session->userdata('id_user');
 
         // Pembentukan kode permintaan yang unik
-        // $kode_perm = "PERM" . '_' . date('dmY') . '_' . $id_user . '_' . uniqid();
         $kode_perm = "PERM" . '_' . $id_user . '_' . uniqid();
 
         // Hitung total bayar dari hasil penambahan sub_total

@@ -36,7 +36,6 @@ class KategoriBarang extends CI_Controller
             'is_unique' => '%s sudah ada!',
         ]);
 
-
         if ($this->form_validation->run() == TRUE) {
             $data_input = [
                 'nama_kategori' => $this->input->post('nama_kategori'),
@@ -63,7 +62,6 @@ class KategoriBarang extends CI_Controller
             'required'  => '%s harus diisi!',
             'is_unique' => '%s sudah ada!',
         ]);
-
 
         if ($this->form_validation->run() == TRUE) {
             $data_input = [

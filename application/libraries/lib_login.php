@@ -41,6 +41,7 @@ class lib_login
         }
     }
 
+    // logout user
     public function logout_user()
     {
         $this->ci->session->unset_userdata('id_user');

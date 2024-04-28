@@ -23,7 +23,7 @@ class Qr_code
         $config['imagedir']     = FCPATH . 'assets/image/qrcode/'; // direktori tempat penyimpanan QR Code yang dihasilkan
         $config['quality']      = true; // tingkat kualitas QR Code
 
-        // Buat folder qrcodes jika belum ada
+        // Buat folder qrcode jika belum ada
         if (!is_dir($config['imagedir'])) {
             mkdir($config['imagedir'], 0777, true);
         }

@@ -24,7 +24,7 @@ class DataUser extends CI_Controller
         ];
         $this->load->view('layout/v_user_wrapper', $data, FALSE);
 
-        // load model delete
+        // load modal delete
         $this->load->view('admin/datauser/v_delete', $data, FALSE);
     }
 
@@ -42,7 +42,7 @@ class DataUser extends CI_Controller
 
     public function username_check($username, $id_user)
     {
-        $role = $this->session->userdata('role'); // Ambil peran pengguna dari sesi
+        $role = $this->session->userdata('role');
 
         $result = $this->M_datauser->username_unik($username, $id_user, $role);
         if ($result) {
@@ -55,7 +55,7 @@ class DataUser extends CI_Controller
 
     public function email_check($email, $id_user)
     {
-        $role = $this->session->userdata('role'); // Ambil peran pengguna dari sesi
+        $role = $this->session->userdata('role');
 
         $result = $this->M_datauser->email_unik($email, $id_user, $role);
         if ($result) {

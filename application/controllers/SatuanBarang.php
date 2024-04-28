@@ -8,12 +8,10 @@ class SatuanBarang extends CI_Controller
     public function __construct()
     {
         parent::__construct();
-        //Load Dependencies
         $this->load->model('M_satuanbarang');
     }
 
-    // List all your items
-    public function index($offset = 0)
+    public function index()
     {
         $data = [
             'home'      => 'Data Master',
@@ -28,7 +26,6 @@ class SatuanBarang extends CI_Controller
         $this->load->view('admin/satuanbarang/v_delete', $data, FALSE);
     }
 
-    // Add a new item
     public function add()
     {
         $this->form_validation->set_rules('nama_satuan', 'Satuan Barang', 'trim|required|is_unique[tb_satuan.nama_satuan]', [
@@ -56,7 +53,6 @@ class SatuanBarang extends CI_Controller
         $this->load->view('layout/v_user_wrapper', $data, FALSE);
     }
 
-    //Update one item
     public function update($id_satuan = NULL)
     {
         $this->form_validation->set_rules('nama_satuan', 'Satuan Barang', 'trim|required|is_unique[tb_satuan.nama_satuan]', [
@@ -85,7 +81,6 @@ class SatuanBarang extends CI_Controller
         $this->load->view('layout/v_user_wrapper', $data, FALSE);
     }
 
-    //Delete one item
     public function delete($id_satuan = NULL)
     {
         $this->M_satuanbarang->hapus_satuan($id_satuan);
