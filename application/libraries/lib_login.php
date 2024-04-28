@@ -16,14 +16,14 @@ class lib_login
         $cek = $this->ci->M_login->login($username, $password);
         if ($cek) {
             $id_user = $cek->id_user;
-            $user_email = $cek->email;
-            $user_username = $cek->username;
-            $user_role = $cek->role;
+            $email = $cek->email;
+            $username = $cek->username;
+            $role = $cek->role;
 
             $this->ci->session->set_userdata('id_user', $id_user);
-            $this->ci->session->set_userdata('email', $user_email);
-            $this->ci->session->set_userdata('username', $user_username);
-            $this->ci->session->set_userdata('role', $user_role);
+            $this->ci->session->set_userdata('email', $email);
+            $this->ci->session->set_userdata('username', $username);
+            $this->ci->session->set_userdata('role', $role);
 
             $this->ci->session->set_flashdata('success', 'Login berhasil.');
             redirect('dashboard');

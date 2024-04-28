@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class lib_valid_1
+class lib_valid
 {
     protected $ci;
 
@@ -13,12 +13,12 @@ class lib_valid_1
     public function check_role()
     {
         $role = $this->ci->session->userdata('role');
-        if ($role != '1' && ($role == '2' || $role == '3')) {
+        if ($role != '1') {
             // Redirect back to previous page
-            $redirect_url = $_SERVER['HTTP_REFERER'] ?? base_url();
+            $redirect_url = isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : base_url();
             redirect($redirect_url, 'refresh');
         }
     }
 }
 
-/* End of file lib_valid_1.php */
+/* End of file lib_valid.php */

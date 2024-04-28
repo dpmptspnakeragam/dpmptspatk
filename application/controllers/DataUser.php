@@ -11,7 +11,7 @@ class DataUser extends CI_Controller
         //Load Dependencies
         $this->load->model('M_datauser');
         // Check role and redirect back to previous page if needed
-        $this->lib_valid_1->check_role();
+        $this->lib_valid->check_role();
     }
 
     // List all items Data User
