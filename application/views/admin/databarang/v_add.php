@@ -30,7 +30,9 @@
                                 <select name="kategori" class="form-control select2">
                                     <option selected disabled>Pilih Kategori Barang</option>
                                     <?php foreach ($kategori as $kat) : ?>
-                                        <option value="<?= $kat->id_kategori; ?>"><?= $kat->nama_kategori; ?></option>
+                                        <option value="<?= $kat->id_kategori; ?>" <?= ($kat->id_kategori == set_value('kategori', $kategori_terpilih)) ? 'selected' : ''; ?>>
+                                            <?= $kat->nama_kategori; ?>
+                                        </option>
                                     <?php endforeach; ?>
                                 </select>
                                 <small class="text-danger"><?= form_error('kategori'); ?></small>
@@ -42,7 +44,9 @@
                                 <select name="satuan" class="form-control select2">
                                     <option selected disabled>Pilih Satuan Barang</option>
                                     <?php foreach ($satuan as $sat) : ?>
-                                        <option value="<?= $sat->id_satuan; ?>"><?= $sat->nama_satuan; ?></option>
+                                        <option value="<?= $sat->id_satuan; ?>" <?= ($sat->id_satuan == set_value('satuan', $satuan_terpilih)) ? 'selected' : ''; ?>>
+                                            <?= $sat->nama_satuan; ?>
+                                        </option>
                                     <?php endforeach; ?>
                                 </select>
                                 <small class="text-danger"><?= form_error('satuan'); ?></small>
@@ -64,7 +68,7 @@
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label>Deskripsi</label>
+                                <label>Deskripsi/Opsional</label>
                                 <textarea name="deskripsi" class="form-control form-control-sm" rows="4"></textarea>
                             </div>
                         </div>
