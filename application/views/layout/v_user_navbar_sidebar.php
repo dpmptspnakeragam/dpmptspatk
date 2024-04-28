@@ -66,14 +66,14 @@
         <!-- Sidebar Menu -->
         <nav class="mt-0">
             <ul class="nav nav-pills nav-sidebar flex-column nav-child-indent" data-widget="treeview" role="menu" data-accordion="false">
+                <li class="nav-item">
+                    <a href="<?= base_url('dashboard'); ?>" class="nav-link <?php if (in_array($this->uri->segment(1), ['dashboard'])) echo "active"; ?>">
+                        <i class="nav-icon fas fa-tachometer-alt"></i>
+                        <p>Dashboard</p>
+                    </a>
+                </li>
+                <div class="user-panel mb-1 d-flex"></div>
                 <?php if ($data_login->role == '1') : ?>
-                    <li class="nav-item">
-                        <a href="<?= base_url('dashboard'); ?>" class="nav-link <?php if (in_array($this->uri->segment(1), ['dashboard'])) echo "active"; ?>">
-                            <i class="nav-icon fas fa-tachometer-alt"></i>
-                            <p>Dashboard</p>
-                        </a>
-                    </li>
-                    <div class="user-panel mb-1 d-flex"></div>
 
                     <li class="nav-item <?= in_array(
                                             $this->uri->segment(1),

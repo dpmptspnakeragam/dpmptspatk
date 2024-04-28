@@ -22,7 +22,13 @@
     <div class="container">
         <div class="row">
             <?php foreach ($view_barang as $b => $value) : ?>
-                <div class="col-lg-3 col-6">
+                <div class="col-lg-3 col-md-12">
+                    <?= form_open('cart/add'); ?>
+                    <?= form_hidden('id', $value->id_barang); ?>
+                    <?= form_hidden('qty', 1); ?>
+                    <?= form_hidden('price', $value->harga); ?>
+                    <?= form_hidden('name', $value->nama_barang); ?>
+                    <?= form_hidden('redirect_page', str_replace('index.php/', '', current_url())); ?>
                     <div class="small-box">
                         <div class="card-barang">
                             <div class="gambar-barang">
@@ -42,11 +48,12 @@
                                 </div>
                                 <div class="text-center">
                                     <a href="#" class="btn btn-sm btn-info"><i class="fas fa-search"></i></a>
-                                    <a href="#" class="btn btn-sm btn-primary"><i class="fas fa-cart-plus"></i></a>
+                                    <button class="btn btn-sm btn-primary swalDefaultSuccess"><i class="fas fa-cart-plus"></i></button>
                                 </div>
                             </div>
                         </div>
                     </div>
+                    <?= form_close(); ?>
                 </div>
             <?php endforeach; ?>
         </div>

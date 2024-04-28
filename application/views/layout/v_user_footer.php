@@ -60,6 +60,15 @@
 <!-- Ekko Lightbox -->
 <script src="<?= base_url('assets/'); ?>plugins/ekko-lightbox/ekko-lightbox.min.js"></script>
 
+<!-- OPTIONAL SCRIPTS -->
+<script src="<?= base_url('assets/'); ?>plugins/chart.js/Chart.min.js"></script>
+
+<!-- Chart Permintaan ATK -->
+<script src="<?= base_url('assets/'); ?>js/chart-permintaan.js"></script>
+<script>
+    var permintaanData = <?= json_encode($permintaan) ?>;
+</script>
+
 <!-- Page specific script -->
 <!-- Tabel Data Custom -->
 <script>

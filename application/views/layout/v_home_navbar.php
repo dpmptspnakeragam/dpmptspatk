@@ -38,62 +38,53 @@
 
         <!-- Right navbar links -->
         <ul class="order-1 order-md-3 navbar-nav navbar-no-expand ml-auto mr-2">
-            <!-- Messages Dropdown Menu -->
+
+            <?php $cart = $this->cart->contents();
+            $jumlah_item = 0;
+            foreach ($cart as $key => $value) {
+                $jumlah_item = $jumlah_item + $value['qty'];
+            }
+            ?>
             <li class="nav-item dropdown">
                 <a class="nav-link" data-toggle="dropdown" href="#">
                     <i class="fas fa-cart-plus"></i>
-                    <span class="badge badge-danger navbar-badge">3</span>
+                    <span class="badge badge-danger navbar-badge"><?= $jumlah_item; ?></span>
                 </a>
                 <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+                    <?php foreach ($cart as $key => $value) : ?>
+                        <a href="#" class="dropdown-item">
+                            <div class="media">
+                                <img src="<?= base_url('assets/'); ?>dist/img/user1-128x128.jpg" alt="User Avatar" class="img-size-50 mr-3 img-circle">
+                                <div class="media-body">
+                                    <h3 class="dropdown-item-title">
+                                        <?= $value['name']; ?>
+                                    </h3>
+                                    <p class="text-sm"><?= $value['qty']; ?> x Rp <?= number_format($value['price']); ?></p>
+                                    <p class="text-sm text-muted"><i class="fas fa-calculator"></i> Rp <?php echo $this->cart->format_number($value['subtotal']); ?></p>
+                                </div>
+                            </div>
+                        </a>
+                        <div class="dropdown-divider"></div>
+                    <?php endforeach; ?>
+
+                    <div class="dropdown-divider"></div>
+
                     <a href="#" class="dropdown-item">
-                        <!-- Message Start -->
                         <div class="media">
-                            <img src="<?= base_url('assets/'); ?>dist/img/user1-128x128.jpg" alt="User Avatar" class="img-size-50 mr-3 img-circle">
                             <div class="media-body">
-                                <h3 class="dropdown-item-title">
-                                    Brad Diesel
-                                    <span class="float-right text-sm text-danger"><i class="fas fa-star"></i></span>
-                                </h3>
-                                <p class="text-sm">Call me whenever you can...</p>
-                                <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
+                                <tr>
+                                    <td colspan="2"> </td>
+                                    <td class="right"><strong>Total Bayar</strong></td>
+                                    <td class="right">Rp <?= $this->cart->format_number($this->cart->total()); ?></td>
+                                </tr>
                             </div>
                         </div>
-                        <!-- Message End -->
                     </a>
+
                     <div class="dropdown-divider"></div>
-                    <a href="#" class="dropdown-item">
-                        <!-- Message Start -->
-                        <div class="media">
-                            <!-- <img src="<?= base_url('assets/'); ?>dist/img/user8-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3"> -->
-                            <div class="media-body">
-                                <h3 class="dropdown-item-title">
-                                    John Pierce
-                                    <span class="float-right text-sm text-muted"><i class="fas fa-star"></i></span>
-                                </h3>
-                                <p class="text-sm">I got your message bro</p>
-                                <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
-                            </div>
-                        </div>
-                        <!-- Message End -->
-                    </a>
-                    <div class="dropdown-divider"></div>
-                    <a href="#" class="dropdown-item">
-                        <!-- Message Start -->
-                        <div class="media">
-                            <img src="<?= base_url('assets/'); ?>dist/img/user3-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
-                            <div class="media-body">
-                                <h3 class="dropdown-item-title">
-                                    Nora Silvester
-                                    <span class="float-right text-sm text-warning"><i class="fas fa-star"></i></span>
-                                </h3>
-                                <p class="text-sm">The subject goes here</p>
-                                <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
-                            </div>
-                        </div>
-                        <!-- Message End -->
-                    </a>
-                    <div class="dropdown-divider"></div>
-                    <a href="#" class="dropdown-item dropdown-footer">See All Messages</a>
+
+                    <a href="#" class="dropdown-item dropdown-footer">See All Cart</a>
+
                 </div>
             </li>
         </ul>

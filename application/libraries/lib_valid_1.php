@@ -10,10 +10,12 @@ class lib_valid_1
         $this->ci = &get_instance();
     }
 
-    public function check_role($redirect_url)
+    public function check_role()
     {
         $role = $this->ci->session->userdata('role');
         if ($role != '1' && ($role == '2' || $role == '3')) {
+            // Redirect back to previous page
+            $redirect_url = $_SERVER['HTTP_REFERER'] ?? base_url();
             redirect($redirect_url, 'refresh');
         }
     }

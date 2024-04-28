@@ -28,6 +28,9 @@
 <script src="<?= base_url('assets/'); ?>plugins/datatables-buttons/js/buttons.print.min.js"></script>
 <script src="<?= base_url('assets/'); ?>plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
 
+<!-- SweetAlert2 -->
+<script src="<?= base_url('assets/'); ?>plugins/sweetalert2/sweetalert2.min.js"></script>
+
 <script>
     $(document).ready(function() {
         // Inisialisasi DataTables pada elemen yang berisi card barang
@@ -39,6 +42,24 @@
             "info": true, // Aktifkan informasi jumlah data
             "autoWidth": false, // Nonaktifkan penyesuaian lebar otomatis
             "responsive": true // Aktifkan responsif untuk tampilan yang lebih baik pada perangkat mobile
+        });
+    });
+</script>
+
+<script>
+    $(function() {
+        var Toast = Swal.mixin({
+            toast: true,
+            position: 'top',
+            showConfirmButton: false,
+            timer: 3000
+        });
+
+        $('.swalDefaultSuccess').click(function() {
+            Toast.fire({
+                icon: 'success',
+                title: 'Barang berhasil masuk ke keranjang.'
+            })
         });
     });
 </script>

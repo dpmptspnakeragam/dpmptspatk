@@ -26,6 +26,9 @@
     <!-- AdminLTE App -->
     <script src="<?= base_url('assets/'); ?>dist/js/adminlte.min.js"></script>
 
+    <!-- SweetAlert2 -->
+    <link rel="stylesheet" href="<?= base_url('assets/'); ?>plugins/sweetalert2/sweetalert2.min.css">
+
 </head>
 
 <body class="hold-transition layout-top-nav layout-navbar-fixed text-sm">

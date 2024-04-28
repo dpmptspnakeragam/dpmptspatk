@@ -8,8 +8,8 @@ class Dashboard extends CI_Controller
     public function __construct()
     {
         parent::__construct();
-        // check role
-        $this->lib_valid_1->check_role('permintaan');
+        // load model dashboard
+        $this->load->model('M_dashboard');
     }
 
     // List all your items
@@ -20,6 +20,11 @@ class Dashboard extends CI_Controller
             'title' => 'Dashboard',
             'action' => 'Dashboard',
             'konten' => 'admin/v_dashboard',
+            'total_user' => $this->M_dashboard->ambil_user(),
+            'total_barang' => $this->M_dashboard->ambil_barang(),
+            'nama_barang' => $this->M_dashboard->nama_barang(),
+            'total_permintaan' => $this->M_dashboard->ambil_permintaan(),
+            'permintaan' => $this->M_dashboard->ambil_tb_konfperm()
         ];
 
         $this->load->view('layout/v_user_wrapper', $data, FALSE);
