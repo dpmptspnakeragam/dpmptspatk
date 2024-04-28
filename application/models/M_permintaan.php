@@ -31,6 +31,22 @@ class M_permintaan extends CI_Model
         return $this->db->get()->row(); // Menggunakan row() karena kita hanya ingin satu baris data
     }
 
+    public function qr_code($kode_perm)
+    {
+        $this->db->select('qr_code');
+        $this->db->from('tb_konfperm');
+        $this->db->where('kode_perm', $kode_perm);
+
+        $query = $this->db->get();
+        if ($query->num_rows() > 0) {
+            $qr_code_filename = $query->row()->qr_code;
+            $qr_code_path = base_url('assets/image/qrcode/' . $qr_code_filename);
+            return $qr_code_path;
+        } else {
+            return null; // Atau Anda dapat menangani kasus ketika qr_code tidak ditemukan sesuai kebutuhan Anda
+        }
+    }
+
     public function nama_barang($kode_perm)
     {
         $this->db->select('tb_nama.nama_barang, tb_perm.jumlah_perm, tb_perm.sub_total');
@@ -41,6 +57,15 @@ class M_permintaan extends CI_Model
 
         $query = $this->db->get();
         return $query->result();
+    }
+
+    public function total_bayar($kode_perm)
+    {
+        $this->db->select_sum('total_bayar');
+        $this->db->from('tb_konfperm');
+        $this->db->where('kode_perm', $kode_perm);
+        $this->db->where('status_konfperm', 'Dikonfirmasi');
+        return $this->db->get()->row();
     }
 
     public function konfirmasi_permintaan($id_konfperm, $data_konfirmasi)

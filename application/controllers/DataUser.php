@@ -10,6 +10,8 @@ class DataUser extends CI_Controller
         parent::__construct();
         //Load Dependencies
         $this->load->model('M_datauser');
+        // check role
+        $this->lib_valid_1->check_role('permintaan');
     }
 
     // List all items Data User
@@ -124,7 +126,7 @@ class DataUser extends CI_Controller
                 // copy dan upload gambar defaultnya profile user
                 $default_profile = './assets/image/profile/user-default.png';
                 $file_extension = pathinfo($default_profile, PATHINFO_EXTENSION);
-                $random_file_name = uniqid('profile_', true) . '.' . $file_extension;
+                $random_file_name = 'profile_' . uniqid() . '.' . $file_extension;
                 $file_path = './assets/image/profile/' . $random_file_name;
                 copy($default_profile, $file_path);
 
@@ -267,7 +269,7 @@ class DataUser extends CI_Controller
                 // Jika ada gambar baru diupload
                 $upload_profile = $this->upload->data();
                 $file_extension = pathinfo($upload_profile['file_name'], PATHINFO_EXTENSION);
-                $random_file_name = uniqid('profile_', true) . '.' . $file_extension;
+                $random_file_name = 'profile_' . uniqid() . '.' . $file_extension;
                 $file_path = './assets/image/profile/' . $random_file_name;
 
                 $user_id = $this->M_datauser->ambil_id_user($id_user);

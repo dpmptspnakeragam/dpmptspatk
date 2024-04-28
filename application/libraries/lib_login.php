@@ -25,12 +25,25 @@ class lib_login
             $this->ci->session->set_userdata('username', $user_username);
             $this->ci->session->set_userdata('role', $user_role);
 
-
             $this->ci->session->set_flashdata('success', 'Login berhasil.');
-            redirect('dashboard');
+            redirect($this->halaman_user($user_role));
         } else {
             $this->ci->session->set_flashdata('error', 'Username atau Password salah!');
             redirect('login');
+        }
+    }
+
+    private function halaman_user($user_role)
+    {
+        switch ($user_role) {
+            case '1':
+                return 'dashboard';
+            case '2':
+                return 'permintaan';
+            case '3':
+                return 'permintaan';
+            default:
+                return 'login'; // Redirect ke halaman login jika role tidak valid
         }
     }
 

@@ -43,9 +43,11 @@
                                 <label>Bidang</label>
                                 <select class="form-control form-control-sm" name="bidang">
                                     <option selected disabled>Pilih Bidang</option>
-                                    <option value="Sekretariat" <?= set_select('bidang', 'Sekretariat'); ?>>Sekretariat</option>
-                                    <option value="Keuangan" <?= set_select('bidang', 'Keuangan'); ?>>Keuangan</option>
-                                    <option value="Pelayanan" <?= set_select('bidang', 'Pelayanan'); ?>>Pelayanan</option>
+                                    <option value="1" <?= set_select('bidang', '1'); ?>>Kepada Dinas</option>
+                                    <option value="2" <?= set_select('bidang', '2'); ?>>Sekretariat</option>
+                                    <option value="3" <?= set_select('bidang', '3'); ?>>Keuangan</option>
+                                    <option value="4" <?= set_select('bidang', '4'); ?>>Penanaman Modal</option>
+                                    <option value="5" <?= set_select('bidang', '5'); ?>>Pelayanan</option>
                                 </select>
                                 <small class="text-danger"><?= form_error('bidang'); ?></small>
                             </div>
@@ -56,7 +58,8 @@
                                 <select class="form-control form-control-sm" name="role">
                                     <option selected disabled>Pilih Role ID</option>
                                     <option value="1" <?= set_select('role', '1'); ?>>Administrator</option>
-                                    <option value="2" <?= set_select('role', '2'); ?>>Pegawai</option>
+                                    <option value="2" <?= set_select('role', '2'); ?>>Admin</option>
+                                    <option value="3" <?= set_select('role', '3'); ?>>Pegawai</option>
                                 </select>
                                 <small class="text-danger"><?= form_error('role'); ?></small>
                             </div>

@@ -31,10 +31,10 @@
                                             <td class="text-center align-middle nama-barang"><?= $barang->nama_barang; ?></td>
                                             <td class="text-center align-middle"><?= $barang->jumlah_perm; ?></td>
                                             <td class="text-right align-middle">Rp. <?= number_format($barang->sub_total, 0, ',', '.'); ?></td>
-
                                         </tr>
                                     <?php endforeach; ?>
-                                    <td class="text-right" colspan="4">Rp. <?= number_format($value->total_bayar, 0, ',', '.'); ?></td>
+                                    <td class="text-center" colspan="3">Total Pembayaran</td>
+                                    <td class="text-right">Rp. <?= number_format($value->total_bayar, 0, ',', '.'); ?></td>
                                 </tbody>
                             </table>
                             <div class=" mt-4">

@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title><?= $title; ?></title>
 
+    <link href="<?= base_url('assets/'); ?>image/logo/favicon.png" rel="shortcut icon" type="image/png">
+
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
     <!-- Font Awesome -->
@@ -14,7 +16,6 @@
     <link rel="stylesheet" href="<?= base_url('assets/'); ?>plugins/icheck-bootstrap/icheck-bootstrap.min.css">
     <!-- Theme style -->
     <link rel="stylesheet" href="<?= base_url('assets/'); ?>dist/css/adminlte.min.css">
-
     <!-- SweetAlert2 -->
     <link rel="stylesheet" href="<?= base_url('assets/'); ?>plugins/sweetalert2/sweetalert2.min.css">
     <!-- Toastr -->
@@ -22,13 +23,13 @@
 </head>
 
 <body class="hold-transition login-page">
+
     <div class="login-box">
         <div class="login-logo">
             <a href="<?= base_url('login'); ?>">
                 <img src="<?= base_url('assets/image/logo/atk.png'); ?>" alt="Logo ATK" class="w-75">
             </a>
         </div>
-        <!-- /.login-logo -->
         <div class="card card-outline card-primary">
             <div class="card-body login-card-body rounded">
                 <p class="login-box-msg">Sign in to start your session</p>
@@ -64,38 +65,16 @@
                     <div class="col-5">
                         <button type="submit" class="btn btn-primary btn-block">Login</button>
                     </div>
-                    <!-- /.col -->
                     <div class="col-7 text-right mt-2">
                         <a href="<?= base_url('/'); ?>">
                             <strong>Back to Website ATK</strong>
                         </a>
                     </div>
-                    <!-- /.col -->
                 </div>
                 <?= form_close(); ?>
-
-                <!-- <div class="social-auth-links text-center mb-3">
-                    <p>- OR -</p>
-                    <a href="#" class="btn btn-block btn-primary">
-                        <i class="fab fa-facebook mr-2"></i> Sign in using Facebook
-                    </a>
-                    <a href="#" class="btn btn-block btn-danger">
-                        <i class="fab fa-google-plus mr-2"></i> Sign in using Google+
-                    </a>
-                </div> -->
-                <!-- /.social-auth-links -->
-
-                <!-- <p class="mb-1">
-                    <a href="forgot-password.html">I forgot my password</a>
-                </p>
-                <p class="mb-0">
-                    <a href="register.html" class="text-center">Register a new membership</a>
-                </p> -->
             </div>
-            <!-- /.login-card-body -->
         </div>
     </div>
-    <!-- /.login-box -->
 
     <!-- jQuery -->
     <script src="<?= base_url('assets/'); ?>plugins/jquery/jquery.min.js"></script>
@@ -108,6 +87,7 @@
     <script src="<?= base_url('assets/'); ?>plugins/sweetalert2/sweetalert2.min.js"></script>
     <!-- Toastr -->
     <script src="<?= base_url('assets/'); ?>plugins/toastr/toastr.min.js"></script>
+
     <script>
         $(document).ready(function() {
             <?php if ($this->session->flashdata('success')) { ?>

@@ -28,6 +28,7 @@ class Permintaan extends CI_Controller
         $this->load->view('admin/permintaan/v_tolak_konf', $data, FALSE);
         $this->load->view('admin/permintaan/v_detail', $data, FALSE);
         $this->load->view('admin/permintaan/v_delete_rkp', $data, FALSE);
+        $this->load->view('admin/permintaan/v_batalkan_perm', $data, FALSE);
     }
 
 
@@ -150,16 +151,15 @@ class Permintaan extends CI_Controller
         }
     }
 
-    public function print_permintaan($kode_perm)
+    public function print($kode_perm)
     {
-        $data = [
-            'home' => FALSE,
-            'title' => FALSE,
-            'action' => $kode_perm,
-            'konten'    => 'admin/permintaan/laporan/v_cetak',
-            'data_konfperm' => $this->M_permintaan->tampilkan_tabel_konfperm(),
-        ];
-        $this->load->view('layout/v_user_wrapper', $data, FALSE);
+        $data['data_konfperm'] = $this->M_permintaan->tampilkan_tabel_konfperm();
+        $data['nama_user'] = $this->M_permintaan->nama_user($kode_perm);
+        $data['nama_barang'] = $this->M_permintaan->nama_barang($kode_perm);
+        $data['total_bayar'] = $this->M_permintaan->total_bayar($kode_perm);
+        $data['qr_code'] = $this->M_permintaan->qr_code($kode_perm);
+
+        $this->load->view('admin/permintaan/v_cetak', $data);
     }
 }
 

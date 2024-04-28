@@ -44,9 +44,11 @@
                                 <label>Bidang</label>
                                 <select class="form-control form-control-sm" name="bidang">
                                     <option selected disabled>Pilih Bidang</option>
-                                    <option value="Sekretariat" <?= $user_id->bidang == 'Sekretariat' ? 'selected' : ''; ?>>Sekretariat</option>
-                                    <option value="Keuangan" <?= $user_id->bidang == 'Keuangan' ? 'selected' : ''; ?>>Keuangan</option>
-                                    <option value="Pelayanan" <?= $user_id->bidang == 'Pelayanan' ? 'selected' : ''; ?>>Pelayanan</option>
+                                    <option value="1" <?= $user_id->bidang == '1' ? 'selected' : ''; ?>>Kepada Dinas</option>
+                                    <option value="2" <?= $user_id->bidang == '2' ? 'selected' : ''; ?>>Sekretariat</option>
+                                    <option value="3" <?= $user_id->bidang == '3' ? 'selected' : ''; ?>>Keuangan</option>
+                                    <option value="4" <?= $user_id->bidang == '4' ? 'selected' : ''; ?>>Penanaman Modal</option>
+                                    <option value="5" <?= $user_id->bidang == '5' ? 'selected' : ''; ?>>Pelayanan</option>
                                 </select>
                                 <small class="text-danger"><?= form_error('bidang'); ?></small>
                             </div>
@@ -57,7 +59,8 @@
                                 <select class="form-control form-control-sm" name="role">
                                     <option selected disabled>Pilih Role ID</option>
                                     <option value="1" <?= $user_id->role == '1' ? 'selected' : ''; ?>>Administrator</option>
-                                    <option value="2" <?= $user_id->role == '2' ? 'selected' : ''; ?>>Pegawai</option>
+                                    <option value="2" <?= $user_id->role == '2' ? 'selected' : ''; ?>>Admin</option>
+                                    <option value="3" <?= $user_id->role == '3' ? 'selected' : ''; ?>>Pegawai</option>
                                 </select>
                                 <small class="text-danger"><?= form_error('role'); ?></small>
                             </div>

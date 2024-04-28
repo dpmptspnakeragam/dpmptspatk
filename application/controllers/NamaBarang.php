@@ -10,6 +10,8 @@ class NamaBarang extends CI_Controller
         parent::__construct();
         //Load Dependencies
         $this->load->model('M_namabarang');
+        // check role
+        $this->lib_valid_1->check_role('permintaan');
     }
 
     // List all your items

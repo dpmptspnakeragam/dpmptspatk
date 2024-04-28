@@ -8,7 +8,8 @@ class Dashboard extends CI_Controller
     public function __construct()
     {
         parent::__construct();
-        //Load Dependencies
+        // check role
+        $this->lib_valid_1->check_role('permintaan');
     }
 
     // List all your items

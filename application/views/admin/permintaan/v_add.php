@@ -1,4 +1,3 @@
-<!-- Main content -->
 <section class="content">
     <div class="container-fluid">
         <div class="row">
@@ -7,9 +6,7 @@
                     <div class="card-header">
                         <h3 class="card-title">Form <?= $action; ?></h3>
                     </div>
-                    <!-- /.card-header -->
                     <div class="card-body">
-                        <!-- Include all input fields here -->
                         <div class="form-group">
                             <label for="id_barang">Nama Barang</label>
                             <select class="form-control select2" id="id_barang" name="id_barang">
@@ -21,9 +18,7 @@
                                 <?php endforeach; ?>
                             </select>
                         </div>
-
                         <input id="peminta" name="peminta" type="text" class="form-control form-control-sm" value="<?= $this->session->userdata('id_user'); ?>" hidden>
-
                         <div class="row">
                             <div class="col-6">
                                 <div class="form-group">
@@ -42,39 +37,30 @@
                             <label for="harga">Harga Satuan</label>
                             <input id="harga" name="harga" type="text" class="form-control form-control-sm" disabled>
                         </div>
-                        <!-- End of input fields -->
-
-                        <!-- Jumlah Permintaan -->
                         <div class="form-group">
-                            <label>Jumlah Permintaan</label>
+                            <label>QTY</label>
                             <input id="jumlah" name="jumlah" type="number" class="form-control form-control-sm">
                         </div>
-
                     </div>
-                    <!-- /.card-body -->
                     <div class="card-footer">
-                        <!-- Tombol untuk menambahkan barang -->
                         <button id="tombol_tambah" type="button" class="btn btn-outline-primary">Tambah</button>
                         <a href="<?= base_url('permintaan'); ?>" class="btn btn-outline-secondary">Kembali</a>
                     </div>
-                    <!-- /.card-footer -->
                 </div>
             </div>
-            <!-- /.col -->
 
             <div class="col-sm-6">
                 <div class="card card-outline card-primary">
                     <div class="card-header">
                         <h3 class="card-title">Tabel <?= $action; ?></h3>
                     </div>
-                    <!-- /.card-header -->
                     <div class="card-body">
                         <table id="tabel_data_permintaan" class="table table-bordered table-sm table-hover">
                             <thead>
                                 <tr>
                                     <th class="text-center align-middle">No</th>
                                     <th class="text-center align-middle">Nama Barang</th>
-                                    <th class="text-center align-middle">Jumlah</th>
+                                    <th class="text-center align-middle">QTY</th>
                                     <th class="text-center align-middle">Sub Total</th>
                                     <th class="text-center align-middle">Action</th>
                                 </tr>
@@ -82,38 +68,25 @@
                             <tbody></tbody>
                         </table>
                     </div>
-                    <!-- /.card-body -->
                     <div class="card-footer">
-                        <!-- Form untuk menyimpan permintaan -->
                         <form id="form_simpan_permintaan" action="<?= base_url('permintaan/simpan_permintaan'); ?>" method="POST">
-
                             <div class="form-group">
                                 <label for="total_harga">Total Bayar</label>
                                 <input id="total_harga" name="total" type="text" class="form-control form-control-sm" disabled>
                             </div>
-
                             <div class="form-group">
                                 <label for="keterangan">Keterangan</label>
                                 <textarea id="keterangan" name="keterangan" class="form-control form-control-sm" rows="2"><?= set_value('keterangan'); ?></textarea>
                             </div>
-
-                            <!-- Input untuk menyimpan data barang -->
                             <input type="hidden" id="input_barang" name="barang">
-
                             <button type="submit" class="btn btn-outline-primary">Simpan</button>
                         </form>
                     </div>
-                    <!-- /.card-footer -->
                 </div>
-                <!-- /.card -->
             </div>
-            <!-- /.col -->
         </div>
-        <!-- /.row -->
     </div>
-    <!-- /.container-fluid -->
 </section>
-<!-- /.content -->
 
 <!-- Script menampilkan tb_barang secara otomatis -->
 <script>

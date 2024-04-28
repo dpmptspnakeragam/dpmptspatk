@@ -10,6 +10,8 @@ class SatuanBarang extends CI_Controller
         parent::__construct();
         //Load Dependencies
         $this->load->model('M_satuanbarang');
+        // check role
+        $this->lib_valid_1->check_role('permintaan');
     }
 
     // List all your items
@@ -24,6 +26,7 @@ class SatuanBarang extends CI_Controller
         ];
         $this->load->view('layout/v_user_wrapper', $data, FALSE);
 
+        // load modal hapus satuan barang
         $this->load->view('admin/satuanbarang/v_delete', $data, FALSE);
     }
 

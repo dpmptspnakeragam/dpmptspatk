@@ -35,13 +35,27 @@
                                     <tr>
                                         <td class="text-center align-middle"><?= $count++; ?></td>
                                         <td class="text-center align-middle"><?= $value->nama_user; ?></td>
-                                        <td class="text-center align-middle"><?= $value->bidang; ?></td>
                                         <td class="text-center align-middle">
-                                            <?php if ($value->role == 1) {
-                                                echo 'Administrator';
-                                            } else {
-                                                echo 'Pegawai';
-                                            } ?>
+                                            <?php if ($value->bidang == 1) : ?>
+                                                Kepala Dinas
+                                            <?php elseif ($value->bidang == 2) : ?>
+                                                Sekretariat
+                                            <?php elseif ($value->bidang == 3) : ?>
+                                                Keuangan
+                                            <?php elseif ($value->bidang == 4) : ?>
+                                                Penanaman Modal
+                                            <?php elseif ($value->bidang == 5) : ?>
+                                                Pelayanan
+                                            <?php endif; ?>
+                                        </td>
+                                        <td class="text-center align-middle">
+                                            <?php if ($value->role == 1) : ?>
+                                                Administrator
+                                            <?php elseif ($value->role == 2) : ?>
+                                                Admin
+                                            <?php elseif ($value->role == 3) : ?>
+                                                Pegawai
+                                            <?php endif; ?>
                                         </td>
                                         <td class="text-center align-middle">
                                             <a href="<?= base_url('assets/image/profile/' . $value->profile); ?>" data-toggle="lightbox">

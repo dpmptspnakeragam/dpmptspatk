@@ -21,66 +21,6 @@
 
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
-
-        <!-- Messages Dropdown Menu -->
-        <li class="nav-item dropdown">
-            <a class="nav-link" data-toggle="dropdown" href="#">
-                <i class="far fa-comments"></i>
-                <span class="badge badge-danger navbar-badge">3</span>
-            </a>
-            <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-                <a href="#" class="dropdown-item">
-                    <!-- Message Start -->
-                    <div class="media">
-                        <!-- <img src="dist/img/user1-128x128.jpg" alt="User Avatar" class="img-size-50 mr-3 img-circle"> -->
-                        <div class="media-body">
-                            <h3 class="dropdown-item-title">
-                                Brad Diesel
-                                <span class="float-right text-sm text-danger"><i class="fas fa-star"></i></span>
-                            </h3>
-                            <p class="text-sm">Call me whenever you can...</p>
-                            <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
-                        </div>
-                    </div>
-                    <!-- Message End -->
-                </a>
-                <div class="dropdown-divider"></div>
-                <a href="#" class="dropdown-item">
-                    <!-- Message Start -->
-                    <div class="media">
-                        <!-- <img src="dist/img/user8-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3"> -->
-                        <div class="media-body">
-                            <h3 class="dropdown-item-title">
-                                John Pierce
-                                <span class="float-right text-sm text-muted"><i class="fas fa-star"></i></span>
-                            </h3>
-                            <p class="text-sm">I got your message bro</p>
-                            <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
-                        </div>
-                    </div>
-                    <!-- Message End -->
-                </a>
-                <div class="dropdown-divider"></div>
-                <a href="#" class="dropdown-item">
-                    <!-- Message Start -->
-                    <div class="media">
-                        <!-- <img src="dist/img/user3-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3"> -->
-                        <div class="media-body">
-                            <h3 class="dropdown-item-title">
-                                Nora Silvester
-                                <span class="float-right text-sm text-warning"><i class="fas fa-star"></i></span>
-                            </h3>
-                            <p class="text-sm">The subject goes here</p>
-                            <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
-                        </div>
-                    </div>
-                    <!-- Message End -->
-                </a>
-                <div class="dropdown-divider"></div>
-                <a href="#" class="dropdown-item dropdown-footer">See All Messages</a>
-            </div>
-        </li>
-
         <!-- Nav Item - User Role -->
         <li class="nav-item">
             <span class="nav-link active">
@@ -126,90 +66,88 @@
         <!-- Sidebar Menu -->
         <nav class="mt-0">
             <ul class="nav nav-pills nav-sidebar flex-column nav-child-indent" data-widget="treeview" role="menu" data-accordion="false">
-                <li class="nav-item">
-                    <a href="<?= base_url('dashboard'); ?>" class="nav-link <?php if (in_array($this->uri->segment(1), ['dashboard'])) echo "active"; ?>">
-                        <i class="nav-icon fas fa-tachometer-alt"></i>
-                        <p>Dashboard</p>
-                    </a>
-                </li>
+                <?php if ($data_login->role == '1') : ?>
+                    <li class="nav-item">
+                        <a href="<?= base_url('dashboard'); ?>" class="nav-link <?php if (in_array($this->uri->segment(1), ['dashboard'])) echo "active"; ?>">
+                            <i class="nav-icon fas fa-tachometer-alt"></i>
+                            <p>Dashboard</p>
+                        </a>
+                    </li>
+                    <div class="user-panel mb-1 d-flex"></div>
 
-                <div class="user-panel mb-1 d-flex"></div>
+                    <li class="nav-item <?= in_array(
+                                            $this->uri->segment(1),
+                                            [
+                                                'DataMaster',
+                                                'datauser',
+                                                'databarang',
+                                                'namabarang',
+                                                'kategoribarang',
+                                                'satuanbarang'
+                                            ]
+                                        ) ? 'menu-open' : ''; ?>">
+                        <a href="" class="nav-link <?= in_array(
+                                                        $this->uri->segment(1),
+                                                        [
+                                                            'DataMaster',
+                                                            'datauser',
+                                                            'databarang',
+                                                            'namabarang',
+                                                            'kategoribarang',
+                                                            'satuanbarang',
+                                                        ]
+                                                    ) ? 'active' : ''; ?>">
+                            <i class="nav-icon fas fa-folder-open"></i>
+                            <p>
+                                Data Master
+                                <i class="right fas fa-angle-left"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="<?= base_url('datauser'); ?>" class="nav-link <?= $this->uri->segment(1) == 'datauser' ? 'active' : ''; ?>">
+                                    <i class="<?= $this->uri->segment(1) == 'datauser' ? 'fas' : 'far'; ?> fa-circle nav-icon <?= $this->uri->segment(1) == 'datauser' ? 'text-primary' : ''; ?>"></i>
+                                    <p>Data User</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="<?= base_url('databarang'); ?>" class="nav-link <?= $this->uri->segment(1) == 'databarang' ? 'active' : ''; ?>">
+                                    <i class="<?= $this->uri->segment(1) == 'databarang' ? 'fas' : 'far'; ?> fa-circle nav-icon <?= $this->uri->segment(1) == 'databarang' ? 'text-primary' : ''; ?>"></i>
+                                    <p>Data Barang</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="<?= base_url('namabarang'); ?>" class="nav-link <?= $this->uri->segment(1) == 'namabarang' ? 'active' : ''; ?>">
+                                    <i class="<?= $this->uri->segment(1) == 'namabarang' ? 'fas' : 'far'; ?> fa-circle nav-icon <?= $this->uri->segment(1) == 'namabarang' ? 'text-primary' : ''; ?>"></i>
+                                    <p>Nama Barang</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="<?= base_url('kategoribarang'); ?>" class="nav-link <?= $this->uri->segment(1) == 'kategoribarang' ? 'active' : ''; ?>">
+                                    <i class="<?= $this->uri->segment(1) == 'kategoribarang' ? 'fas' : 'far'; ?> fa-circle nav-icon <?= $this->uri->segment(1) == 'kategoribarang' ? 'text-primary' : ''; ?>"></i>
+                                    <p>Kategori Barang</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="<?= base_url('satuanbarang'); ?>" class="nav-link <?= $this->uri->segment(1) == 'satuanbarang' ? 'active' : ''; ?>">
+                                    <i class="<?= $this->uri->segment(1) == 'satuanbarang' ? 'fas' : 'far'; ?> fa-circle nav-icon <?= $this->uri->segment(1) == 'satuanbarang' ? 'text-primary' : ''; ?>"></i>
+                                    <p>Satuan Barang</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
 
+                    <div class="user-panel mb-1 d-flex"></div>
+                <?php endif; ?>
                 <li class="nav-item <?= in_array(
                                         $this->uri->segment(1),
                                         [
-                                            'DataMaster',
-                                            'datauser',
-                                            'databarang',
-                                            'namabarang',
-                                            'kategoribarang',
-                                            'satuanbarang'
-                                        ]
-                                    ) ? 'menu-open' : ''; ?>">
-                    <a href="" class="nav-link <?= in_array(
-                                                    $this->uri->segment(1),
-                                                    [
-                                                        'DataMaster',
-                                                        'datauser',
-                                                        'databarang',
-                                                        'namabarang',
-                                                        'kategoribarang',
-                                                        'satuanbarang',
-                                                    ]
-                                                ) ? 'active' : ''; ?>">
-                        <i class="nav-icon fas fa-folder-open"></i>
-                        <p>
-                            Data Master
-                            <i class="right fas fa-angle-left"></i>
-                        </p>
-                    </a>
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="<?= base_url('datauser'); ?>" class="nav-link <?= $this->uri->segment(1) == 'datauser' ? 'active' : ''; ?>">
-                                <i class="<?= $this->uri->segment(1) == 'datauser' ? 'fas' : 'far'; ?> fa-circle nav-icon <?= $this->uri->segment(1) == 'datauser' ? 'text-primary' : ''; ?>"></i>
-                                <p>Data User</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="<?= base_url('databarang'); ?>" class="nav-link <?= $this->uri->segment(1) == 'databarang' ? 'active' : ''; ?>">
-                                <i class="<?= $this->uri->segment(1) == 'databarang' ? 'fas' : 'far'; ?> fa-circle nav-icon <?= $this->uri->segment(1) == 'databarang' ? 'text-primary' : ''; ?>"></i>
-                                <p>Data Barang</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="<?= base_url('namabarang'); ?>" class="nav-link <?= $this->uri->segment(1) == 'namabarang' ? 'active' : ''; ?>">
-                                <i class="<?= $this->uri->segment(1) == 'namabarang' ? 'fas' : 'far'; ?> fa-circle nav-icon <?= $this->uri->segment(1) == 'namabarang' ? 'text-primary' : ''; ?>"></i>
-                                <p>Nama Barang</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="<?= base_url('kategoribarang'); ?>" class="nav-link <?= $this->uri->segment(1) == 'kategoribarang' ? 'active' : ''; ?>">
-                                <i class="<?= $this->uri->segment(1) == 'kategoribarang' ? 'fas' : 'far'; ?> fa-circle nav-icon <?= $this->uri->segment(1) == 'kategoribarang' ? 'text-primary' : ''; ?>"></i>
-                                <p>Kategori Barang</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="<?= base_url('satuanbarang'); ?>" class="nav-link <?= $this->uri->segment(1) == 'satuanbarang' ? 'active' : ''; ?>">
-                                <i class="<?= $this->uri->segment(1) == 'satuanbarang' ? 'fas' : 'far'; ?> fa-circle nav-icon <?= $this->uri->segment(1) == 'satuanbarang' ? 'text-primary' : ''; ?>"></i>
-                                <p>Satuan Barang</p>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-
-                <div class="user-panel mb-1 d-flex"></div>
-
-                <li class="nav-item <?= in_array(
-                                        $this->uri->segment(1),
-                                        [
-                                            'Transaksi',
                                             'permintaan',
                                         ]
                                     ) ? 'menu-open' : ''; ?>">
                     <a href="" class="nav-link <?= in_array(
                                                     $this->uri->segment(1),
                                                     [
-                                                        'Transaksi',
                                                         'permintaan',
                                                     ]
                                                 ) ? 'active' : ''; ?>">
