@@ -9,6 +9,10 @@ class SatuanBarang extends CI_Controller
     {
         parent::__construct();
         $this->load->model('M_satuanbarang');
+        if ($this->session->userdata('role') != 1) {
+            $redirect_url = isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : base_url();
+            redirect($redirect_url, 'refresh');
+        }
     }
 
     public function index()

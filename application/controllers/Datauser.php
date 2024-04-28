@@ -8,8 +8,11 @@ class DataUser extends CI_Controller
     public function __construct()
     {
         parent::__construct();
-        //Load Dependencies
         $this->load->model('M_datauser');
+        if ($this->session->userdata('role') != 1) {
+            $redirect_url = isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : base_url();
+            redirect($redirect_url, 'refresh');
+        }
     }
 
     // List all items Data User
