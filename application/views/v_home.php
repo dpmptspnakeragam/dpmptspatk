@@ -22,7 +22,7 @@
     <div class="container">
         <div class="row">
             <?php foreach ($view_barang as $b => $value) : ?>
-                <div class="col-lg-3 col-md-12">
+                <div class="col-lg-3 col-md-6">
                     <?= form_open('cart/add'); ?>
                     <?= form_hidden('id', $value->id_barang); ?>
                     <?= form_hidden('qty', 1); ?>

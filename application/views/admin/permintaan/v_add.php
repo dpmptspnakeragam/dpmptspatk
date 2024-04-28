@@ -44,7 +44,6 @@
                     </div>
                     <div class="card-footer">
                         <button id="tombol_tambah" type="button" class="btn btn-outline-primary">Tambah</button>
-                        <a href="<?= base_url('permintaan'); ?>" class="btn btn-outline-secondary">Kembali</a>
                     </div>
                 </div>
             </div>
@@ -80,6 +79,7 @@
                             </div>
                             <input type="hidden" id="input_barang" name="barang">
                             <button type="submit" class="btn btn-outline-primary">Simpan</button>
+                            <a href="<?= base_url('permintaan'); ?>" class="btn btn-outline-secondary">Kembali</a>
                         </form>
                     </div>
                 </div>
