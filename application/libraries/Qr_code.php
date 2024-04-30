@@ -17,14 +17,14 @@ class Qr_code
         require_once APPPATH . 'libraries/phpqrcode/qrlib.php';
 
         // URL yang ingin disematkan di dalam QR Code
-        $url = base_url('permintaan/cetak_qr/' . $kode_perm); // Tambahkan parameter kode_perm
+        $url = base_url('permintaan/cetak_qr/' . $kode_perm);
 
         // Konfigurasi QR Code
-        $config['cacheable']    = true; // cacheable QR Code
-        $config['cachedir']     = APPPATH . 'cache/'; // tempat penyimpanan cache QR Code
-        $config['errorlog']     = APPPATH . 'logs/'; // direktori untuk log jika terjadi error
-        $config['imagedir']     = FCPATH . 'assets/image/qrcode/'; // direktori tempat penyimpanan QR Code yang dihasilkan
-        $config['quality']      = true; // tingkat kualitas QR Code
+        $config['cacheable']    = true;
+        $config['cachedir']     = APPPATH . 'cache/';
+        $config['errorlog']     = APPPATH . 'logs/';
+        $config['imagedir']     = FCPATH . 'assets/image/qrcode/';
+        $config['quality']      = true;
 
         // Buat folder qrcode jika belum ada
         if (!is_dir($config['imagedir'])) {
