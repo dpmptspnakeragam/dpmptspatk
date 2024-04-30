@@ -159,6 +159,19 @@ class Permintaan extends CI_Controller
 
         $this->load->view('admin/permintaan/v_cetak', $data);
     }
+
+    public function cetak_qr($kode_perm)
+    {
+        // Ambil data sesuai dengan kode_perm yang diterima dari URL
+        $data['data_konfperm'] = $this->M_permintaan->tampilkan_tabel_konfperm();
+        $data['nama_user'] = $this->M_permintaan->nama_user($kode_perm);
+        $data['nama_barang'] = $this->M_permintaan->nama_barang($kode_perm);
+        $data['total_bayar'] = $this->M_permintaan->total_bayar($kode_perm);
+        $data['qr_code'] = $this->M_permintaan->qr_code($kode_perm);
+
+        // Load view untuk mencetak
+        $this->load->view('admin/permintaan/v_cetak', $data);
+    }
 }
 
 /* End of file Permintaan.php */

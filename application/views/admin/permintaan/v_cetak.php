@@ -130,7 +130,11 @@
                     </tr>
                 <?php endforeach; ?>
                 <td class="text-center" colspan="3">Total Bayar</td>
-                <td class="text-right">Rp. <?= number_format($total_bayar->total_bayar, 0, ',', '.'); ?></td>
+                <td class="text-right">Rp.
+                    <?php if ($total_bayar && isset($total_bayar->total_bayar)) : ?>
+                        Rp. <?= number_format($total_bayar->total_bayar, 0, ',', '.'); ?>
+                    <?php endif; ?>
+                </td>
             </tbody>
         </table>
 
@@ -141,7 +145,11 @@
                 <br>
                 <br>
                 <br>
-                <strong><?= $nama_user->nama_user; ?></strong>
+                <strong>
+                    <?php if ($nama_user && isset($nama_user->nama_user)) : ?>
+                        <?= $nama_user->nama_user; ?>
+                    <?php endif; ?>
+                </strong>
             </div>
             <div class="col-6 text-center">
                 Staf Administrasi

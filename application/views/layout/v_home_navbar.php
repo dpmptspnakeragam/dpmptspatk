@@ -1,5 +1,5 @@
 <!-- Navbar -->
-<nav class="main-header navbar navbar-expand-md navbar-light navbar-white elevation-3">
+<nav class="main-header navbar navbar-expand-md navbar-light navbar-white elevation-2">
     <div class="container">
 
         <a href="<?= base_url('/'); ?>" class="navbar-brand mt-2 ml-2">

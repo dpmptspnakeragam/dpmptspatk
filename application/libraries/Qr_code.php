@@ -11,10 +11,13 @@ class Qr_code
         log_message('info', 'QR Code Class Initialized');
     }
 
-    public function generate_qr_code($data, $filename = FALSE, $size = 10, $level = 'H')
+    public function generate_qr_code($kode_perm, $filename = FALSE, $size = 10, $level = 'H')
     {
         // Load library QR Code PHP
         require_once APPPATH . 'libraries/phpqrcode/qrlib.php';
+
+        // URL yang ingin disematkan di dalam QR Code
+        $url = base_url('permintaan/cetak_qr/' . $kode_perm); // Tambahkan parameter kode_perm
 
         // Konfigurasi QR Code
         $config['cacheable']    = true; // cacheable QR Code
@@ -34,8 +37,8 @@ class Qr_code
         // Path lengkap tempat penyimpanan QR Code
         $file_path = $config['imagedir'] . $file_name;
 
-        // Generate QR Code
-        QRcode::png($data, $file_path, $level, $size);
+        // Generate QR Code dengan URL
+        QRcode::png($url, $file_path, $level, $size);
 
         // Kembalikan nama file QR Code yang dihasilkan
         return $file_name;
