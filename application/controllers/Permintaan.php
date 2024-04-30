@@ -160,16 +160,16 @@ class Permintaan extends CI_Controller
         $this->load->view('admin/permintaan/v_cetak', $data);
     }
 
-    public function cetak_qr($kode_perm)
-    {
-        $data['data_konfperm'] = $this->M_permintaan->tampilkan_tabel_konfperm();
-        $data['nama_user'] = $this->M_permintaan->nama_user($kode_perm);
-        $data['nama_barang'] = $this->M_permintaan->nama_barang($kode_perm);
-        $data['total_bayar'] = $this->M_permintaan->total_bayar($kode_perm);
-        $data['qr_code'] = $this->M_permintaan->qr_code($kode_perm);
+    // public function data_atk($kode_perm)
+    // {
+    //     $data['data_konfperm'] = $this->M_permintaan->tampilkan_tabel_konfperm();
+    //     $data['nama_user'] = $this->M_permintaan->nama_user($kode_perm);
+    //     $data['nama_barang'] = $this->M_permintaan->nama_barang($kode_perm);
+    //     $data['total_bayar'] = $this->M_permintaan->total_bayar($kode_perm);
+    //     $data['qr_code'] = $this->M_permintaan->qr_code($kode_perm);
 
-        $this->load->view('admin/permintaan/v_cetak', $data);
-    }
+    //     $this->load->view('admin/permintaan/v_hasil_scan', $data);
+    // }
 }
 
 /* End of file Permintaan.php */
