@@ -38,7 +38,7 @@ class Qr_code
         $file_path = $config['imagedir'] . $file_name;
 
         // Generate QR Code dengan URL
-        QRcode::png($url, $file_path, $level, $size);
+        // QRcode::png($url, $file_path, $level, $size);
 
         // Kembalikan nama file QR Code yang dihasilkan
         return $file_name;
