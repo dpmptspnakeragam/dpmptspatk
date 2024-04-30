@@ -17,7 +17,7 @@ class Qr_code
         require_once APPPATH . 'libraries/phpqrcode/qrlib.php';
 
         // URL yang ingin disematkan di dalam QR Code
-        // $url = base_url('permintaan/data_atk/' . $kode_perm);
+        $url = base_url('permintaan/data_atk/' . $kode_perm);
 
         // Konfigurasi QR Code
         $config['cacheable']    = true;
@@ -38,7 +38,7 @@ class Qr_code
         $file_path = $config['imagedir'] . $file_name;
 
         // Generate QR Code dengan URL
-        QRcode::png($file_path, $level, $size);
+        QRcode::png($url, $file_path, $level, $size);
 
         // Kembalikan nama file QR Code yang dihasilkan
         return $file_name;
