@@ -10,6 +10,7 @@ class Permintaan extends CI_Controller
     {
         parent::__construct();
         $this->load->model('M_permintaan');
+        $this->load->library('tcpdf');
     }
 
     public function index()
@@ -151,25 +152,95 @@ class Permintaan extends CI_Controller
 
     public function cetak($kode_perm)
     {
+        // Ambil data dari model
         $data['data_konfperm'] = $this->M_permintaan->tampilkan_tabel_konfperm();
         $data['nama_user'] = $this->M_permintaan->nama_user($kode_perm);
         $data['nama_barang'] = $this->M_permintaan->nama_barang($kode_perm);
-        $data['total_bayar'] = $this->M_permintaan->total_bayar($kode_perm);
+        $data['tb_konfperm'] = $this->M_permintaan->tb_konfperm($kode_perm);
         $data['qr_code'] = $this->M_permintaan->qr_code($kode_perm);
 
-        $this->load->view('admin/permintaan/v_cetak', $data);
+        $data['kode_perm'] = $kode_perm;
+
+        $this->load->view('admin/permintaan/v_invoice', $data, FALSE);
     }
 
-    public function data_atk($kode_perm)
-    {
-        $data['data_konfperm'] = $this->M_permintaan->tampilkan_tabel_konfperm();
-        $data['nama_user'] = $this->M_permintaan->nama_user($kode_perm);
-        $data['nama_barang'] = $this->M_permintaan->nama_barang($kode_perm);
-        $data['total_bayar'] = $this->M_permintaan->total_bayar($kode_perm);
-        $data['qr_code'] = $this->M_permintaan->qr_code($kode_perm);
+    // public function cetak($kode_perm)
+    // {
+    //     // Ambil data dari model
+    //     $data['data_konfperm'] = $this->M_permintaan->tampilkan_tabel_konfperm();
+    //     $data['nama_user'] = $this->M_permintaan->nama_user($kode_perm);
+    //     $data['nama_barang'] = $this->M_permintaan->nama_barang($kode_perm);
+    //     $data['total_bayar'] = $this->M_permintaan->total_bayar($kode_perm);
+    //     $data['qr_code'] = $this->M_permintaan->qr_code($kode_perm);
 
-        $this->load->view('admin/permintaan/v_hasil_scan', $data);
-    }
+    //     // Generate PDF content
+    //     $pdf_content = $this->generate_pdf($data);
+
+    //     // Kembalikan konten PDF sebagai respons HTTP
+    //     header('Content-Type: application/pdf');
+    //     header('Content-Disposition: inline; filename="invoice_' . $kode_perm . '.pdf"');
+    //     header('Content-Transfer-Encoding: binary');
+    //     header('Accept-Ranges: bytes');
+    //     echo $pdf_content;
+    // }
+
+    // private function generate_pdf($data)
+    // {
+    //     // Load TCPDF
+    //     require_once APPPATH . 'libraries/tcpdf/tcpdf.php';
+
+    //     // Set judul dan ukuran halaman
+    //     $pdf = new TCPDF('P', 'mm', 'F4', true, 'UTF-8', false);
+
+    //     // Set margin
+    //     $pdf->SetMargins(20, 0, 20, 0); // Atas, Kanan, Bawah, Kiri
+
+    //     // Set header dan footer
+    //     // $pdf->SetHeaderMargin(10);
+    //     // $pdf->SetFooterMargin(10);
+
+    //     // Set font
+    //     $pdf->SetFont('times', '', 12);
+
+    //     // Tambahkan halaman
+    //     $pdf->AddPage();
+
+    //     // Tambahkan konten HTML ke PDF
+    //     ob_start();
+    //     $this->load->view('admin/permintaan/v_cetak', $data); // Memuat view v_cetak.php dengan data yang diteruskan
+    //     $html = ob_get_clean();
+
+    //     // Tambahkan konten HTML ke PDF
+    //     $pdf->writeHTML($html);
+
+    //     // Output PDF sebagai string
+    //     return $pdf->Output('', 'S');
+    // }
+
+
+
+
+    // public function cetak($kode_perm)
+    // {
+    //     $data['data_konfperm'] = $this->M_permintaan->tampilkan_tabel_konfperm();
+    //     $data['nama_user'] = $this->M_permintaan->nama_user($kode_perm);
+    //     $data['nama_barang'] = $this->M_permintaan->nama_barang($kode_perm);
+    //     $data['total_bayar'] = $this->M_permintaan->total_bayar($kode_perm);
+    //     $data['qr_code'] = $this->M_permintaan->qr_code($kode_perm);
+
+    //     $this->load->view('admin/permintaan/v_cetak', $data);
+    // }
+
+    // public function data_atk($kode_perm)
+    // {
+    //     $data['data_konfperm'] = $this->M_permintaan->tampilkan_tabel_konfperm();
+    //     $data['nama_user'] = $this->M_permintaan->nama_user($kode_perm);
+    //     $data['nama_barang'] = $this->M_permintaan->nama_barang($kode_perm);
+    //     $data['total_bayar'] = $this->M_permintaan->total_bayar($kode_perm);
+    //     $data['qr_code'] = $this->M_permintaan->qr_code($kode_perm);
+
+    //     $this->load->view('admin/permintaan/v_hasil_scan', $data);
+    // }
 }
 
 /* End of file Permintaan.php */

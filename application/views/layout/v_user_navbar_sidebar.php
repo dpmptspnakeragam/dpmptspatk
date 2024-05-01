@@ -73,6 +73,7 @@
                     </a>
                 </li>
                 <div class="user-panel mb-1 d-flex"></div>
+
                 <?php if ($data_login->role == 1) : ?>
 
                     <li class="nav-item <?= in_array(
@@ -139,6 +140,7 @@
 
                     <div class="user-panel mb-1 d-flex"></div>
                 <?php endif; ?>
+
                 <li class="nav-item <?= in_array(
                                         $this->uri->segment(1),
                                         [
@@ -168,14 +170,6 @@
                 </li>
 
                 <div class="user-panel mb-1 d-flex"></div>
-
-                <li class="nav-item">
-                    <a href="<?= base_url('report'); ?>" class="nav-link <?php if (in_array($this->uri->segment(1), ['report'])) echo "active"; ?>">
-                        <i class="nav-icon fas fa-file-alt"></i>
-                        <p>Report</p>
-                    </a>
-                </li>
-
             </ul>
         </nav>
         <!-- /.sidebar-menu -->
