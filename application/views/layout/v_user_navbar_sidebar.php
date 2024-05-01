@@ -27,8 +27,12 @@
                 <?php if ($data_login->role == 1) : ?>
                     Administrator
                 <?php elseif ($data_login->role == 2) : ?>
-                    Admin
+                    Kepala Dinas
                 <?php elseif ($data_login->role == 3) : ?>
+                    Sekretaris
+                <?php elseif ($data_login->role == 4) : ?>
+                    Sub Bagian Umum & Kepegawaian
+                <?php elseif ($data_login->role == 5) : ?>
                     Pegawai
                 <?php endif; ?>
             </span>

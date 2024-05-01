@@ -12,6 +12,18 @@ class SatuanBarang extends CI_Controller
         if ($this->session->userdata('role') != 1) {
             $redirect_url = isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : base_url();
             redirect($redirect_url, 'refresh');
+
+            // Get the id_user from wherever it is stored
+            $id_user = $this->session->userdata('id_user'); // Assuming it's stored in session
+
+            // Check if id_user exists in tb_user using Lib_login
+            if ($id_user && !$this->lib_login->cek_id($id_user)) {
+                // Clear userdata if id_user doesn't exist
+                $this->lib_login->clear_userdata();
+
+                // Redirect to login page
+                redirect('login'); // Adjust 'login' to the actual login page URL
+            }
         }
     }
 

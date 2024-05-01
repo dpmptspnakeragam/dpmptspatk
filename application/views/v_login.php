@@ -95,7 +95,7 @@
                     toast: true,
                     position: "top",
                     showConfirmButton: false,
-                    timer: 4000,
+                    timer: 3000,
                     timerProgressBar: true,
                     didOpen: (toast) => {
                         toast.onmouseenter = Swal.stopTimer;
@@ -113,7 +113,7 @@
                     toast: true,
                     position: "top",
                     showConfirmButton: false,
-                    timer: 4000,
+                    timer: 3000,
                     timerProgressBar: true,
                     didOpen: (toast) => {
                         toast.onmouseenter = Swal.stopTimer;
@@ -131,7 +131,7 @@
                     toast: true,
                     position: "top",
                     showConfirmButton: false,
-                    timer: 4000,
+                    timer: 3000,
                     timerProgressBar: true,
                     didOpen: (toast) => {
                         toast.onmouseenter = Swal.stopTimer;
@@ -141,6 +141,24 @@
                 WarningToast.fire({
                     icon: "warning",
                     title: "<?= $this->session->flashdata('warning'); ?>"
+                });
+            <?php } ?>
+
+            <?php if ($this->session->flashdata('info')) { ?>
+                const InfoToast = Swal.mixin({
+                    toast: true,
+                    position: "top",
+                    showConfirmButton: false,
+                    timer: 3000,
+                    timerProgressBar: true,
+                    didOpen: (toast) => {
+                        toast.onmouseenter = Swal.stopTimer;
+                        toast.onmouseleave = Swal.resumeTimer;
+                    }
+                });
+                InfoToast.fire({
+                    icon: "info",
+                    title: "<?= $this->session->flashdata('info'); ?>"
                 });
             <?php } ?>
 

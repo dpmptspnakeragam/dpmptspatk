@@ -45,15 +45,19 @@
                                             <?php elseif ($value->bidang == 4) : ?>
                                                 Penanaman Modal
                                             <?php elseif ($value->bidang == 5) : ?>
-                                                Pelayanan
+                                                Pelayanan/Perizinan
                                             <?php endif; ?>
                                         </td>
                                         <td class="text-center align-middle">
                                             <?php if ($value->role == 1) : ?>
                                                 Administrator
                                             <?php elseif ($value->role == 2) : ?>
-                                                Admin
+                                                Kepala Dinas
                                             <?php elseif ($value->role == 3) : ?>
+                                                Sekretaris
+                                            <?php elseif ($value->role == 4) : ?>
+                                                Sub Bagian Umum & Kepegawaian
+                                            <?php elseif ($value->role == 5) : ?>
                                                 Pegawai
                                             <?php endif; ?>
                                         </td>

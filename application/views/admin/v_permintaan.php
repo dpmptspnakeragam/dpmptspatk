@@ -9,7 +9,7 @@
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">
-                        <?php if ($this->session->userdata('role') != 2) : ?>
+                        <?php if ($this->session->userdata('role') != 2 && $this->session->userdata('role') != 3 && $this->session->userdata('role') != 4) : ?>
                             <div class="d-flex mb-3">
                                 <a href="<?= base_url('permintaan/add'); ?>" class="btn btn-outline-primary btn-sm">
                                     <i class="fas fa-plus p-1"></i>
@@ -67,12 +67,14 @@
                                             </td>
                                             <td class="text-center align-middle">
 
-                                                <?php if ($this->session->userdata('role') != '3') : ?>
+                                                <?php if ($this->session->userdata('role') == 2 || $this->session->userdata('role') == 1) : ?>
                                                     <button type="button" data-toggle="modal" data-target="#konfirmasi<?= $value->id_konfperm; ?>" class="btn btn-outline-primary btn-sm"><i class="fas fa-check-double"></i></button>
+                                                <?php endif; ?>
+                                                <?php if ($this->session->userdata('role') == 1 || $this->session->userdata('role') == 2 || $this->session->userdata('role') == 3 || $this->session->userdata('role') == 4) : ?>
                                                     <button type="button" data-toggle="modal" data-target="#tolakkonfirmasi<?= $value->id_konfperm; ?>" class="btn btn-outline-danger btn-sm"><i class="fas fa-window-close"></i></button>
                                                 <?php endif; ?>
 
-                                                <?php if ($this->session->userdata('role') == 3) : ?>
+                                                <?php if ($this->session->userdata('role') != 2 && $this->session->userdata('role') != 3 && $this->session->userdata('role') != 4) : ?>
                                                     <button type="button" data-toggle="modal" data-target="#hapusPermintaan<?= $value->id_konfperm; ?>" class="btn btn-outline-danger btn-sm"><i class="fas fa-trash-alt"></i></button>
                                                 <?php endif; ?>
                                             </td>
