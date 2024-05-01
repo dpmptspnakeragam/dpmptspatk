@@ -54,7 +54,7 @@
                                     <small class="text-danger"><?= form_error('bidang'); ?></small>
                                 </div>
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-6" <?= $user_id->id_role == 1 ? 'hidden' : ''; ?>>
                                 <div class="form-group">
                                     <label>Role ID</label>
                                     <select name="role" class="form-control select2">
@@ -67,7 +67,7 @@
                                     <small class="text-danger"><?= form_error('role'); ?></small>
                                 </div>
                             </div>
-                            <div class="col-md-6" <?= $user_id->id_role == '1' ? 'hidden' : ''; ?>>
+                            <div class="col-md-6" <?= $user_id->id_role == 1 ? 'hidden' : ''; ?>>
                                 <div class="form-group">
                                     <label>Status</label>
                                     <select class="form-control select2" name="status">
