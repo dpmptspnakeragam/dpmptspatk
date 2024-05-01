@@ -103,7 +103,7 @@ class DataUser extends CI_Controller
             $this->form_validation->set_rules('role', 'Role ID', 'callback_check_role[' . $role_input . ']');
         } else {
             $this->form_validation->set_rules('role', 'Role ID', 'required', [
-                'required' => '%s harus diisi!'
+                'required' => 'Role ID harus diisi dan berada dalam rentang 1-4!'
             ]);
         }
 
@@ -267,7 +267,7 @@ class DataUser extends CI_Controller
 
         // Validasi role
         $role_input = $this->input->post('role');
-        if ($role_input >= 2 && $role_input <= 4) {
+        if ($role_input >= 1 && $role_input <= 4) {
             // Cek apakah role baru yang dipilih sudah ada pada tb_user
             $existing_role = $this->M_datauser->check_existing_role($role_input);
             $user_id = $this->input->post('id_user'); // Ambil id_user dari form

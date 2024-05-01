@@ -17,7 +17,6 @@ class M_datauser extends CI_Model
     {
         $this->db->select('*');
         $this->db->from('tb_role');
-        $this->db->where('id_role !=', 1); // Menyembunyikan id_role 1
         $this->db->order_by('id_role', 'asc');
         return $this->db->get()->result();
     }
