@@ -265,29 +265,35 @@ class DataUser extends CI_Controller
             'required'       => '%s harus diisi!',
         ]);
 
-        // Validasi role
-        $role_input = $this->input->post('role');
-        if ($role_input >= 1 && $role_input <= 4) {
-            // Cek apakah role baru yang dipilih sudah ada pada tb_user
-            $existing_role = $this->M_datauser->check_existing_role($role_input);
-            $user_id = $this->input->post('id_user'); // Ambil id_user dari form
-            $user_role = $this->M_datauser->ambil_id_user($user_id)->id_role; // Ambil id_role dari user yang sedang diupdate
+        // Validasi role hanya jika id_user bukan 1
+        if ($id_user != 1) {
+            // Validasi role
+            $role_input = $this->input->post('role');
+            if ($role_input >= 1 && $role_input <= 4) {
+                // Cek apakah role baru yang dipilih sudah ada pada tb_user
+                $existing_role = $this->M_datauser->check_existing_role($role_input);
+                $user_role = $this->M_datauser->ambil_id_user($id_user)->id_role; // Ambil id_role dari user yang sedang diupdate
 
-            if ($existing_role && $role_input != $user_role) {
-                $this->form_validation->set_rules('role', 'Role ID', 'callback_check_role[' . $role_input . ']');
+                if ($existing_role && $role_input != $user_role) {
+                    $this->form_validation->set_rules('role', 'Role ID', 'callback_check_role[' . $role_input . ']');
+                } else {
+                    // Tidak perlu validasi jika role tidak diubah atau role baru tidak ada pada tb_user
+                    // Simpan data user tanpa validasi role
+                    $this->form_validation->set_rules('role', 'Role ID', 'required', [
+                        'required' => 'Role ID harus diisi dan berada dalam rentang 1-4!'
+                    ]);
+                }
             } else {
-                // Tidak perlu validasi jika role tidak diubah atau role baru tidak ada pada tb_user
-                // Simpan data user tanpa validasi role
                 $this->form_validation->set_rules('role', 'Role ID', 'required', [
                     'required' => 'Role ID harus diisi dan berada dalam rentang 1-4!'
                 ]);
             }
         } else {
+            // Jika id_user adalah 1, tidak perlu validasi role
             $this->form_validation->set_rules('role', 'Role ID', 'required', [
                 'required' => 'Role ID harus diisi dan berada dalam rentang 1-4!'
             ]);
         }
-
 
         $this->form_validation->set_rules('status', 'Status', 'trim|required', [
             'required' => '%s harus diisi!',

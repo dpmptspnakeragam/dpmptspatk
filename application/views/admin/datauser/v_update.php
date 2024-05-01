@@ -54,7 +54,7 @@
                                     <small class="text-danger"><?= form_error('bidang'); ?></small>
                                 </div>
                             </div>
-                            <div class="col-md-6" <?= ($this->session->userdata('id_role') == 1) ? 'hidden' : ''; ?>>
+                            <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Role ID</label>
                                     <select name="role" class="form-control select2">
