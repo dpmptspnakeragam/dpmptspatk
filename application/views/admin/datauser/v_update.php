@@ -54,20 +54,20 @@
                                     <small class="text-danger"><?= form_error('bidang'); ?></small>
                                 </div>
                             </div>
-                            <div class="col-md-6" <?= $user_id->role == '1' ? 'hidden' : ''; ?>>
+                            <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Role ID</label>
-                                    <select class="form-control select2" name="role">
-                                        <option selected disabled>Pilih Role ID</option>
-                                        <option value="2" <?= $user_id->role == '2' ? 'selected' : ''; ?>>Kepala Dinas</option>
-                                        <option value="3" <?= $user_id->role == '3' ? 'selected' : ''; ?>>Sekretaris</option>
-                                        <option value="4" <?= $user_id->role == '4' ? 'selected' : ''; ?>>Sub Bagian Umum & Kepegawaian</option>
-                                        <option value="5" <?= $user_id->role == '5' ? 'selected' : ''; ?>>Pegawai</option>
+                                    <select name="role" class="form-control select2">
+                                        <option disabled selected>Pilih Role</option>
+                                        <?php foreach ($role_id as $role) : ?>
+                                            <?php $select_role = ($role->id_role == $user_id->id_role) ? 'selected' : ''; ?>
+                                            <option value="<?= $role->id_role; ?>" <?= $select_role; ?>><?= $role->nama_role; ?></option>
+                                        <?php endforeach; ?>
                                     </select>
                                     <small class="text-danger"><?= form_error('role'); ?></small>
                                 </div>
                             </div>
-                            <div class="col-md-6" <?= $user_id->role == '1' ? 'hidden' : ''; ?>>
+                            <div class="col-md-6" <?= $user_id->id_role == '1' ? 'hidden' : ''; ?>>
                                 <div class="form-group">
                                     <label>Status</label>
                                     <select class="form-control select2" name="status">

@@ -58,10 +58,11 @@
                                     <label>Role ID</label>
                                     <select name="role" class="form-control select2">
                                         <option selected disabled>Pilih Role ID</option>
-                                        <option value="2" <?= set_select('role', '2'); ?>>Kepala Dinas</option>
-                                        <option value="3" <?= set_select('role', '3'); ?>>Sekretaris</option>
-                                        <option value="4" <?= set_select('role', '4'); ?>>Sub Bagian Umum & Kepegawaian</option>
-                                        <option value="5" <?= set_select('role', '5'); ?>>Pegawai</option>
+                                        <?php foreach ($user_roles as $role) : ?>
+                                            <option value="<?= $role->id_role ?>" <?= set_select('role', $role->id_role); ?>>
+                                                <?= $role->nama_role ?>
+                                            </option>
+                                        <?php endforeach; ?>
                                     </select>
                                     <small class="text-danger"><?= form_error('role'); ?></small>
                                 </div>

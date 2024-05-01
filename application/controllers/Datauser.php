@@ -9,7 +9,7 @@ class DataUser extends CI_Controller
     {
         parent::__construct();
         $this->load->model('M_datauser');
-        if ($this->session->userdata('role') != 1) {
+        if ($this->session->userdata('id_role') != 1) {
             $redirect_url = isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : base_url();
             redirect($redirect_url, 'refresh');
         }
@@ -55,29 +55,15 @@ class DataUser extends CI_Controller
         redirect('datauser');
     }
 
-    public function username_check($username, $id_user)
+    public function check_role($role_id)
     {
-        $role = $this->session->userdata('role');
-
-        $result = $this->M_datauser->username_unik($username, $id_user, $role);
-        if ($result) {
-            $this->form_validation->set_message('username_check', 'Username sudah digunakan.');
-            return FALSE;
+        // Validasi jika role_id sudah ada dalam database
+        $existing_role = $this->M_datauser->role_exists($role_id);
+        if ($existing_role) {
+            $this->form_validation->set_message('check_role', 'Role ID sudah ada!');
+            return false;
         } else {
-            return TRUE;
-        }
-    }
-
-    public function email_check($email, $id_user)
-    {
-        $role = $this->session->userdata('role');
-
-        $result = $this->M_datauser->email_unik($email, $id_user, $role);
-        if ($result) {
-            $this->form_validation->set_message('email_check', 'Email sudah digunakan.');
-            return FALSE;
-        } else {
-            return TRUE;
+            return true;
         }
     }
 
@@ -97,17 +83,27 @@ class DataUser extends CI_Controller
             'max_length'     => '%s maximal 15 karakter!',
         ]);
 
-        $username_lama = $this->M_datauser->validasi();
+        $username_lama = $this->M_datauser->validasi_username();
         if ($this->input->post('username') != $username_lama) {
             $this->form_validation->set_rules('username', 'Username', 'is_unique[tb_user.username]', [
                 'is_unique' => '%s sudah ada!'
             ]);
         }
 
-        $email_lama = $this->M_datauser->validasi();
+        $email_lama = $this->M_datauser->validasi_email();
         if ($this->input->post('email') != $email_lama) {
             $this->form_validation->set_rules('email', 'Email', 'is_unique[tb_user.email]', [
                 'is_unique' => '%s sudah ada!'
+            ]);
+        }
+
+        // Validasi role
+        $role_input = $this->input->post('role');
+        if ($role_input >= 1 && $role_input <= 4) {
+            $this->form_validation->set_rules('role', 'Role ID', 'callback_check_role[' . $role_input . ']');
+        } else {
+            $this->form_validation->set_rules('role', 'Role ID', 'required', [
+                'required' => '%s harus diisi!'
             ]);
         }
 
@@ -119,9 +115,7 @@ class DataUser extends CI_Controller
         $this->form_validation->set_rules('bidang', 'Bidang', 'trim|required', [
             'required'       => '%s harus diisi!',
         ]);
-        $this->form_validation->set_rules('role', 'Role ID', 'trim|required', [
-            'required'       => '%s harus diisi!',
-        ]);
+
         $this->form_validation->set_rules('status', 'Status', 'trim|required', [
             'required'       => '%s harus diisi!',
         ]);
@@ -155,7 +149,7 @@ class DataUser extends CI_Controller
                     'username'  => $this->input->post('username'),
                     'password'  => $this->input->post('password'),
                     'bidang'    => $this->input->post('bidang'),
-                    'role'      => $this->input->post('role'),
+                    'id_role'      => $this->input->post('role'),
                     'status'    => $this->input->post('status'),
                     'profile'   => $random_file_name,
                 ];
@@ -183,7 +177,7 @@ class DataUser extends CI_Controller
                             'username'  => $this->input->post('username'),
                             'password'  => $this->input->post('password'),
                             'bidang'    => $this->input->post('bidang'),
-                            'role'      => $this->input->post('role'),
+                            'id_role'      => $this->input->post('role'),
                             'status'    => $this->input->post('status'),
                             'profile'   => $random_file_name,
                         ];
@@ -204,21 +198,41 @@ class DataUser extends CI_Controller
             'home'  => 'Data Master',
             'title' => 'Data User',
             'action' => 'Tambah User',
-            'user'  => $this->M_datauser->ambil_semua(),
+            'user_roles'  => $this->M_datauser->role(),
             'konten'   => 'admin/datauser/v_add',
         ];
         $this->load->view('layout/v_user_wrapper', $data, FALSE);
     }
 
+    public function username_check($username, $id_user)
+    {
+        $id_role = $this->session->userdata('id_role');
+
+        $result = $this->M_datauser->username_unik($username, $id_user, $id_role);
+        if ($result) {
+            $this->form_validation->set_message('username_check', 'Username sudah digunakan.');
+            return FALSE;
+        } else {
+            return TRUE;
+        }
+    }
+
+    public function email_check($email, $id_user)
+    {
+        $id_role = $this->session->userdata('id_role');
+
+        $result = $this->M_datauser->email_unik($email, $id_user, $id_role);
+        if ($result) {
+            $this->form_validation->set_message('email_check', 'Email sudah digunakan.');
+            return FALSE;
+        } else {
+            return TRUE;
+        }
+    }
+
     //Update Data User
     public function update($id_user = NULL)
     {
-        // cek id pengguna yang sedang login
-        // $id_user_login = $this->session->userdata('id_user');
-        // if ($id_user != $id_user_login) {
-        //     show_error('Anda tidak memiliki izin untuk mengakses halaman ini.', 403);
-        // }
-
         $this->form_validation->set_rules('nama_user', 'Nama Lengkap', 'trim|required', [
             'required'       => '%s harus diisi!',
         ]);
@@ -251,9 +265,30 @@ class DataUser extends CI_Controller
             'required'       => '%s harus diisi!',
         ]);
 
-        $this->form_validation->set_rules('role', 'Role ID', 'trim|required', [
-            'required' => '%s harus diisi!',
-        ]);
+        // Validasi role
+        $role_input = $this->input->post('role');
+        if ($role_input >= 1 && $role_input <= 4) {
+            // Cek apakah role baru yang dipilih sudah ada pada tb_user
+            $existing_role = $this->M_datauser->check_existing_role($role_input);
+            $user_id = $this->input->post('id_user'); // Ambil id_user dari form
+            $user_role = $this->M_datauser->ambil_id_user($user_id)->id_role; // Ambil id_role dari user yang sedang diupdate
+
+            if ($existing_role && $role_input != $user_role) {
+                $this->form_validation->set_rules('role', 'Role ID', 'callback_check_role[' . $role_input . ']');
+            } else {
+                // Tidak perlu validasi jika role tidak diubah atau role baru tidak ada pada tb_user
+                // Simpan data user tanpa validasi role
+                $this->form_validation->set_rules('role', 'Role ID', 'required', [
+                    'required' => 'Role ID harus diisi dan berada dalam rentang 1-4!'
+                ]);
+            }
+        } else {
+            $this->form_validation->set_rules('role', 'Role ID', 'required', [
+                'required' => 'Role ID harus diisi dan berada dalam rentang 1-4!'
+            ]);
+        }
+
+
         $this->form_validation->set_rules('status', 'Status', 'trim|required', [
             'required' => '%s harus diisi!',
         ]);
@@ -275,7 +310,7 @@ class DataUser extends CI_Controller
                     'username'  => $this->input->post('username'),
                     'password'  => $this->input->post('password'),
                     'bidang'    => $this->input->post('bidang'),
-                    'role'      => $this->input->post('role'),
+                    'id_role'      => $this->input->post('role'),
                     'status'    => $this->input->post('status'),
                 ];
             } else {
@@ -305,7 +340,7 @@ class DataUser extends CI_Controller
                     'username'  => $this->input->post('username'),
                     'password'  => $this->input->post('password'),
                     'bidang'    => $this->input->post('bidang'),
-                    'role'      => $this->input->post('role'),
+                    'id_role'      => $this->input->post('role'),
                     'status'    => $this->input->post('status'),
                     'profile'   => $random_file_name,
                 ];
@@ -320,8 +355,8 @@ class DataUser extends CI_Controller
             'home'      => 'Data Master',
             'title'     => 'Data User',
             'action'    => 'Perbarui User',
-            'user'      => $this->M_datauser->ambil_semua(),
             'user_id'   => $this->M_datauser->ambil_id_user($id_user),
+            'role_id'   => $this->M_datauser->role(),
             'konten'    => 'admin/datauser/v_update',
         ];
         $this->load->view('layout/v_user_wrapper', $data, FALSE);

@@ -9,7 +9,7 @@ class NamaBarang extends CI_Controller
     {
         parent::__construct();
         $this->load->model('M_namabarang');
-        if ($this->session->userdata('role') != 1) {
+        if ($this->session->userdata('id_role') != 1) {
             $redirect_url = isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : base_url();
             redirect($redirect_url, 'refresh');
         }

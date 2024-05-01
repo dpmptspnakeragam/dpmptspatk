@@ -48,19 +48,7 @@
                                                 Pelayanan/Perizinan
                                             <?php endif; ?>
                                         </td>
-                                        <td class="text-center align-middle">
-                                            <?php if ($value->role == 1) : ?>
-                                                Administrator
-                                            <?php elseif ($value->role == 2) : ?>
-                                                Kepala Dinas
-                                            <?php elseif ($value->role == 3) : ?>
-                                                Sekretaris
-                                            <?php elseif ($value->role == 4) : ?>
-                                                Sub Bagian Umum & Kepegawaian
-                                            <?php elseif ($value->role == 5) : ?>
-                                                Pegawai
-                                            <?php endif; ?>
-                                        </td>
+                                        <td class="text-center align-middle"><?= $value->nama_role; ?></td>
                                         <td class="text-center align-middle">
                                             <a href="<?= base_url('assets/image/profile/' . $value->profile); ?>" data-toggle="lightbox">
                                                 <img src="<?= base_url('assets/image/profile/' . $value->profile); ?>" alt="Foto Profile" class="img-circle elevation-2 img-size-32">

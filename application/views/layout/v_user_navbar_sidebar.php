@@ -24,15 +24,15 @@
         <!-- Nav Item - User Role -->
         <li class="nav-item">
             <span class="nav-link active">
-                <?php if ($data_login->role == 1) : ?>
+                <?php if ($data_login->id_role == 1) : ?>
                     Administrator
-                <?php elseif ($data_login->role == 2) : ?>
+                <?php elseif ($data_login->id_role == 2) : ?>
                     Kepala Dinas
-                <?php elseif ($data_login->role == 3) : ?>
+                <?php elseif ($data_login->id_role == 3) : ?>
                     Sekretaris
-                <?php elseif ($data_login->role == 4) : ?>
+                <?php elseif ($data_login->id_role == 4) : ?>
                     Sub Bagian Umum & Kepegawaian
-                <?php elseif ($data_login->role == 5) : ?>
+                <?php elseif ($data_login->id_role == 5) : ?>
                     Pegawai
                 <?php endif; ?>
             </span>
@@ -78,7 +78,7 @@
                 </li>
                 <div class="user-panel mb-1 d-flex"></div>
 
-                <?php if ($data_login->role == 1) : ?>
+                <?php if ($data_login->id_role == 1) : ?>
 
                     <li class="nav-item <?= in_array(
                                             $this->uri->segment(1),

@@ -26,12 +26,12 @@ class lib_login
             $id_user = $cek->id_user;
             $email = $cek->email;
             $username = $cek->username;
-            $role = $cek->role;
+            $id_role = $cek->id_role;
 
             $this->ci->session->set_userdata('id_user', $id_user);
             $this->ci->session->set_userdata('email', $email);
             $this->ci->session->set_userdata('username', $username);
-            $this->ci->session->set_userdata('role', $role);
+            $this->ci->session->set_userdata('id_role', $id_role);
 
             $this->ci->session->set_flashdata('success', 'Login berhasil.');
             redirect('dashboard');
@@ -69,7 +69,7 @@ class lib_login
         $this->ci->session->unset_userdata('id_user');
         $this->ci->session->unset_userdata('email');
         $this->ci->session->unset_userdata('username');
-        $this->ci->session->unset_userdata('role');
+        $this->ci->session->unset_userdata('id_role');
     }
 
     // logout user
@@ -78,7 +78,7 @@ class lib_login
         $this->ci->session->unset_userdata('id_user');
         $this->ci->session->unset_userdata('email');
         $this->ci->session->unset_userdata('username');
-        $this->ci->session->unset_userdata('role');
+        $this->ci->session->unset_userdata('id_role');
         $this->ci->session->set_flashdata('success', 'Logout berhasil!');
         redirect('login');
     }
