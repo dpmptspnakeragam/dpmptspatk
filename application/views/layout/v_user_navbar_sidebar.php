@@ -12,8 +12,9 @@
     $id_user = $this->session->userdata('id_user');
 
     // Query untuk mengambil data user berdasarkan id_user dari session
-    $this->db->select('*');
+    $this->db->select('tb_user.*, tb_role.nama_role');
     $this->db->from('tb_user');
+    $this->db->join('tb_role', 'tb_user.id_role = tb_role.id_role', 'left');
     $this->db->where('id_user', $id_user);
     $data = $this->db->get();
     $data_login = $data->row();
@@ -24,17 +25,7 @@
         <!-- Nav Item - User Role -->
         <li class="nav-item">
             <span class="nav-link active">
-                <?php if ($data_login->id_role == 1) : ?>
-                    Administrator
-                <?php elseif ($data_login->id_role == 2) : ?>
-                    Kepala Dinas
-                <?php elseif ($data_login->id_role == 3) : ?>
-                    Sekretaris
-                <?php elseif ($data_login->id_role == 4) : ?>
-                    Sub Bagian Umum & Kepegawaian
-                <?php elseif ($data_login->id_role == 5) : ?>
-                    Pegawai
-                <?php endif; ?>
+                <?= $data_login->nama_role; ?>
             </span>
         </li>
     </ul>
