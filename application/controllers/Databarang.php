@@ -59,12 +59,16 @@ class Databarang extends CI_Controller
         ]);
 
         if ($this->form_validation->run() == TRUE) {
+            $harga = $this->input->post('harga') ? $this->input->post('harga') : NULL;
+            $stok = $this->input->post('stok') ? $this->input->post('stok') : NULL;
+
+
             $data_input = [
                 'id_nama'       => $this->input->post('barang'),
                 'id_kategori'   => $this->input->post('kategori'),
                 'id_satuan'     => $this->input->post('satuan'),
-                'harga'         => $this->input->post('harga'),
-                'stok'          => $this->input->post('stok'),
+                'harga'         => $harga,
+                'stok'          => $stok,
                 'deskripsi'     => $this->input->post('deskripsi'),
             ];
             $this->M_databarang->tambah_barang($data_input);
@@ -99,12 +103,15 @@ class Databarang extends CI_Controller
         ]);
 
         if ($this->form_validation->run() == TRUE) {
+            $harga = $this->input->post('harga') ? $this->input->post('harga') : NULL;
+            $stok = $this->input->post('stok') ? $this->input->post('stok') : NULL;
+
             $data_input = [
                 'id_nama'   => $this->input->post('barang'),
                 'id_kategori'   => $this->input->post('kategori'),
                 'id_satuan'     => $this->input->post('satuan'),
-                'harga'         => $this->input->post('harga'),
-                'stok'          => $this->input->post('stok'),
+                'harga'         => $harga,
+                'stok'          => $stok,
                 'deskripsi'     => $this->input->post('deskripsi'),
             ];
             $this->M_databarang->perbarui_barang($id_barang, $data_input);
