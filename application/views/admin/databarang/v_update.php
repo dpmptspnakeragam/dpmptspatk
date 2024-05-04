@@ -52,19 +52,17 @@
                                 <div class="form-group">
                                     <label>Harga Barang/Opsional</label>
                                     <input name="harga" type="number" class="form-control form-control-sm" value="<?= $barang_id->harga; ?>">
-                                    <small class="text-danger"><?= form_error('harga'); ?></small>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Stok Barang/Opsional</label>
                                     <input name="stok" type="number" class="form-control form-control-sm" value="<?= $barang_id->stok; ?>">
-                                    <small class="text-danger"><?= form_error('stok'); ?></small>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label>Deskripsi</label>
+                                    <label>Deskripsi/Opsional</label>
                                     <textarea name="deskripsi" class="form-control form-control-sm" rows="4"><?= $barang_id->deskripsi; ?></textarea>
                                 </div>
                             </div>
