@@ -57,14 +57,12 @@
                                 <div class="form-group">
                                     <label>Harga Barang/Opsional</label>
                                     <input name="harga" type="number" class="form-control form-control-sm " value="<?= set_value('harga'); ?>">
-                                    <small class="text-danger"><?= form_error('harga'); ?></small>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Stok Barang/Opsional</label>
                                     <input name="stok" type="number" class="form-control form-control-sm" value="<?= set_value('stok'); ?>">
-                                    <small class="text-danger"><?= form_error('stok'); ?></small>
                                 </div>
                             </div>
                             <div class="col-md-6">

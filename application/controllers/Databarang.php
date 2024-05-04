@@ -97,10 +97,6 @@ class Databarang extends CI_Controller
         $this->form_validation->set_rules('satuan', 'Satuan Barang', 'trim|required', [
             'required'       => '%s harus diisi!',
         ]);
-        $this->form_validation->set_rules('deskripsi', 'Deskripsi Barang', 'trim|required', [
-            'required'       => '%s harus diisi!',
-        ]);
-
 
         if ($this->form_validation->run() == TRUE) {
             $data_input = [
