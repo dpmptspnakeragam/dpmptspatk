@@ -168,9 +168,12 @@ ob_clean();
 $pdf_content = $pdf->Output($kode_perm . '.pdf', 'S');
 
 // Simpan PDF ke direktori
-$file_name = 'invoice_' . $kode_perm . '.pdf';
+$file_name =  $kode_perm . '.pdf';
 $file_path = FCPATH . 'assets/pdf/' . $file_name;
 file_put_contents($file_path, $pdf_content);
+
+// Kembalikan nama file yang disimpan
+return $file_name;
 
 //============================================================+
 // END OF FILE
