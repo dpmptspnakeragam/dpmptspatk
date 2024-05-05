@@ -170,11 +170,13 @@ $pdf_content = $pdf->Output($kode_perm . '.pdf', 'S');
 // Simpan PDF ke direktori
 $file_name =  $kode_perm . '.pdf';
 $file_path = FCPATH . 'assets/pdf/' . $file_name;
-file_put_contents($file_path, $pdf_content);
 
-// Kembalikan nama file yang disimpan
-return $file_name;
-
-//============================================================+
-// END OF FILE
-//============================================================+
+if (file_put_contents($file_path, $pdf_content) !== false) {
+    // File saved successfully
+    echo 'PDF file saved.';
+    // Redirect back to previous page using JavaScript
+    echo '<script>window.history.back();</script>';
+} else {
+    // Handle the error
+    echo 'Failed to save the PDF file.';
+}

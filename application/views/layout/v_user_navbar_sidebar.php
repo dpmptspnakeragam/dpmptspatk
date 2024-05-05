@@ -164,13 +164,6 @@
                     </ul>
                 </li>
 
-                <li class="nav-item">
-                    <a href="<?= base_url('atk'); ?>" class="nav-link <?php if (in_array($this->uri->segment(1), ['atk'])) echo "active"; ?>">
-                        <i class="nav-icon fas fa-box-open"></i>
-                        <p>Permintaan</p>
-                    </a>
-                </li>
-
                 <div class="user-panel mb-1 d-flex"></div>
             </ul>
         </nav>
