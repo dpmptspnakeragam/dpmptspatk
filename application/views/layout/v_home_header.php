@@ -29,6 +29,9 @@
     <!-- SweetAlert2 -->
     <link rel="stylesheet" href="<?= base_url('assets/'); ?>plugins/sweetalert2/sweetalert2.min.css">
 
+    <!-- Ekko Lightbox -->
+    <link rel="stylesheet" href="<?= base_url('assets/'); ?>plugins/ekko-lightbox/ekko-lightbox.css">
+
 </head>
 
 <body class="hold-transition layout-top-nav layout-navbar-fixed text-sm">

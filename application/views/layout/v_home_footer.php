@@ -31,6 +31,9 @@
 <!-- SweetAlert2 -->
 <script src="<?= base_url('assets/'); ?>plugins/sweetalert2/sweetalert2.min.js"></script>
 
+<!-- Ekko Lightbox -->
+<script src="<?= base_url('assets/'); ?>plugins/ekko-lightbox/ekko-lightbox.min.js"></script>
+
 <script>
     $(document).ready(function() {
         // Inisialisasi DataTables pada elemen yang berisi card barang
@@ -46,23 +49,63 @@
     });
 </script>
 
+<!-- Ekko Lightbox -->
 <script>
     $(function() {
-        var Toast = Swal.mixin({
-            toast: true,
-            position: 'top',
-            showConfirmButton: false,
-            timer: 3000
+        $(document).on('click', '[data-toggle="lightbox"]', function(event) {
+            event.preventDefault();
+            $(this).ekkoLightbox({
+                alwaysShowClose: true
+            });
         });
 
-        $('.swalDefaultSuccess').click(function() {
-            Toast.fire({
-                icon: 'success',
-                title: 'Barang berhasil masuk ke keranjang.'
-            })
+
+        $('.btn[data-filter]').on('click', function() {
+            $('.btn[data-filter]').removeClass('active');
+            $(this).addClass('active');
         });
+    })
+</script>
+
+<script>
+    $(document).ready(function() {
+        <?php if ($this->session->flashdata('warning')) { ?>
+            const WarningToast = Swal.mixin({
+                toast: true,
+                position: "top",
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.onmouseenter = Swal.stopTimer;
+                    toast.onmouseleave = Swal.resumeTimer;
+                }
+            });
+            WarningToast.fire({
+                icon: "warning",
+                title: "<?= $this->session->flashdata('warning'); ?>"
+            });
+        <?php } ?>
+        <?php if ($this->session->flashdata('success')) { ?>
+            const SuccessToast = Swal.mixin({
+                toast: true,
+                position: "top",
+                showConfirmButton: false,
+                timer: 2000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.onmouseenter = Swal.stopTimer;
+                    toast.onmouseleave = Swal.resumeTimer;
+                }
+            });
+            SuccessToast.fire({
+                icon: "success",
+                title: "<?= $this->session->flashdata('success'); ?>"
+            });
+        <?php } ?>
     });
 </script>
+
 
 </body>
 

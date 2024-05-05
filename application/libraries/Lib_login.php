@@ -34,7 +34,12 @@ class lib_login
             $this->ci->session->set_userdata('id_role', $id_role);
 
             $this->ci->session->set_flashdata('success', 'Login berhasil.');
-            redirect('dashboard');
+            // Redirect based on role ID
+            if ($id_role == 5) {
+                redirect('cart/detail');
+            } else {
+                redirect('dashboard');
+            }
         } else {
             $this->ci->session->set_flashdata('error', 'Username atau Password salah!');
             redirect('login');
@@ -80,7 +85,7 @@ class lib_login
         $this->ci->session->unset_userdata('username');
         $this->ci->session->unset_userdata('id_role');
         $this->ci->session->set_flashdata('success', 'Logout berhasil!');
-        redirect('login');
+        redirect('home');
     }
 }
 
