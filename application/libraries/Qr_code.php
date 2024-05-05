@@ -11,7 +11,7 @@ class Qr_code
         log_message('info', 'QR Code Class Initialized');
     }
 
-    public function generate_qr_code($kode_perm, $filename = FALSE, $size = 10, $level = 'H')
+    public function generate_qr_code($id_konfperm, $filename = FALSE, $size = 10, $level = 'H')
     {
         // Load library QR Code PHP
         require_once APPPATH . 'libraries/phpqrcode/qrlib.php';
