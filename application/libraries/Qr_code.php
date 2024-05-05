@@ -16,8 +16,19 @@ class Qr_code
         // Load library QR Code PHP
         require_once APPPATH . 'libraries/phpqrcode/qrlib.php';
 
+
+
+        // Ambil kode_perm dari tabel tb_konfperm berdasarkan id_konfperm
+        $query = $this->ci->db->get_where('tb_konfperm', array('id_konfperm' => $id_konfperm));
+        $result = $query->row();
+        if (!$result) {
+            // Jika data tidak ditemukan, kembalikan false atau lakukan penanganan yang sesuai
+            return FALSE;
+        }
+        $kode_perm = $result->kode_perm;
+
         // URL yang ingin disematkan di dalam QR Code
-        $url = base_url('permintaan/data_atk/' . $kode_perm);
+        $url = base_url('permintaan/cetak/' . $kode_perm);
 
         // Konfigurasi QR Code
         $config['cacheable']    = true;

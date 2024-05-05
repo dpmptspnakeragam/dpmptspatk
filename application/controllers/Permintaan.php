@@ -107,6 +107,7 @@ class Permintaan extends CI_Controller
         // Simpan nama file QR Code dan data konfirmasi ke database
         $this->M_permintaan->simpan_qr_code($id_konfperm, $image_name);
         $this->M_permintaan->konfirmasi_permintaan($id_konfperm, $data_konfirmasi);
+
         $this->session->set_flashdata('success', 'Permintaan berhasil dikonfirmasi dan ditanda tangan!');
         redirect('permintaan', 'refresh');
     }
@@ -172,6 +173,20 @@ class Permintaan extends CI_Controller
         $data['kode_perm'] = $kode_perm;
 
         $this->load->view('admin/permintaan/v_invoice', $data, FALSE);
+    }
+
+    public function validasi_qr($kode_perm)
+    {
+        // Ambil data dari model
+        $data['data_konfperm'] = $this->M_permintaan->tampilkan_tabel_konfperm();
+        $data['nama_user'] = $this->M_permintaan->nama_user($kode_perm);
+        $data['nama_barang'] = $this->M_permintaan->nama_barang($kode_perm);
+        $data['tb_konfperm'] = $this->M_permintaan->tb_konfperm($kode_perm);
+        $data['qr_code'] = $this->M_permintaan->qr_code($kode_perm);
+
+        $data['kode_perm'] = $kode_perm;
+
+        $this->load->view('admin/permintaan/v_validasi_qr', $data, FALSE);
     }
 
     // public function cetak($kode_perm)

@@ -155,8 +155,41 @@
                                                     </button>
                                                 <?php endif; ?>
                                                 <?php if ($value->status_konfperm == 'Dikonfirmasi') : ?>
-                                                    <a href="<?= base_url('permintaan/cetak/' . $value->kode_perm); ?>" class="btn btn-outline-success btn-sm"><i class="fas fa-print"></i></a>
+                                                    <?php
+                                                    $validasiQrStatus = isset($_SESSION['validasi_qr_' . $value->kode_perm]) ? $_SESSION['validasi_qr_' . $value->kode_perm] : 'hidden';
+                                                    ?>
+                                                    <a id="printButton" href="<?= base_url('permintaan/cetak/' . $value->kode_perm); ?>" class="btn btn-outline-success btn-sm" style="display: <?= $validasiQrStatus === 'shown' ? 'inline-block' : 'none'; ?>"><i class="fas fa-print"></i> Print</a>
+                                                    <a id="validateQRButton" href="<?= base_url('permintaan/validasi_qr/' . $value->kode_perm); ?>" class="btn btn-outline-primary btn-sm" style="display: <?= $validasiQrStatus === 'hidden' ? 'inline-block' : 'none'; ?>"><i class="fas fa-file-archive"></i> Validasi QR</a>
                                                 <?php endif ?>
+
+                                                <script>
+                                                    document.addEventListener("DOMContentLoaded", function() {
+                                                        var validateQRButton = document.getElementById('validateQRButton');
+                                                        var printButton = document.getElementById('printButton');
+
+                                                        // Fungsi untuk menampilkan tombol Print dan menyembunyikan tombol Validasi QR
+                                                        function showPrintButton() {
+                                                            validateQRButton.style.display = 'none';
+                                                            printButton.style.display = 'inline-block';
+                                                            // Simpan status tombol Validasi QR ke local storage
+                                                            localStorage.setItem('validasi_qr_<?= $value->kode_perm ?>', 'shown');
+                                                        }
+
+                                                        // Cek apakah tombol Validasi QR sudah pernah diklik sebelumnya
+                                                        var validasiQrStatus = localStorage.getItem('validasi_qr_<?= $value->kode_perm ?>');
+                                                        if (validasiQrStatus === 'shown') {
+                                                            showPrintButton();
+                                                        }
+
+                                                        // Panggil fungsi showPrintButton saat tombol Validasi QR diklik
+                                                        validateQRButton.addEventListener('click', function() {
+                                                            // Lakukan validasi QR di sini
+                                                            // Misalnya, jika validasi berhasil, panggil showPrintButton();
+                                                            showPrintButton();
+                                                        });
+                                                    });
+                                                </script>
+
                                             </td>
                                         </tr>
                                     <?php endif; ?>
