@@ -4,6 +4,13 @@ defined('BASEPATH') or exit('No direct script access allowed');
 class Cart extends CI_Controller
 {
 
+    public function __construct()
+    {
+        parent::__construct();
+        //Load Dependencies
+        $this->load->model('M_home');
+    }
+
     public function index()
     {
     }
@@ -33,6 +40,7 @@ class Cart extends CI_Controller
         $data = array(
             'title'         => 'Detail Barang Permintaan',
             'konten'        => 'home/v_detail_cart',
+            'produk'        => $this->M_home->produk(),
         );
         $this->load->view('layout/v_home_wrapper', $data, FALSE);
     }
