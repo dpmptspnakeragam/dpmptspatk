@@ -93,18 +93,22 @@ class Cart extends CI_Controller
             // Insert into 'tb_perm' and collect inserted IDs
             $inserted_ids = array();
             foreach ($cart_items as $item) {
+                $sub_total = $item['subtotal'] != 0 ? $item['subtotal'] : null;
                 $data_perm = array(
                     'kode_perm' => $kode_perm,
                     'id_user' => $id_user,
                     'id_barang' => $item['id'],
                     'jumlah_perm' => $item['qty'],
-                    'sub_total' => $item['subtotal'],
+                    'sub_total' => $sub_total,
                 );
                 $this->db->insert('tb_perm', $data_perm);
                 $inserted_ids[] = $this->db->insert_id(); // Collect inserted IDs
             }
 
             date_default_timezone_set('Asia/Jakarta');
+
+            // Calculate total_bayar and set it to null if it's zero
+            $total_bayar = $this->cart->total() != 0 ? $this->cart->total() : null;
 
             // Insert into 'tb_konfperm' using the first inserted ID
             if (!empty($inserted_ids)) {
@@ -113,7 +117,7 @@ class Cart extends CI_Controller
                     'kode_perm' => $kode_perm,
                     'tanggal_konfperm' => date('Y-m-d H:i:s'),
                     'status_konfperm' => 'Menunggu',
-                    'total_bayar' => $this->cart->total(),
+                    'total_bayar' => $total_bayar,
                     'keterangan' => $this->input->post('keterangan')
                 );
                 $this->db->insert('tb_konfperm', $data_konfperm);
