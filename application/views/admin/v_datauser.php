@@ -50,9 +50,7 @@
                                         </td>
                                         <td class="text-center align-middle"><?= $value->nama_role; ?></td>
                                         <td class="text-center align-middle">
-                                            <a href="<?= base_url('assets/image/profile/' . $value->profile); ?>" data-toggle="lightbox">
-                                                <img src="<?= base_url('assets/image/profile/' . $value->profile); ?>" alt="Foto Profile" class="img-circle elevation-2 img-size-32">
-                                            </a>
+                                            <img src="<?= base_url('assets/image/profile/' . $value->profile); ?>" alt="Foto Profile" class="img-circle elevation-2 img-size-32">
                                         </td>
                                         <td class="text-center align-middle">
                                             <?php

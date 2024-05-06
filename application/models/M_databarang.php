@@ -10,7 +10,7 @@ class M_databarang extends CI_Model
         $this->db->join('tb_nama', 'tb_nama.id_nama = tb_barang.id_nama', 'left');
         $this->db->join('tb_kategori', 'tb_kategori.id_kategori = tb_barang.id_kategori', 'left');
         $this->db->join('tb_satuan', 'tb_satuan.id_satuan = tb_barang.id_satuan', 'left');
-        $this->db->order_by('tb_barang.id_barang', 'desc');
+        $this->db->order_by('tb_nama.nama_barang', 'ASC');
         return $this->db->get()->result();
     }
 
