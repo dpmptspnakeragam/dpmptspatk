@@ -124,7 +124,7 @@ class Cart extends CI_Controller
                 $data_konfperm = array(
                     'kode_perm' => $kode_perm,
                     'tanggal_konfperm' => date('Y-m-d H:i:s'),
-                    'status_konfperm' => 'Menunggu',
+                    'status_konfperm' => 1,
                     'total_bayar' => $total_bayar,
                     'keterangan' => $this->input->post('keterangan')
                 );

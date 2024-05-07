@@ -23,7 +23,7 @@ $(function () {
         data: {
             labels: labels,
             datasets: [{
-                label: 'Total Permintaan',
+                label: 'Total',
                 backgroundColor: '#007bff',
                 borderColor: '#007bff',
                 data: values // Menggunakan data dinamis dari model

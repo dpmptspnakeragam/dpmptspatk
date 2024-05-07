@@ -160,7 +160,7 @@
                     toast: true,
                     position: "top",
                     showConfirmButton: false,
-                    timer: 4000,
+                    timer: 3000,
                     timerProgressBar: true,
                     didOpen: (toast) => {
                         toast.onmouseenter = Swal.stopTimer;
@@ -180,7 +180,7 @@
                     toast: true,
                     position: "top",
                     showConfirmButton: false,
-                    timer: 4000,
+                    timer: 3000,
                     timerProgressBar: true,
                     didOpen: (toast) => {
                         toast.onmouseenter = Swal.stopTimer;
@@ -203,7 +203,7 @@
                     toast: true,
                     position: "top",
                     showConfirmButton: false,
-                    timer: 4000,
+                    timer: 3000,
                     timerProgressBar: true,
                     didOpen: (toast) => {
                         toast.onmouseenter = Swal.stopTimer;
@@ -231,6 +231,11 @@
 
                 ribuan = split[1] != undefined ? ribuan + ',' + split[1] : ribuan;
                 return 'Rp. ' + ribuan;
+            }
+
+            // Handle nilai harga yang kosong atau NULL
+            if (!harga_barang) {
+                harga_barang = 0; // Ubah nilai harga menjadi 0 jika kosong atau NULL
             }
 
             // Hitung subtotal
@@ -277,10 +282,6 @@
             // Tampilkan total harga yang diformat pada input hidden
             $('#total_harga').val(formatted_total_harga);
 
-
-            // Hitung total bayar
-            // var total_bayar = total_harga; // Total bayar sama dengan total harga
-            // $('#total_bayar').text('Total Bayar: ' + total_bayar.toFixed(2));
         });
 
         // Ketika tombol hapus pada tabel barang sementara diklik
@@ -316,7 +317,7 @@
                     toast: true,
                     position: "top",
                     showConfirmButton: false,
-                    timer: 4000,
+                    timer: 3000,
                     timerProgressBar: true,
                     didOpen: (toast) => {
                         toast.onmouseenter = Swal.stopTimer;
@@ -351,7 +352,7 @@
                         toast: true,
                         position: "top",
                         showConfirmButton: false,
-                        timer: 4000,
+                        timer: 2000,
                         timerProgressBar: true,
                         didOpen: (toast) => {
                             toast.onmouseenter = Swal.stopTimer;

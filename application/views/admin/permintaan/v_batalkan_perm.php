@@ -14,8 +14,8 @@
                     <span>Kode Permintaan : <strong class="text-danger"><?= $value->kode_perm; ?></strong></span>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Kembali</button>
                     <a href="<?= base_url('permintaan/tolak_konf/' . $value->id_konfperm); ?>" class="btn btn-outline-danger">Batalkan</a>
+                    <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Kembali</button>
                 </div>
             </div>
         </div>

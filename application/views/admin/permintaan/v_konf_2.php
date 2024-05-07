@@ -1,9 +1,9 @@
 <?php foreach ($data_konfperm as $id => $value) : ?>
-    <div class="modal fade" id="detail<?= $value->id_konfperm; ?>" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal fade" id="konfirmasi2<?= $value->id_konfperm; ?>" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="staticBackdropLabel"><?= $value->kode_perm; ?></h5>
+                    <h5 class="modal-title" id="staticBackdropLabel">Konfirmasi <?= $title; ?></h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -37,20 +37,20 @@
                                     <td class="text-right">Rp. <?= number_format($value->total_bayar, 0, ',', '.'); ?></td>
                                 </tbody>
                             </table>
-                            <div class=" mt-4">
+                            <div class="mt-4">
                                 <nav class="w-100">
                                     <div class="nav nav-tabs" id="product-tab" role="tablist">
-                                        <a class="nav-item nav-link active" id="product-desc-tab" data-toggle="tab" href="#product-desc" role="tab" aria-controls="product-desc" aria-selected="true">Deskripsi</a>
                                         <a class="nav-item nav-link" id="product-comments-tab" data-toggle="tab" href="#product-comments" role="tab" aria-controls="product-comments" aria-selected="false">Keterangan</a>
+                                        <!-- <a class="nav-item nav-link active" id="product-desc-tab" data-toggle="tab" href="#product-desc" role="tab" aria-controls="product-desc" aria-selected="true">Deskripsi</a> -->
                                     </div>
                                 </nav>
                                 <div class="tab-content p-3" id="nav-tabContent">
                                     <div class="tab-pane fade show active" id="product-desc" role="tabpanel" aria-labelledby="product-desc-tab">
-
-                                    </div>
-                                    <div class="tab-pane fade" id="product-comments" role="tabpanel" aria-labelledby="product-comments-tab">
                                         <?= $value->keterangan; ?>
                                     </div>
+                                    <!-- <div class="tab-pane fade" id="product-comments" role="tabpanel" aria-labelledby="product-comments-tab">
+
+                                    </div> -->
                                 </div>
                             </div>
                         </div>
@@ -59,7 +59,12 @@
                     <!-- /.card -->
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Kembali</button>
+                    <?= form_open('permintaan/konf2/' . $value->id_konfperm); ?>
+                    <div class="card-footer bg-transparent">
+                        <?= form_submit('submit', 'Konfirmasi', 'class="btn btn-outline-primary"'); ?>
+                        <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Kembali</button>
+                    </div>
+                    <?= form_close() ?>
                 </div>
             </div>
         </div>

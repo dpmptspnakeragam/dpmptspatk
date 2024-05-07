@@ -35,10 +35,12 @@ class Permintaan extends CI_Controller
         $this->load->view('layout/v_user_wrapper', $data, FALSE);
 
         // load model konfirmasi, delete permintaan
-        $this->load->view('admin/permintaan/v_konfirmasi', $data, FALSE);
+        $this->load->view('admin/permintaan/v_konf_1', $data, FALSE);
+        $this->load->view('admin/permintaan/v_konf_2', $data, FALSE);
+        $this->load->view('admin/permintaan/v_konf_3', $data, FALSE);
         $this->load->view('admin/permintaan/v_tolak_konf', $data, FALSE);
-        $this->load->view('admin/permintaan/v_detail', $data, FALSE);
         $this->load->view('admin/permintaan/v_delete_rkp', $data, FALSE);
+        $this->load->view('admin/permintaan/v_delete_perm', $data, FALSE);
         $this->load->view('admin/permintaan/v_batalkan_perm', $data, FALSE);
     }
 
@@ -84,7 +86,7 @@ class Permintaan extends CI_Controller
         // Simpan data ke dalam tabel tb_konfperm
         $data_konf = array(
             'kode_perm' => $kode_perm,
-            'status_konfperm' => 'Menunggu',
+            'status_konfperm' => 1,
             'total_bayar' => $total_bayar,
             'keterangan' => $keterangan,
             'tanggal_konfperm' => date('Y-m-d H:i:s')
@@ -92,27 +94,44 @@ class Permintaan extends CI_Controller
         $this->db->insert('tb_konfperm', $data_konf);
     }
 
-    public function konfirmasi($id_konfperm)
+    public function konf1($id_konfperm)
     {
         $data_konfirmasi = [
-            'tanggal_konfperm' => date('Y-m-d H:i:s'),
-            'status_konfperm' => 'Dikonfirmasi',
+            'status_konfperm' => 2,
         ];
 
-        $qr_name = "PERM" . '_' . $id_konfperm;
-
-        // Generate QR Code
-        $image_name = $this->qr_code->generate_qr_code($id_konfperm, 'QR_' . $qr_name . '.png', 10, 'H');
-
-        // Simpan nama file QR Code dan data konfirmasi ke database
-        $this->M_permintaan->simpan_qr_code($id_konfperm, $image_name);
         $this->M_permintaan->konfirmasi_permintaan($id_konfperm, $data_konfirmasi);
 
-        $this->session->set_flashdata('success', 'Permintaan berhasil dikonfirmasi dan ditanda tangan!');
+        $this->session->set_flashdata('success', 'Permintaan berhasil dikonfirmasi.');
         redirect('permintaan', 'refresh');
     }
 
-    public function tolak_konf($id_konfperm)
+    public function konf2($id_konfperm)
+    {
+        $data_konfirmasi = [
+            'status_konfperm' => 3,
+        ];
+
+        $this->M_permintaan->konfirmasi_permintaan($id_konfperm, $data_konfirmasi);
+
+        $this->session->set_flashdata('success', 'Permintaan berhasil dikonfirmasi.');
+        redirect('permintaan', 'refresh');
+    }
+
+    public function konf3($id_konfperm)
+    {
+        $data_konfirmasi = [
+            'tanggal_konfperm' => date('Y-m-d H:i:s'),
+            'status_konfperm' => 'Menunggu',
+        ];
+
+        $this->M_permintaan->konfirmasi_permintaan($id_konfperm, $data_konfirmasi);
+
+        $this->session->set_flashdata('success', 'Permintaan berhasil dikonfirmasi dan ditanda tangan.');
+        redirect('permintaan', 'refresh');
+    }
+
+    public function tolak_perm($id_konfperm)
     {
         $data = [
             'tanggal_konfperm' => date('Y-m-d H:i:s'),
@@ -121,6 +140,22 @@ class Permintaan extends CI_Controller
 
         $this->M_permintaan->tolak_konf_permintaan($id_konfperm, $data);
         $this->session->set_flashdata('success', 'Permintaan berhasil ditolak dan data terhapus!');
+        redirect('permintaan', 'refresh');
+    }
+
+    public function hapus_konf($id_konfperm)
+    {
+        // ambil kode_perm dari tabel tb_konfperm berdasarkan id_konfperm
+        $kode_perm = $this->M_permintaan->ambil_kode_perm($id_konfperm);
+
+        if ($kode_perm) {
+            $this->M_permintaan->hapus_riwayat_konfperm($id_konfperm);
+            $this->M_permintaan->hapus_riwayat_perm($kode_perm);
+            $this->session->set_flashdata('success', 'Data permintaan berhasil dihapus.');
+        } else {
+            $this->session->set_flashdata('error', 'Gagal menghapus data. Kode permintaan tidak ditemukan.');
+        }
+
         redirect('permintaan', 'refresh');
     }
 
@@ -146,6 +181,9 @@ class Permintaan extends CI_Controller
     private function hapus_qr_code($id_konfperm)
     {
 
+        // ambil kode_perm dari tabel tb_konfperm berdasarkan id_konfperm
+        $kode_perm = $this->M_permintaan->ambil_kode_perm($id_konfperm);
+
         // Lokasi QR code yang akan dihapus
         $lokasi_qr_code = FCPATH . 'assets/image/qrcode/';
 
@@ -159,24 +197,42 @@ class Permintaan extends CI_Controller
         if (file_exists($file_path)) {
             unlink($file_path);
         }
+
+        // Lokasi PDF yang akan dihapus
+        $lokasi_pdf = FCPATH . 'assets/pdf/';
+
+        // Format nama file PDF
+        $pdf_name = $kode_perm . ".pdf";
+
+        // Path lengkap file PDF yang akan dihapus
+        $file_path_pdf = $lokasi_pdf . $pdf_name;
+
+        // Hapus PDF jika ada
+        if (file_exists($file_path_pdf)) {
+            unlink($file_path_pdf);
+        }
     }
 
-    public function cetak($kode_perm)
+    public function tte($id_konfperm)
     {
-        // Ambil data dari model
-        $data['data_konfperm'] = $this->M_permintaan->tampilkan_tabel_konfperm();
-        $data['nama_user'] = $this->M_permintaan->nama_user($kode_perm);
-        $data['nama_barang'] = $this->M_permintaan->nama_barang($kode_perm);
-        $data['tb_konfperm'] = $this->M_permintaan->tb_konfperm($kode_perm);
-        $data['qr_code'] = $this->M_permintaan->qr_code($kode_perm);
+        $qr_name = "PERM" . '_' . $id_konfperm;
+        // Generate QR Code
+        $image_name = $this->qr_code->generate_qr_code($id_konfperm, 'QR_' . $qr_name . '.png', 10, 'H');
+        // Simpan nama file QR Code dan data konfirmasi ke database
+        $this->M_permintaan->simpan_qr_code($id_konfperm, $image_name);
 
-        $data['kode_perm'] = $kode_perm;
+        $data_konfirmasi = [
+            'tanggal_konfperm' => date('Y-m-d H:i:s'),
+            'status_konfperm' => 'Selesai',
+        ];
 
-        $this->load->view('admin/permintaan/v_invoice', $data, FALSE);
-    }
+        $this->M_permintaan->konfirmasi_permintaan($id_konfperm, $data_konfirmasi);
 
-    public function validasi_qr($kode_perm)
-    {
+        $this->session->set_flashdata('success', 'Permintaan berhasil ditanda tangan.');
+
+        // mengambil kode_perm dari id_konfperm
+        $kode_perm = $this->M_permintaan->ambil_kode_perm($id_konfperm);
+
         // Ambil data dari model
         $data['data_konfperm'] = $this->M_permintaan->tampilkan_tabel_konfperm();
         $data['nama_user'] = $this->M_permintaan->nama_user($kode_perm);
@@ -187,6 +243,24 @@ class Permintaan extends CI_Controller
         $data['kode_perm'] = $kode_perm;
 
         $this->load->view('admin/permintaan/v_validasi_qr', $data, FALSE);
+    }
+
+    public function cetak($id_konfperm)
+    {
+
+        // mengambil kode_perm dari id_konfperm
+        $kode_perm = $this->M_permintaan->ambil_kode_perm($id_konfperm);
+
+        // Ambil data dari model
+        $data['data_konfperm'] = $this->M_permintaan->tampilkan_tabel_konfperm();
+        $data['nama_user'] = $this->M_permintaan->nama_user($kode_perm);
+        $data['nama_barang'] = $this->M_permintaan->nama_barang($kode_perm);
+        $data['tb_konfperm'] = $this->M_permintaan->tb_konfperm($kode_perm);
+        $data['qr_code'] = $this->M_permintaan->qr_code($kode_perm);
+
+        $data['kode_perm'] = $kode_perm;
+
+        $this->load->view('admin/permintaan/v_invoice', $data, FALSE);
     }
 
     // public function cetak($kode_perm)

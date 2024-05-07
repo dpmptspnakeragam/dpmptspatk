@@ -12,12 +12,12 @@
                     Apakah Anda yakin ingin menghapus data riwayat konfirmasi <strong class="text-danger"><?= $value->kode_perm; ?></strong> ini?
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">
-                        Kembali
-                    </button>
                     <a href="<?= base_url('permintaan/delete_riwayat_konfperm/' . $value->id_konfperm); ?>" class="btn btn-outline-danger">
                         Hapus
                     </a>
+                    <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">
+                        Kembali
+                    </button>
                 </div>
             </div>
         </div>

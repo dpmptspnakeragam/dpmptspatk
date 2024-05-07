@@ -109,6 +109,17 @@ class M_permintaan extends CI_Model
         $result = $this->db->get()->row();
         return ($result) ? $result->kode_perm : null;
     }
+
+    public function id_user($kode_perm, $id_konfperm)
+    {
+        $this->db->select('p.id_user');
+        $this->db->from('tb_perm p');
+        $this->db->join('tb_konfperm k', 'p.kode_perm = k.kode_perm');
+        $this->db->where('p.kode_perm', $kode_perm);
+        $this->db->where('k.id_konfperm', $id_konfperm);
+        $result = $this->db->get()->row();
+        return ($result) ? $result->id_user : null;
+    }
 }
 
 /* End of file M_permintaan.php */

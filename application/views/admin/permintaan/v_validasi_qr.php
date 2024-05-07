@@ -15,7 +15,7 @@ $pdf = new MYPDF($kode_perm);
 // set document information
 $pdf->setCreator(PDF_CREATOR);
 $pdf->setAuthor('Habib Oktarian');
-$pdf->setTitle('TEST');
+$pdf->setTitle('Cetak Permintaan ATK');
 $pdf->setSubject('TCPDF Tutorial');
 $pdf->setKeywords('TCPDF, PDF, example, test, guide');
 
@@ -72,37 +72,56 @@ $pdf->writeHTMLCell(0, 0, '', '', $title, 0, 1, 0, true, 'C', true);
 // tabel
 $table = '<table style="border: 1px solid #000; padding: 6px;">';
 $table .= '<tr>
-                <th style="border: 1px solid #000;">No</th>
-                <th style="border: 1px solid #000;">Nama Barang</th>
-                <th style="border: 1px solid #000;">QTY / Satuan</th>
-                <th style="border: 1px solid #000;">Keterangan</th>
-                <th style="border: 1px solid #000;">Sub Total</th>
+                <th style="border: 1px solid #000; width: 34px; text-align: center;">No</th>
+                <th style="border: 1px solid #000; width: 180px; text-align: center;">Nama Barang</th>
+                <th style="border: 1px solid #000; width: 96px; text-align: center;">QTY / Satuan</th>
+                <th style="border: 1px solid #000; text-align: center;">Harga Satuan</th>
+                <th style="border: 1px solid #000; text-align: center;">Keterangan</th>
+                <th style="border: 1px solid #000; text-align: center;">Sub Total</th>
             </tr>';
 $count = 1;
 $keterangan = $tb_konfperm->keterangan; // Set keterangan untuk baris pertama
 foreach ($nama_barang as $key => $value) :
     $table .= '<tr>';
-    $table .= '<td style="border: 1px solid #000;">' . $count++ . '</td>';
+    $table .= '<td style="border: 1px solid #000; text-align: center;">' . $count++ . '</td>';
     $table .= '<td style="border: 1px solid #000;">' . $value->nama_barang . '</td>';
-    $table .= '<td style="border: 1px solid #000;">' . $value->jumlah_perm . ' / ' . $value->nama_satuan . '</td>';
+    $table .= '<td style="border: 1px solid #000; text-align: center;">' . $value->jumlah_perm . ' / ' . $value->nama_satuan . '</td>';
+    $table .= '<td style="border: 1px solid #000;">Rp. ';
+    if ($value->Harga !== null && $value->Harga != 0) {
+        $table .= 'Rp. ' . number_format($value->Harga, 0, ',', '.');
+    }
+    $table .= '</td>';
     if ($count == 2) {
         // Hanya pada baris pertama, tambahkan keterangan dengan rowspan
         $table .= '<td style="border: 1px solid #000;" rowspan="' . count($nama_barang) . '">' . $keterangan . '</td>';
     }
-    $table .= '<td style="border: 1px solid #000;">Rp. ' . number_format($value->sub_total, 0, ',', '.') . '</td>';
-    $table .= '</tr>';
+    $table .= '<td style="border: 1px solid #000;">Rp. ';
+    if ($value->sub_total !== null && $value->sub_total != 0) {
+        $table .= 'Rp. ' . number_format($value->sub_total, 0, ',', '.');
+    }
+    $table .= '</td>
+            </tr>';
 endforeach;
 
 $table .= '<tr>
-                <td style="border: 1px solid #000;" colspan="4">Total Bayar</td>
-                <td style="border: 1px solid #000;">Rp. ' . number_format($tb_konfperm->total_bayar, 0, ',', '.') . '</td>
-            </tr>';
+    <td style="border: 1px solid #000; text-align: center;" colspan="5">Total Bayar</td>
+    <td style="border: 1px solid #000;">Rp. ';
+
+if ($tb_konfperm->total_bayar !== null && $tb_konfperm->total_bayar != 0) {
+    $table .= 'Rp. ' . number_format($tb_konfperm->total_bayar, 0, ',', '.');
+}
+
+$table .= '</td>
+        </tr>';
 $table .= '</table>';
+
 // output HTML ke PDF
-$pdf->writeHTMLCell(0, 0, '', '', $table, 0, 1, 0, true, 'C', true);
+$pdf->writeHTMLCell(0, 0, '', '', $table, 0, 1, 0, true, 'L', true);
 
 // menggeser ke bawah sejauh 10 piksel
 $pdf->SetY($pdf->GetY() + 10);
+
+$qr_code_path = $qr_code;
 
 // tabel
 $signature1 = '<table>';
@@ -113,16 +132,7 @@ $signature1 .=  '<tr>
 $count = 1;
 $signature1 .=  '<tr>
                     <td></td>
-                    <td></td>
-                </tr>';
-
-$signature1 .=  '<tr>
-                    <td></td>
-                    <td></td>
-                </tr>';
-$signature1 .=  '<tr>
-                    <td></td>
-                    <td></td>
+                    <td><img src="' . $qr_code_path . '" alt="QR Code" style="width: 75px;"></td>
                 </tr>';
 $signature1 .=  '<tr>
                     <td><strong>' . $nama_user->nama_user . '</strong></td>
@@ -135,18 +145,14 @@ $signature1 .=  '<tr>
 $signature1 .= '</table>';
 $pdf->writeHTMLCell(0, 0, '', '', $signature1, 0, 1, 0, true, 'C', true);
 
-$qr_code_path = $qr_code;
 $signature2 = '<table>';
 $signature2 .=   '<tr>
                     <th>Diketahui oleh: <br> Pejabat Pelaksana Teknis Kegiatan</th>
                     <th>Disetujui oleh: <br> Pengguna Anggaran</th>
                 </tr>';
 $signature2 .=   '<tr>
-                    <td></td>
-                    <td rowspan="2"><img src="' . $qr_code_path . '" alt="QR Code" style="width: 50px;"></td>
-                </tr>';
-$signature2 .=   '<tr>
-                    <td></td>
+                    <td><img src="' . $qr_code_path . '" alt="QR Code" style="width: 75px;"></td>
+                    <td><img src="' . $qr_code_path . '" alt="QR Code" style="width: 75px;"></td>
                 </tr>';
 $signature2 .=   '<tr>
                     <td><strong>JATIRMAN, SST</strong> <br> NIP. 19671012 198903 1 007</td>
@@ -180,3 +186,7 @@ if (file_put_contents($file_path, $pdf_content) !== false) {
     // Handle the error
     echo 'Failed to save the PDF file.';
 }
+
+//============================================================+
+// END OF FILE
+//============================================================+

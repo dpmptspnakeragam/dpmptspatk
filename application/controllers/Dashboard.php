@@ -34,8 +34,10 @@ class Dashboard extends CI_Controller
             'konten' => 'admin/v_dashboard',
             'total_user' => $this->M_dashboard->ambil_user(),
             'total_barang' => $this->M_dashboard->ambil_barang(),
-            'nama_barang' => $this->M_dashboard->nama_barang(),
+            'total_kategori' => $this->M_dashboard->ambil_kategori(),
             'total_permintaan' => $this->M_dashboard->ambil_permintaan(),
+            'total_tte' => $this->M_dashboard->ambil_tte(),
+
             'permintaan' => $this->M_dashboard->ambil_tb_konfperm()
         ];
 

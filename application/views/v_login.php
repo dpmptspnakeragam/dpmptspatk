@@ -63,10 +63,10 @@
 
                 <div class="row">
                     <div class="col-5">
-                        <button type="submit" class="btn btn-primary btn-block">Login</button>
+                        <button type="submit" class="btn btn-outline-primary btn-block">Login</button>
                     </div>
                     <div class="col-7 text-right mt-2">
-                        <a href="<?= base_url('/'); ?>">
+                        <a href="<?= base_url('home'); ?>">
                             <strong>Back to Website ATK</strong>
                         </a>
                     </div>

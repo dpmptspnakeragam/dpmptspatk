@@ -13,12 +13,19 @@ class M_dashboard extends CI_Model
         return $this->db->count_all('tb_barang');
     }
 
-    public function nama_barang()
+    public function ambil_kategori()
     {
-        return $this->db->count_all('tb_nama');
+        return $this->db->count_all('tb_kategori');
     }
 
     public function ambil_permintaan()
+    {
+        $status = array(1, 2, 3);
+        $this->db->where_in('status_konfperm', $status);
+        return $this->db->count_all_results('tb_konfperm');
+    }
+
+    public function ambil_tte()
     {
         return $this->db->where('status_konfperm', 'Menunggu')->count_all_results('tb_konfperm');
     }
@@ -27,7 +34,7 @@ class M_dashboard extends CI_Model
     {
         // Ambil data jumlah permintaan yang dikonfirmasi per bulan dari tabel tb_konfperm
         $this->db->select('MONTH(tanggal_konfperm) as bulan, COUNT(*) as jumlah_permintaan');
-        $this->db->where('status_konfperm', 'Dikonfirmasi');
+        $this->db->where('status_konfperm', 'Selesai');
         $this->db->group_by('MONTH(tanggal_konfperm)');
         return $this->db->get('tb_konfperm')->result();
     }

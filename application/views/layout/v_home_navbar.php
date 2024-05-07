@@ -11,7 +11,7 @@
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item active">
                     <!-- <button type="button" class="nav-link btn btn-link" onclick="scrollToElement('myCarousel');">Home</button> -->
-                    <a href="<?= base_url('home'); ?>" class="nav-link">Home <i class="fas fa-home"></i></a>
+                    <a href="<?= base_url('home'); ?>" class="nav-link">Home</i></a>
                 </li>
 
                 <!-- <li class="nav-item dropdown">
@@ -35,12 +35,12 @@
                 <?php if ($this->session->userdata('id_user')) : ?>
                     <!-- Jika user sudah login, tampilkan tombol Logout -->
                     <li class="nav-item">
-                        <a href="<?= base_url('logout'); ?>" class="nav-link">Logout <i class="fas fa-sign-out-alt"></i></a>
+                        <a href="<?= base_url('logout'); ?>" class="nav-link">Logout</a>
                     </li>
                 <?php else : ?>
                     <!-- Jika user belum login, tampilkan tombol Login -->
                     <li class="nav-item">
-                        <a href="<?= base_url('login'); ?>" class="nav-link">Login <i class="fas fa-sign-in-alt"></i></a>
+                        <a href="<?= base_url('login'); ?>" class="nav-link">Login</a>
                     </li>
                 <?php endif; ?>
 

@@ -1,9 +1,9 @@
 <?php foreach ($data_konfperm as $id => $value) : ?>
-    <div class="modal fade" id="tolakkonfirmasi<?= $value->id_konfperm; ?>" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal fade" id="konfirmasi1<?= $value->id_konfperm; ?>" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="staticBackdropLabel">Tolak <?= $title; ?></h5>
+                    <h5 class="modal-title" id="staticBackdropLabel">Konfirmasi <?= $title; ?></h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -59,9 +59,9 @@
                     <!-- /.card -->
                 </div>
                 <div class="modal-footer">
-                    <?= form_open('permintaan/tolak_perm/' . $value->id_konfperm); ?>
+                    <?= form_open('permintaan/konf1/' . $value->id_konfperm); ?>
                     <div class="card-footer bg-transparent">
-                        <?= form_submit('submit', 'Tolak', 'class="btn btn-outline-danger"'); ?>
+                        <?= form_submit('submit', 'Konfirmasi', 'class="btn btn-outline-primary"'); ?>
                         <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Kembali</button>
                     </div>
                     <?= form_close() ?>

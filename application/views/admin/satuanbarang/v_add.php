@@ -13,7 +13,7 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Nama Satuan</label>
-                                    <input name="nama_satuan" type="text" class="form-control form-control-sm" value="<?= set_value('nama_satuan'); ?>">
+                                    <input name="nama_satuan" type="text" class="form-control form-control-sm" value="<?= set_value('nama_satuan'); ?>" autofocus>
                                     <small class="text-danger"><?= form_error('nama_satuan'); ?></small>
                                 </div>
                             </div>
