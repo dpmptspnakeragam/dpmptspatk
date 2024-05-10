@@ -234,7 +234,6 @@ class Permintaan extends CI_Controller
         $kode_perm = $this->M_permintaan->ambil_kode_perm($id_konfperm);
 
         // Ambil data dari model
-        $data['data_konfperm'] = $this->M_permintaan->tampilkan_tabel_konfperm();
         $data['nama_user'] = $this->M_permintaan->nama_user($kode_perm);
         $data['nama_barang'] = $this->M_permintaan->nama_barang($kode_perm);
         $data['tb_konfperm'] = $this->M_permintaan->tb_konfperm($kode_perm);
@@ -252,7 +251,6 @@ class Permintaan extends CI_Controller
         $kode_perm = $this->M_permintaan->ambil_kode_perm($id_konfperm);
 
         // Ambil data dari model
-        $data['data_konfperm'] = $this->M_permintaan->tampilkan_tabel_konfperm();
         $data['nama_user'] = $this->M_permintaan->nama_user($kode_perm);
         $data['nama_barang'] = $this->M_permintaan->nama_barang($kode_perm);
         $data['tb_konfperm'] = $this->M_permintaan->tb_konfperm($kode_perm);

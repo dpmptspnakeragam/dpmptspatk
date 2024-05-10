@@ -86,7 +86,11 @@
                                                 <?php endif; ?>
 
                                                 <?php if ($this->session->userdata('id_role') != 5) : ?>
-                                                    <?php if ($value->status_konfperm != 2 || $value->status_konfperm != 3) : ?>
+                                                    <?php if ($value->status_konfperm == 2 && $this->session->userdata('id_role') == 4) : ?>
+                                                        <!-- Kosongkan bagian ini untuk menyembunyikan button -->
+                                                    <?php elseif ($value->status_konfperm == 3 && ($this->session->userdata('id_role') == 4 || $this->session->userdata('id_role') == 3)) : ?>
+                                                        <!-- Kosongkan bagian ini untuk menyembunyikan button -->
+                                                    <?php else : ?>
                                                         <button type="button" data-toggle="modal" data-target="#tolakkonfirmasi<?= $value->id_konfperm; ?>" class="btn btn-outline-danger btn-sm mt-1 mb-1"><i class="fas fa-window-close"></i></button>
                                                     <?php endif; ?>
                                                 <?php endif; ?>
