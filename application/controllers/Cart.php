@@ -38,7 +38,8 @@ class Cart extends CI_Controller
         }
 
         $data = array(
-            'title'         => 'Detail Barang Permintaan',
+            'title'         => 'Permintaan ATK',
+            'title2'        => 'Detail',
             'konten'        => 'home/v_detail_cart',
             'produk'        => $this->M_home->produk(),
         );

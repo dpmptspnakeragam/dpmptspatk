@@ -12,7 +12,7 @@
                     <div class="card-body">
                         <div class="form-group">
                             <label>Nama Barang</label>
-                            <input name="nama_barang" type="text" class="form-control" value="<?= $nama_id->nama_barang; ?>">
+                            <input name="nama_barang" type="text" class="form-control" value="<?= $nama_id->nama_barang; ?>" autofocus>
                             <small class="text-danger"><?= form_error('nama_barang'); ?></small>
                         </div>
                         <div class="row">

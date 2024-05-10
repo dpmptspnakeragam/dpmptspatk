@@ -34,6 +34,19 @@
 <!-- Ekko Lightbox -->
 <script src="<?= base_url('assets/'); ?>plugins/ekko-lightbox/ekko-lightbox.min.js"></script>
 
+<!-- Script JavaScript Section -->
+<script>
+    function scrollToElement(elementId) {
+        var element = document.getElementById(elementId);
+        if (element) {
+            element.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
+        }
+    }
+</script>
+
 <script>
     $(document).ready(function() {
         // Inisialisasi DataTables pada elemen yang berisi card barang

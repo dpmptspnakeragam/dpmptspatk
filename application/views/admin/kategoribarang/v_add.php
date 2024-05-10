@@ -13,7 +13,7 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Nama Kategori</label>
-                                    <input name="nama_kategori" type="text" class="form-control form-control-sm" value="<?= set_value('nama_kategori'); ?>">
+                                    <input name="nama_kategori" type="text" class="form-control form-control-sm" value="<?= set_value('nama_kategori'); ?>" autofocus>
                                     <small class="text-danger"><?= form_error('nama_kategori'); ?></small>
                                 </div>
                             </div>

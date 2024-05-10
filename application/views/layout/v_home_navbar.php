@@ -11,7 +11,8 @@
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item active">
                     <!-- <button type="button" class="nav-link btn btn-link" onclick="scrollToElement('myCarousel');">Home</button> -->
-                    <a href="<?= base_url('home'); ?>" class="nav-link">Home</i></a>
+                    <!-- <a href="<?= base_url('home'); ?>" class="nav-link">Home</i></a> -->
+                    <a href="javascript:void(0);" onclick="scrollToElement('homeSection');" class="nav-link">Home</a>
                 </li>
 
                 <!-- <li class="nav-item dropdown">
@@ -136,7 +137,7 @@
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="<?= base_url('home'); ?>">Home</a></li>
                         <!-- <li class="breadcrumb-item"><a href="#">Layout</a></li> -->
-                        <li class="breadcrumb-item active"><?= $title ?></li>
+                        <li class="breadcrumb-item active"><?= $title ?> / <?= $title2; ?></li>
                     </ol>
                 </div><!-- /.col -->
             </div><!-- /.row -->

@@ -172,7 +172,16 @@
                                                 <?php if (($value->status_konfperm == 'Selesai' || $value->status_konfperm == 'Menunggu')) : ?>
                                                     <?php if (!empty($value->qr_code)) : ?>
                                                         <!-- Jika qr_code sudah ada, tampilkan tombol Print -->
-                                                        <a href="<?= base_url('permintaan/cetak/' . $value->id_konfperm); ?>" class="btn btn-outline-success btn-sm"><i class="fas fa-print"></i> Print</a>
+                                                        <!-- <a href="<?= base_url('permintaan/cetak/' . $value->id_konfperm); ?>" class="btn btn-outline-success btn-sm"><i class="fas fa-print"></i> Print</a> -->
+                                                        <button class="btn btn-outline-success btn-sm" onclick="print(<?= $value->id_konfperm; ?>)">
+                                                            <i class="fas fa-print"></i> Print
+                                                        </button>
+                                                        <script>
+                                                            function print(id) {
+                                                                // Redirect ke halaman cetak dengan ID kuesioner
+                                                                window.open('<?php echo base_url('permintaan/cetak/'); ?>' + id, '_blank');
+                                                            }
+                                                        </script>
                                                     <?php else : ?>
                                                         <?php if (in_array($this->session->userdata('id_user'), [1, 2])) : ?>
                                                             <!-- Jika qr_code belum ada, tampilkan tombol TTE -->

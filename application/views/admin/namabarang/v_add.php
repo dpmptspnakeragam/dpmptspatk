@@ -14,7 +14,7 @@
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label>Nama Nama</label>
-                                    <input name="nama_barang" type="text" class="form-control" value="<?= set_value('nama_barang'); ?>">
+                                    <input name="nama_barang" type="text" class="form-control" value="<?= set_value('nama_barang'); ?>" autofocus>
                                     <small class="text-danger"><?= form_error('nama_barang'); ?></small>
                                 </div>
                             </div>

@@ -18,56 +18,92 @@
     </div>
 </div>
 
-<div class="content">
+<!-- Main content -->
+<section class="content" id="homeSection">
+
+    <!-- Default box -->
     <div class="container">
-        <?php if (isset($pesan)) : ?>
-            <div class="alert alert-danger" role="alert">
-                <?= $pesan; ?>
+        <div class="card card-outline card-primary">
+            <div class="card-header text-center">
+                <h4>Produk Alat Tulis Kantor</h4>
             </div>
-        <?php else : ?>
-            <div class="row">
-                <?php foreach ($view_barang as $b => $value) : ?>
-                    <div class="col-lg-3 col-6">
-                        <?= form_open('cart/add'); ?>
-                        <?= form_hidden('id', $value->id_barang); ?>
-                        <?= form_hidden('qty', 1); ?>
-                        <?= form_hidden('price', $value->harga); ?>
-                        <?= form_hidden('name', $value->nama_barang); ?>
-                        <?= form_hidden('redirect_page', str_replace('index.php/', '', current_url())); ?>
-                        <div class="small-box">
-                            <div class="card-barang">
-                                <div class="gambar-barang">
-                                    <a href="<?= base_url('assets/image/barang/' . $value->gambar); ?>" data-toggle="lightbox">
-                                        <img src="<?= base_url('assets/image/barang/' . $value->gambar); ?>" class="img-circle img-thumbnail">
-                                    </a>
-                                </div>
-                                <div class="konten-card">
-                                    <h6>
-                                        <strong>
-                                            <?= $value->nama_barang; ?>
-                                        </strong>
-                                    </h6>
-                                    <hr class="bg-white mt-1 mb-1">
-                                    <div class="text-center mb-2">
-                                        <a href="#" class="text-white">
-                                            Rp. <?= number_format($value->harga, 0, ',', '.'); ?> / <?= $value->nama_satuan; ?>
-                                        </a>
-                                    </div>
-                                    <div class="text-center">
-                                        <a href="<?= base_url('home/detail/' . $value->id_barang); ?>" class="btn btn-sm btn-info"><i class="fas fa-search"></i></a>
-                                        <button class="btn btn-sm btn-primary swalDefaultSuccess"><i class="fas fa-cart-plus"></i></button>
-                                    </div>
-                                </div>
-                            </div>
+            <div class="card-body pb-0">
+                <div class="row">
+                    <?php if (isset($pesan)) : ?>
+                        <div class="alert alert-danger" role="alert">
+                            <?= $pesan; ?>
                         </div>
-                        <?= form_close(); ?>
-                    </div>
-                <?php endforeach; ?>
+                    <?php else : ?>
+                        <?php $counter = 0; ?>
+                        <?php foreach ($view_barang as $b => $value) : ?>
+                            <?php if ($counter < 6) : ?>
+                                <div class="col-12 col-sm-6 col-md-4 d-flex align-items-stretch flex-column">
+                                    <?= form_open('cart/add'); ?>
+                                    <?= form_hidden('id', $value->id_barang); ?>
+                                    <?= form_hidden('qty', 1); ?>
+                                    <?= form_hidden('price', $value->harga); ?>
+                                    <?= form_hidden('name', $value->nama_barang); ?>
+                                    <?= form_hidden('redirect_page', str_replace('index.php/', '', current_url())); ?>
+                                    <div class="small-box">
+                                        <div class="card-barang">
+                                            <div class="gambar-barang">
+                                                <a href="<?= base_url('assets/image/barang/' . $value->gambar); ?>" data-toggle="lightbox">
+                                                    <img src="<?= base_url('assets/image/barang/' . $value->gambar); ?>" class="img-thumbnail">
+                                                </a>
+                                            </div>
+                                            <div class="konten-card">
+                                                <h6>
+                                                    <strong>
+                                                        <?= $value->nama_barang; ?>
+                                                    </strong>
+                                                </h6>
+                                                <hr class="bg-white mt-1 mb-1">
+                                                <div class="text-center mb-2">
+                                                    <a href="#" class="text-white">
+                                                        Rp. <?= number_format($value->harga, 0, ',', '.'); ?> / <?= $value->nama_satuan; ?>
+                                                    </a>
+                                                </div>
+                                                <div class="text-center">
+                                                    <a href="<?= base_url('home/detail/' . $value->id_barang); ?>" class="btn btn-sm btn-info"><i class="fas fa-search"></i></a>
+                                                    <button class="btn btn-sm btn-primary swalDefaultSuccess"><i class="fas fa-cart-plus"></i></button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <?= form_close(); ?>
+                                </div>
+                            <?php endif; ?>
+                            <?php $counter++; ?>
+                        <?php endforeach; ?>
+                    <?php endif; ?>
+                </div>
             </div>
-        <?php endif; ?>
+            <!-- /.card-body -->
+            <div class="card-footer">
+                <?php if (isset($pagination) && $pagination['total_pages'] > 1) : ?>
+                    <nav aria-label="Page Navigation">
+                        <ul class="pagination justify-content-center m-0">
+                            <?php for ($i = 1; $i <= $pagination['total_pages']; $i++) : ?>
+                                <li class="page-item <?= $i == $pagination['current_page'] ? 'active' : ''; ?>">
+                                    <?php if (isset($pagination['kategori_id'])) : ?>
+                                        <a class="page-link" href="<?= base_url("home/kategori/{$pagination['kategori_id']}/{$i}"); ?>"><?= $i; ?></a>
+                                    <?php elseif (isset($pagination['keyword'])) : ?>
+                                        <a class="page-link" href="<?= base_url("home/search?keyword={$pagination['keyword']}&page={$i}"); ?>"><?= $i; ?></a>
+                                    <?php else : ?>
+                                        <a class="page-link" href="<?= base_url("home/{$i}"); ?>"><?= $i; ?></a>
+                                    <?php endif; ?>
+                                </li>
+                            <?php endfor; ?>
+                        </ul>
+                    </nav>
+                <?php endif; ?>
+            </div>
+        </div>
     </div>
-</div>
+    <!-- /.container -->
+</section>
 <!-- /.content -->
+
 
 <style>
     .card-barang {
@@ -77,7 +113,7 @@
         position: relative;
         cursor: pointer;
         transition: transform 0.3s ease-in-out;
-        height: 250px;
+        height: 300px;
     }
 
     .card-barang:hover {
@@ -86,8 +122,7 @@
 
     .card-barang .gambar-barang img {
         width: 100%;
-        height: 250px;
-
+        height: 300px;
         /* Menggunakan height: auto; untuk mengikuti proporsi asli gambar */
         object-fit: cover;
         border-radius: 8px;
