@@ -28,7 +28,7 @@ class Home extends CI_Controller
 	// List all your items
 	public function index($page = 1)
 	{
-		$per_page = 6;
+		$per_page = 12;
 		$start = ($page - 1) * $per_page;
 
 		$data = array(
@@ -70,7 +70,7 @@ class Home extends CI_Controller
 		}
 
 		// Pagination configuration
-		$per_page = 6;
+		$per_page = 12;
 		$page = $this->input->get('page') ? $this->input->get('page') : 1;
 		$start = ($page - 1) * $per_page;
 
@@ -113,7 +113,7 @@ class Home extends CI_Controller
 
 	public function kategori($id_kategori, $page = 1)
 	{
-		$per_page = 6;
+		$per_page = 12;
 		$start = ($page - 1) * $per_page;
 
 		$kategori = $this->M_home->get_kategori_by_id($id_kategori);
