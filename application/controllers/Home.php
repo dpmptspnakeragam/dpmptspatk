@@ -11,6 +11,18 @@ class Home extends CI_Controller
 		parent::__construct();
 		//Load Dependencies
 		$this->load->model('M_home');
+
+		// Get the id_user from wherever it is stored
+		$id_user = $this->session->userdata('id_user'); // Assuming it's stored in session
+
+		// Check if id_user exists in tb_user using Lib_login
+		if ($id_user && !$this->lib_login->cek_id($id_user)) {
+			// Clear userdata if id_user doesn't exist
+			$this->lib_login->clear_userdata();
+
+			// Redirect to login page
+			redirect('login'); // Adjust 'login' to the actual login page URL
+		}
 	}
 
 	// List all your items
@@ -20,8 +32,10 @@ class Home extends CI_Controller
 		$start = ($page - 1) * $per_page;
 
 		$data = array(
-			'title'         => 'ATK DPMPTSP Kabupaten Agam',
-			'title2'         => false,
+			'title_website' => 'Home | ATK DPMPTSP Kabupaten Agam',
+			'home'         => 'Home',
+			'title1'         => false,
+			'title2'        => false,
 			'konten'        => 'v_home',
 			'view_barang'   => $this->M_home->ambil_barang_paginated($start, $per_page),
 			'kategori'      => $this->M_home->kategori(),
@@ -61,7 +75,9 @@ class Home extends CI_Controller
 		$start = ($page - 1) * $per_page;
 
 		$data = array(
-			'title'             => 'ATK DPMPTSP Kabupaten Agam',
+			'title_website' => 'Search | ATK DPMPTSP Kabupaten Agam',
+			'home'         => 'Home',
+			'title1'             => 'Search',
 			'title2'            => $keyword,
 			'konten'            => 'v_home',
 			'view_barang'       => $this->M_home->ambil_barang(),
@@ -100,9 +116,13 @@ class Home extends CI_Controller
 		$per_page = 6;
 		$start = ($page - 1) * $per_page;
 
+		$kategori = $this->M_home->get_kategori_by_id($id_kategori);
+
 		$data = array(
-			'title'         => 'Kategori Barang',
-			'title2'         => $id_kategori,
+			'title_website' => 'Kategori | ATK DPMPTSP Kabupaten Agam',
+			'home'         => 'Home',
+			'title1'         => 'Kategori',
+			'title2'         => $kategori,
 			'konten'        => 'v_home',
 			'view_barang'   => $this->M_home->ambil_barang_by_kategori_paginated($id_kategori, $start, $per_page),
 			'kategori'      => $this->M_home->kategori(),
@@ -130,9 +150,14 @@ class Home extends CI_Controller
 
 	public function detail($id_barang)
 	{
+
+		$detail = $this->M_home->ambil_nama_barang($id_barang);
+
 		$data = array(
-			'title'         => 'Detail Barang',
-			'title2'        => $id_barang,
+			'title_website' => 'Detail | ATK DPMPTSP Kabupaten Agam',
+			'home'         => 'Home',
+			'title1'         => 'Detail',
+			'title2'        => $detail,
 			'konten'        => 'home/v_detail_barang',
 			'detail_barang' => $this->M_home->ambil_detail_barang($id_barang),
 			'view_barang'	=> $this->M_home->ambil_barang()

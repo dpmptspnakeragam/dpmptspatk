@@ -1,6 +1,6 @@
 <!-- Main content -->
 <div class="content">
-    <div class="container mb-4">
+    <div class="container-fluid mb-4">
         <div class="row d-flex justify-content-end">
             <div class="col-md-6">
                 <form action="<?= base_url('home/search'); ?>" method="GET">
@@ -19,10 +19,9 @@
 </div>
 
 <!-- Main content -->
-<section class="content" id="homeSection">
-
+<div class="content">
     <!-- Default box -->
-    <div class="container">
+    <div class="container-fluid">
         <div class="card card-outline card-primary">
             <div class="card-header text-center">
                 <h4>Produk Alat Tulis Kantor</h4>
@@ -83,7 +82,26 @@
                 <?php if (isset($pagination) && $pagination['total_pages'] > 1) : ?>
                     <nav aria-label="Page Navigation">
                         <ul class="pagination justify-content-center m-0">
-                            <?php for ($i = 1; $i <= $pagination['total_pages']; $i++) : ?>
+                            <?php if ($pagination['current_page'] > 1) : ?>
+                                <?php // Tautan ke halaman pertama 
+                                ?>
+                                <li class="page-item">
+                                    <?php if (isset($pagination['kategori_id'])) : ?>
+                                        <a class="page-link" href="<?= base_url("home/kategori/{$pagination['kategori_id']}/1"); ?>">&laquo;</a>
+                                    <?php elseif (isset($pagination['keyword'])) : ?>
+                                        <a class="page-link" href="<?= base_url("home/search?keyword={$pagination['keyword']}&page=1"); ?>">&laquo;</a>
+                                    <?php else : ?>
+                                        <a class="page-link" href="<?= base_url("home/1"); ?>">&laquo;</a>
+                                    <?php endif; ?>
+                                </li>
+                            <?php endif; ?>
+
+                            <?php
+                            $start_page = max(1, $pagination['current_page'] - 2);
+                            $end_page = min($start_page + 4, $pagination['total_pages']);
+
+                            for ($i = $start_page; $i <= $end_page; $i++) :
+                            ?>
                                 <li class="page-item <?= $i == $pagination['current_page'] ? 'active' : ''; ?>">
                                     <?php if (isset($pagination['kategori_id'])) : ?>
                                         <a class="page-link" href="<?= base_url("home/kategori/{$pagination['kategori_id']}/{$i}"); ?>"><?= $i; ?></a>
@@ -94,14 +112,29 @@
                                     <?php endif; ?>
                                 </li>
                             <?php endfor; ?>
+
+                            <?php if ($pagination['current_page'] < $pagination['total_pages']) : ?>
+                                <?php // Tautan ke halaman terakhir 
+                                ?>
+                                <li class="page-item">
+                                    <?php if (isset($pagination['kategori_id'])) : ?>
+                                        <a class="page-link" href="<?= base_url("home/kategori/{$pagination['kategori_id']}/{$pagination['total_pages']}"); ?>">&raquo;</a>
+                                    <?php elseif (isset($pagination['keyword'])) : ?>
+                                        <a class="page-link" href="<?= base_url("home/search?keyword={$pagination['keyword']}&page={$pagination['total_pages']}"); ?>">&raquo;</a>
+                                    <?php else : ?>
+                                        <a class="page-link" href="<?= base_url("home/{$pagination['total_pages']}"); ?>">&raquo;</a>
+                                    <?php endif; ?>
+                                </li>
+                            <?php endif; ?>
                         </ul>
                     </nav>
                 <?php endif; ?>
             </div>
+
         </div>
     </div>
     <!-- /.container -->
-</section>
+</div>
 <!-- /.content -->
 
 

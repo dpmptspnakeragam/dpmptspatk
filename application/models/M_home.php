@@ -34,6 +34,19 @@ class M_home extends CI_Model
         return $this->db->get()->result();
     }
 
+    public function get_kategori_by_id($id_kategori)
+    {
+        $this->db->select('nama_kategori');
+        $this->db->where('id_kategori', $id_kategori);
+        $query = $this->db->get('tb_kategori');
+
+        if ($query->num_rows() > 0) {
+            return $query->row()->nama_kategori;
+        } else {
+            return null;
+        }
+    }
+
     public function produk()
     {
         $this->db->select('*');
@@ -110,6 +123,21 @@ class M_home extends CI_Model
         $this->db->where('tb_barang.id_barang', $id_barang); // Filter berdasarkan id_barang
 
         return $this->db->get()->row(); // Menggunakan row() karena hanya ingin satu data
+    }
+
+    public function ambil_nama_barang($id_barang)
+    {
+        $this->db->select('nama_barang');
+        $this->db->from('tb_barang');
+        $this->db->join('tb_nama', 'tb_barang.id_nama = tb_nama.id_nama', 'left');
+        $this->db->where('tb_barang.id_barang', $id_barang);
+
+        $query = $this->db->get();
+        if ($query->num_rows() > 0) {
+            return $query->row()->nama_barang;
+        } else {
+            return null;
+        }
     }
 }
 

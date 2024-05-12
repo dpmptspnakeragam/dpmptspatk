@@ -1,6 +1,6 @@
 <!-- Navbar -->
 <nav class="main-header navbar navbar-expand-md navbar-light navbar-white elevation-2">
-    <div class="container">
+    <div class="container-fluid">
 
         <a href="<?= base_url('home'); ?>" class="navbar-brand mt-2 ml-2">
             <img src="<?= base_url('assets/'); ?>image/logo/atk.png" alt="AdminLTE Logo" class="brand-image">
@@ -11,8 +11,8 @@
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item active">
                     <!-- <button type="button" class="nav-link btn btn-link" onclick="scrollToElement('myCarousel');">Home</button> -->
-                    <!-- <a href="<?= base_url('home'); ?>" class="nav-link">Home</i></a> -->
-                    <a href="javascript:void(0);" onclick="scrollToElement('homeSection');" class="nav-link">Home</a>
+                    <a href="<?= base_url('home'); ?>" class="nav-link">Home</i></a>
+                    <!-- <a href="javascript:void(0);" onclick="scrollToElement('homeSection');" class="nav-link">Home</a> -->
                 </li>
 
                 <!-- <li class="nav-item dropdown">
@@ -24,6 +24,8 @@
                     </ul>
                 </li> -->
 
+                <div class="dropdown-divider mt-0 mb-0"></div>
+
                 <li class="nav-item dropdown">
                     <a id="dropdownKategori" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle">Kategori</a>
                     <ul aria-labelledby="dropdownKategori" class="dropdown-menu border-0 shadow" style="max-height: 300px; overflow-y: auto;">
@@ -33,26 +35,6 @@
                     </ul>
                 </li>
 
-                <?php if ($this->session->userdata('id_user')) : ?>
-                    <!-- Jika user sudah login, tampilkan tombol Logout -->
-                    <li class="nav-item">
-                        <a href="<?= base_url('logout'); ?>" class="nav-link">Logout</a>
-                    </li>
-                <?php else : ?>
-                    <!-- Jika user belum login, tampilkan tombol Login -->
-                    <li class="nav-item">
-                        <a href="<?= base_url('login'); ?>" class="nav-link">Login</a>
-                    </li>
-                <?php endif; ?>
-
-                <script>
-                    $(document).ready(function() {
-                        // Check if user is logged in
-                        if (<?= $this->session->userdata('id_user') ? 'true' : 'false' ?>) {
-                            $('#loginLink').hide(); // Hide the login link
-                        }
-                    });
-                </script>
             </ul>
         </div>
 
@@ -114,6 +96,62 @@
 
                 </div>
             </li>
+
+            <div class="topbar-divider d-none d-sm-block"></div>
+
+            <?php
+            $id_user = $this->session->userdata('id_user');
+            $this->db->select('tb_user.*, tb_role.nama_role');
+            $this->db->from('tb_user');
+            $this->db->join('tb_role', 'tb_user.id_role = tb_role.id_role', 'left');
+            $this->db->where('id_user', $id_user);
+            $data = $this->db->get();
+            $data_login = $data->row();
+            ?>
+            <!-- Nav Item - User Information -->
+            <?php if ($this->session->userdata('id_user')) : ?>
+                <li class="nav-item dropdown no-arrow">
+                    <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <span class="mr-2 d-none d-lg-inline"><?= $data_login->nama_user; ?></span>
+                        <img class="img-profile rounded-circle" style="width:25px;" src="<?= base_url('assets/image/profile/' . $data_login->profile); ?>">
+                    </a>
+                    <!-- Dropdown - User Information -->
+                    <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+                        <a class="dropdown-item" href="<?= base_url('dashboard'); ?>">
+                            <i class="fas fa-tachometer-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                            Dashboard
+                        </a>
+                        <a class="dropdown-item" href="#">
+                            <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                            Profile
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <?php if ($this->session->userdata('id_user')) : ?>
+                            <!-- Jika user sudah login, tampilkan tombol Logout -->
+                            <a href="<?= base_url('logout'); ?>" class="nav-link">
+                                <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                Logout
+                            </a>
+                        <?php else : ?>
+                            <!-- Jika user belum login, tampilkan tombol Login -->
+                            <a href="<?= base_url('login'); ?>" class="nav-link">
+                                <i class="fas fa-sign-in-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                Login</a>
+                        <?php endif; ?>
+
+                        <script>
+                            $(document).ready(function() {
+                                // Check if user is logged in
+                                if (<?= $this->session->userdata('id_user') ? 'true' : 'false' ?>) {
+                                    $('#loginLink').hide(); // Hide the login link
+                                }
+                            });
+                        </script>
+                    </div>
+                </li>
+            <?php else : ?>
+                <a href="<?= base_url('login'); ?>" class="btn btn-sm btn-primary ml-3 mr-3">Login</a>
+            <?php endif; ?>
         </ul>
 
         <!-- Button toggle Menu -->
@@ -128,16 +166,22 @@
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <div class="content-header">
-        <div class="container">
-            <div class="row mb-2">
-                <div class="col-sm-6">
-                    <h1 class="m-0 mt-4"><small><?= $title; ?></small></h1>
-                </div><!-- /.col -->
-                <div class="col-sm-6 mt-sm-4">
-                    <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="<?= base_url('home'); ?>">Home</a></li>
-                        <!-- <li class="breadcrumb-item"><a href="#">Layout</a></li> -->
-                        <li class="breadcrumb-item active"><?= $title ?> / <?= $title2; ?></li>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-6 mt-3">
+                    <ol class="breadcrumb float-sm-left">
+                        <li class="breadcrumb-item"><a href="<?= base_url($this->uri->segment(1)); ?>"><?= $home; ?></a></li>
+
+                        <?php if ($this->uri->segment(1) == 'home') : ?>
+                            <li class="breadcrumb-item">
+                                <a href="<?= base_url($this->uri->segment(1) . '/' . $this->uri->segment(2) . '/' . $this->uri->segment(3)); ?>">
+                                    <?= $title1; ?>
+                                </a>
+                            </li>
+                        <?php endif; ?>
+                        <?php if ($this->uri->segment(2) == 'kategori' || $this->uri->segment(2) == 'detail' || $this->uri->segment(2) == 'search') : ?>
+                            <li class="breadcrumb-item active"><?= $title2; ?></li>
+                        <?php endif; ?>
                     </ol>
                 </div><!-- /.col -->
             </div><!-- /.row -->
