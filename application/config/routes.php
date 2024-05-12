@@ -56,4 +56,5 @@ $route['translate_uri_dashes'] = FALSE;
 $route['home/(:num)'] = 'Home/index/$1';
 $route['home/kategori/(:num)'] = 'Home/kategori/$1';
 
+$route['tte_index'] = 'permintaan/tte_index';
 $route['logout'] = 'login/logout';

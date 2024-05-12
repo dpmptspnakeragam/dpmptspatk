@@ -51,7 +51,7 @@
                 <img src="<?= base_url('assets/image/profile/' . $data_login->profile); ?>" class="img-circle elevation-2" alt="User Image">
             </div>
             <div class="info d-flex justify-content-between align-items-center w-100">
-                <a href="<?= base_url('myprofile'); ?>" class="d-block"><?= $data_login->nama_user; ?></a>
+                <span class="d-block"><?= $data_login->nama_user; ?></span>
                 <a href="<?= base_url('logout'); ?>" data-toggle="modal" data-target="#logoutModal">
                     <i class="fas fa-sign-out-alt"></i>
                 </a>
@@ -150,12 +150,14 @@
                                         $this->uri->segment(1),
                                         [
                                             'permintaan',
+                                            'tte_index',
                                         ]
                                     ) ? 'menu-open' : ''; ?>">
                     <a href="" class="nav-link <?= in_array(
                                                     $this->uri->segment(1),
                                                     [
                                                         'permintaan',
+                                                        'tte_index',
                                                     ]
                                                 ) ? 'active' : ''; ?>">
                         <i class="nav-icon fas fa-hand-holding-usd"></i>
@@ -171,10 +173,49 @@
                                 <p>Permintaan ATK</p>
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a href="<?= base_url('tte_index'); ?>" class="nav-link <?= $this->uri->segment(1) == 'tte_index' ? 'active' : ''; ?>">
+                                <i class="<?= $this->uri->segment(2) == 'tte_index' ? 'fas' : 'far'; ?> fa-circle nav-icon <?= $this->uri->segment(2) == 'tte_index' ? 'text-primary' : ''; ?>"></i>
+                                <p>TTE ATK</p>
+                            </a>
+                        </li>
                     </ul>
                 </li>
 
                 <div class="user-panel mb-1 d-flex"></div>
+
+                <?php if ($data_login->id_role == 1) : ?>
+                    <li class="nav-item <?= in_array(
+                                            $this->uri->segment(1),
+                                            [
+                                                'role',
+                                            ]
+                                        ) ? 'menu-open' : ''; ?>">
+                        <a href="" class="nav-link <?= in_array(
+                                                        $this->uri->segment(1),
+                                                        [
+                                                            'role',
+                                                        ]
+                                                    ) ? 'active' : ''; ?>">
+                            <i class="nav-icon fas fa-tools"></i>
+                            <p>
+                                Setting
+                                <i class="right fas fa-angle-left"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="<?= base_url('role'); ?>" class="nav-link <?= $this->uri->segment(1) == 'role' ? 'active' : ''; ?>">
+                                    <i class="<?= $this->uri->segment(1) == 'role' ? 'fas' : 'far'; ?> fa-circle nav-icon <?= $this->uri->segment(1) == 'role' ? 'text-primary' : ''; ?>"></i>
+                                    <p>Role</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <div class="user-panel mb-1 d-flex"></div>
+                <?php endif; ?>
+
             </ul>
         </nav>
         <!-- /.sidebar-menu -->

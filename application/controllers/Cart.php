@@ -38,8 +38,10 @@ class Cart extends CI_Controller
         }
 
         $data = array(
-            'title'         => 'Permintaan ATK',
-            'title2'        => 'Detail',
+            'home'          => 'Home',
+            'title_website' => 'Detail Permintaan | ATK DPMPTSP Kabupaten Agam',
+            'title1'        => false,
+            'title2'        => 'Detail Barang Permintaan',
             'konten'        => 'home/v_detail_cart',
             'produk'        => $this->M_home->produk(),
         );

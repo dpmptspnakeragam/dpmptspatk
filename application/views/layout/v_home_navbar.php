@@ -121,14 +121,14 @@
                             <i class="fas fa-tachometer-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                             Dashboard
                         </a>
-                        <a class="dropdown-item" href="#">
+                        <!-- <a class="dropdown-item" href="#">
                             <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                             Profile
-                        </a>
+                        </a> -->
                         <div class="dropdown-divider"></div>
                         <?php if ($this->session->userdata('id_user')) : ?>
                             <!-- Jika user sudah login, tampilkan tombol Logout -->
-                            <a href="<?= base_url('logout'); ?>" class="nav-link">
+                            <a href="<?= base_url('logout'); ?>" class="nav-link" data-toggle="modal" data-target="#logoutModal">
                                 <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                                 Logout
                             </a>
@@ -136,7 +136,8 @@
                             <!-- Jika user belum login, tampilkan tombol Login -->
                             <a href="<?= base_url('login'); ?>" class="nav-link">
                                 <i class="fas fa-sign-in-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                                Login</a>
+                                Login
+                            </a>
                         <?php endif; ?>
 
                         <script>

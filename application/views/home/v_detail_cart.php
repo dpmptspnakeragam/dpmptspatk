@@ -6,7 +6,7 @@
         <div class="row">
             <div class="col-sm-12">
                 <div class="card-header">
-                    <h3 class="card-title">Tabel Barang Permintaan</h3>
+                    <h3 class="card-title">Tabel <?= $title2; ?></h3>
                 </div>
                 <?= form_open('cart/update'); ?>
                 <div class="card-body">

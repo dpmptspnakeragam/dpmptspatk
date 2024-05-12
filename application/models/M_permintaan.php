@@ -24,12 +24,13 @@ class M_permintaan extends CI_Model
 
     public function nama_user($kode_perm)
     {
-        $this->db->select('tb_user.nama_user');
+        $this->db->select('tb_user.id_user, tb_user.nama_user');
         $this->db->from('tb_user');
         $this->db->join('tb_perm', 'tb_user.id_user = tb_perm.id_user');
         $this->db->where('tb_perm.kode_perm', $kode_perm);
-        return $this->db->get()->row(); // Menggunakan row() karena kita hanya ingin satu baris data
+        return $this->db->get()->row();
     }
+
 
     public function qr_code($kode_perm)
     {

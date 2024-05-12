@@ -14,10 +14,11 @@
                     </div>
                 </div>
             </div>
-            <!-- /.col -->
+            <!-- /.col-12 col-sm-6 col-md-3 -->
+
             <div class="col-12 col-sm-6 col-md-3">
                 <div class="info-box mb-3">
-                    <a href="<?= base_url('permintaan'); ?>" class="info-box-icon bg-danger">
+                    <a href="<?= base_url('tte_index'); ?>" class="info-box-icon bg-danger">
                         <span class="info-box-icon"><i class="fas fa-qrcode"></i></span>
                     </a>
                     <div class="info-box-content">
@@ -26,47 +27,68 @@
                     </div>
                 </div>
             </div>
-            <!-- /.col -->
+            <!-- /.col-12 col-sm-6 col-md-3 -->
 
             <!-- fix for small devices only -->
             <div class="clearfix hidden-md-up"></div>
 
             <div class="col-12 col-sm-6 col-md-3">
                 <div class="info-box mb-3">
-                    <a href="<?= base_url('datauser'); ?>" class="info-box-icon bg-warning">
-                        <span class="info-box-icon"><i class="fas fa-users"></i></span>
-                    </a>
+                    <?php if ($this->session->userdata('id_role') != 1) : ?>
+                        <span class="info-box-icon bg-warning">
+                            <i class="fas fa-users"></i>
+                        </span>
+                    <?php else : ?>
+                        <a href="<?= base_url('datauser'); ?>" class="info-box-icon bg-warning">
+                            <i class="fas fa-users"></i>
+                        </a>
+                    <?php endif; ?>
                     <div class="info-box-content">
                         <span class="info-box-text">Total Users</span>
                         <span class="info-box-number"><?= $total_user; ?></span>
                     </div>
                 </div>
             </div>
-            <!-- /.col -->
+            <!-- /.col-12 col-sm-6 col-md-3 -->
+
             <div class="col-12 col-sm-6 col-md-3">
                 <div class="info-box mb-3">
-                    <a href="<?= base_url('databarang'); ?>" class="info-box-icon bg-success">
-                        <span class="info-box-icon"><i class="fas fa-boxes"></i></span>
-                    </a>
+                    <?php if ($this->session->userdata('id_role') != 1) : ?>
+                        <span class="info-box-icon bg-success">
+                            <i class="fas fa-boxes"></i>
+                        </span>
+                    <?php else : ?>
+                        <a href="<?= base_url('databarang'); ?>" class="info-box-icon bg-success">
+                            <i class="fas fa-boxes"></i>
+                        </a>
+                    <?php endif; ?>
                     <div class="info-box-content">
                         <span class="info-box-text">Total Barang</span>
                         <span class="info-box-number"><?= $total_barang; ?></span>
                     </div>
                 </div>
             </div>
-            <!-- /.col -->
+            <!-- /.col-12 col-sm-6 col-md-3 -->
+
             <div class="col-12 col-sm-6 col-md-3">
                 <div class="info-box mb-3">
-                    <a href="<?= base_url('kategoribarang'); ?>" class="info-box-icon bg-secondary">
-                        <span class="info-box-icon"><i class="fas fa-boxes"></i></span>
-                    </a>
+                    <?php if ($this->session->userdata('id_role') != 1) : ?>
+                        <span class="info-box-icon bg-secondary">
+                            <i class="fas fa-boxes"></i>
+                        </span>
+                    <?php else : ?>
+                        <a href="<?= base_url('kategoribarang'); ?>" class="info-box-icon bg-secondary">
+                            <i class="fas fa-boxes"></i>
+                        </a>
+                    <?php endif; ?>
                     <div class="info-box-content">
                         <span class="info-box-text">Total Kategori</span>
                         <span class="info-box-number"><?= $total_kategori; ?></span>
                     </div>
                 </div>
             </div>
-            <!-- /.col -->
+            <!-- /.col-12 col-sm-6 col-md-3 -->
+
             <div class="col-lg-12">
                 <div class="card card-outline card-primary">
                     <div class="card-header">
@@ -82,7 +104,7 @@
                 </div>
                 <!-- /.card -->
             </div>
-            <!-- /.col-md-6 -->
+            <!-- /.col-lg-12 -->
         </div>
         <!-- /.row -->
     </div><!-- /.container-fluid -->
