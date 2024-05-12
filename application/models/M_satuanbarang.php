@@ -7,7 +7,7 @@ class M_satuanbarang extends CI_Model
     {
         $this->db->select('');
         $this->db->from('tb_satuan');
-        $this->db->order_by('nama_satuan', 'ASC');
+        $this->db->order_by('id_satuan', 'DESC');
         return $this->db->get()->result();
     }
 

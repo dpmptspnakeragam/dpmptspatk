@@ -7,7 +7,7 @@ class M_role extends CI_Model
     {
         $this->db->select('');
         $this->db->from('tb_role');
-        $this->db->order_by('id_role', 'ASC');
+        $this->db->order_by('id_role', 'DESC');
         return $this->db->get()->result();
     }
 

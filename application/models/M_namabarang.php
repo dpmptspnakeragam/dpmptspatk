@@ -7,7 +7,7 @@ class M_namabarang extends CI_Model
     {
         $this->db->select('');
         $this->db->from('tb_nama');
-        $this->db->order_by('nama_barang', 'ASC');
+        $this->db->order_by('id_nama', 'DESC');
         return $this->db->get()->result();
     }
 

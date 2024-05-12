@@ -10,7 +10,7 @@ class M_permintaan extends CI_Model
         $this->db->join('tb_nama', 'tb_barang.id_nama = tb_nama.id_nama');
         $this->db->join('tb_kategori', 'tb_barang.id_kategori = tb_kategori.id_kategori', 'left');
         $this->db->join('tb_satuan', 'tb_barang.id_satuan = tb_satuan.id_satuan', 'left');
-        $this->db->order_by('tb_barang.id_barang', 'ASC');
+        $this->db->order_by('tb_barang.id_barang', 'DESC');
         return $this->db->get()->result();
     }
 
@@ -18,7 +18,7 @@ class M_permintaan extends CI_Model
     {
         $this->db->select('');
         $this->db->from('tb_konfperm');
-        $this->db->order_by('id_konfperm', 'desc');
+        $this->db->order_by('id_konfperm', 'DESC');
         return $this->db->get()->result();
     }
 

@@ -5,11 +5,11 @@ class M_datauser extends CI_Model
 {
     public function ambil_semua()
     {
-        $this->db->select('tb_user.*, tb_role.nama_role'); // Memilih kolom role dari tabel tb_role
+        $this->db->select('tb_user.*, tb_role.nama_role');
         $this->db->from('tb_user');
         $this->db->join('tb_role', 'tb_user.id_role = tb_role.id_role', 'left');
 
-        $this->db->order_by('tb_user.id_user', 'desc'); // Mengurutkan berdasarkan id_user dari tb_user
+        $this->db->order_by('tb_user.id_user', 'desc');
         return $this->db->get()->result();
     }
 

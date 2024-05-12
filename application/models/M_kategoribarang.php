@@ -7,7 +7,7 @@ class M_kategoribarang extends CI_Model
     {
         $this->db->select('');
         $this->db->from('tb_kategori');
-        $this->db->order_by('nama_kategori', 'ASC');
+        $this->db->order_by('id_kategori', 'DESC');
         return $this->db->get()->result();
     }
 
