@@ -53,8 +53,8 @@
 <!-- Ekko Lightbox -->
 <script src="<?= base_url('assets/'); ?>plugins/ekko-lightbox/ekko-lightbox.min.js"></script>
 
-<!-- Script JavaScript Section -->
-<!-- <script>
+<script>
+    // Scroll Section Smooth
     function scrollToElement(elementId) {
         var element = document.getElementById(elementId);
         if (element) {
@@ -64,25 +64,41 @@
             });
         }
     }
-</script> -->
 
-<script>
     $(document).ready(function() {
         // Inisialisasi DataTables pada elemen yang berisi card barang
         $('#cardWrapper').DataTable({
-            "paging": true, // Aktifkan paging
-            "lengthChange": true, // Aktifkan pengaturan jumlah data per halaman
-            "searching": true, // Aktifkan fitur pencarian
-            "ordering": false, // Nonaktifkan pengurutan (karena kita sudah menggunakan struktur card)
-            "info": true, // Aktifkan informasi jumlah data
-            "autoWidth": false, // Nonaktifkan penyesuaian lebar otomatis
-            "responsive": true // Aktifkan responsif untuk tampilan yang lebih baik pada perangkat mobile
+            "paging": true,
+            "lengthChange": true,
+            "searching": true,
+            "ordering": false,
+            "info": true,
+            "autoWidth": false,
+            "responsive": true
         });
     });
-</script>
 
-<!-- Ekko Lightbox -->
-<script>
+    // DataTables
+    $(function() {
+        function DataTable(selectors) {
+            selectors.forEach(function(selector) {
+                $(selector).DataTable({
+                    "paging": true,
+                    "lengthChange": true,
+                    "searching": true,
+                    "ordering": false,
+                    "info": true,
+                    "autoWidth": false,
+                    "responsive": true,
+                    // "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+                }).buttons().container().appendTo($(selector + '_wrapper .col-md-6:eq(0)'));
+            });
+        }
+
+        DataTable(["#TabelData1", "#TabelData2", "#TabelData3", "#TabelData4"]);
+    });
+
+    // Ekko Lightbox 
     $(function() {
         $(document).on('click', '[data-toggle="lightbox"]', function(event) {
             event.preventDefault();
@@ -97,9 +113,8 @@
             $(this).addClass('active');
         });
     })
-</script>
 
-<script>
+    // Sweetalert 2
     $(document).ready(function() {
         <?php if ($this->session->flashdata('warning')) { ?>
             const WarningToast = Swal.mixin({
@@ -137,7 +152,6 @@
         <?php } ?>
     });
 </script>
-
 
 </body>
 

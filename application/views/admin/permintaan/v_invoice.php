@@ -80,6 +80,7 @@ $table .= '<tr>
                 <th style="border: 1px solid #000; text-align: center;">Sub Total</th>
             </tr>';
 $count = 1;
+
 foreach ($nama_barang as $key => $value) :
     $table .= '<tr>';
     $table .= '<td style="border: 1px solid #000; text-align: center;">' . $count++ . '</td>';
@@ -90,10 +91,7 @@ foreach ($nama_barang as $key => $value) :
         $table .= 'Rp. ' . number_format($value->Harga, 0, ',', '.');
     }
     $table .= '</td>';
-    if ($count == 2) {
-        // Hanya pada baris pertama, tambahkan keterangan dengan rowspan
-        $table .= '<td style="border: 1px solid #000;" rowspan="' . count($nama_barang) . '">' . $value->keterangan . '</td>';
-    }
+    $table .= '<td style="border: 1px solid #000;">' . $value->ket . '</td>';
     $table .= '<td style="border: 1px solid #000;">Rp. ';
     if ($value->sub_total !== null && $value->sub_total != 0) {
         $table .= 'Rp. ' . number_format($value->sub_total, 0, ',', '.');

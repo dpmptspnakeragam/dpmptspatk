@@ -50,7 +50,7 @@ class M_permintaan extends CI_Model
 
     public function nama_barang($kode_perm)
     {
-        $this->db->select('tb_nama.nama_barang, tb_perm.jumlah_perm, tb_perm.sub_total, tb_satuan.nama_satuan, tb_konfperm.keterangan');
+        $this->db->select('tb_nama.nama_barang, tb_perm.jumlah_perm, tb_perm.ket, tb_perm.sub_total, tb_satuan.nama_satuan');
         $this->db->from('tb_perm');
         $this->db->join('tb_barang', 'tb_perm.id_barang = tb_barang.id_barang');
         $this->db->join('tb_nama', 'tb_barang.id_nama = tb_nama.id_nama');
@@ -64,7 +64,7 @@ class M_permintaan extends CI_Model
 
     public function tb_konfperm($kode_perm)
     {
-        $this->db->select('SUM(total_bayar) as total_bayar, keterangan');
+        $this->db->select('SUM(total_bayar) as total_bayar');
         $this->db->from('tb_konfperm');
         $this->db->where('kode_perm', $kode_perm);
         $this->db->where('status_konfperm', 'Dikonfirmasi');

@@ -10,7 +10,7 @@
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">
-                        <table id="TabelData2" class="table table-bordered table-sm table-hover">
+                        <table id="TabelData1" class="table table-bordered table-sm table-hover">
                             <thead>
                                 <tr>
                                     <th class="text-center align-middle" col>No</th>

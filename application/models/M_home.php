@@ -139,6 +139,12 @@ class M_home extends CI_Model
             return null;
         }
     }
+
+    public function insert_ket($data_perm)
+    {
+        $this->db->insert('tb_perm', $data_perm);
+        return $this->db->insert_id();
+    }
 }
 
 /* End of file M_home.php */

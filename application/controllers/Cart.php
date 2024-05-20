@@ -48,23 +48,6 @@ class Cart extends CI_Controller
         $this->load->view('layout/v_home_wrapper', $data, FALSE);
     }
 
-    public function update()
-    {
-        $i = 1;
-        foreach ($this->cart->contents() as $items) {
-            $data = array(
-                'rowid' => $items['rowid'],
-                'qty'   => $this->input->post($i . '[qty]')
-            );
-
-            $this->cart->update($data);
-            $i++;
-        }
-
-        $this->session->set_flashdata('success', 'Permintaan berhasil diupdate.');
-        redirect('cart/detail');
-    }
-
     public function clear()
     {
         $this->cart->destroy();
@@ -80,48 +63,52 @@ class Cart extends CI_Controller
 
     public function simpan()
     {
-        // Check if user is logged in
-        if (!$this->session->userdata('id_user')) {
-            // User is not logged in, redirect to login page
-            $this->session->set_flashdata('warning', 'Silakan login terlebih dahulu untuk menyimpan data.');
-            redirect('login'); // Redirect to your login page
-        }
+        $action = $this->input->post('action');
 
-        $this->form_validation->set_rules('keterangan', 'Keterangan', 'trim|required', [
-            'required'       => '%s harus diisi!',
-        ]);
+        if ($action == 'tambah') {
+            if (!$this->session->userdata('id_user')) {
+                $this->session->set_flashdata('warning', 'Silakan login terlebih dahulu untuk menyimpan data.');
+                redirect('login');
+            }
 
-        if ($this->form_validation->run() == true) {
-            // Retrieve cart data
             $cart_items = $this->cart->contents();
-
-            // Ambil ID user dari sesi atau dari hasil login
             $id_user = $this->session->userdata('id_user');
-
-            // Buat kode perm sesuai dengan ID user
             $kode_perm = "PERM" . '_' . $id_user . '_' . uniqid();
 
-            // Insert into 'tb_perm' and collect inserted IDs
             $inserted_ids = array();
-            foreach ($cart_items as $item) {
+            foreach ($cart_items as $i => $item) {
                 $sub_total = $item['subtotal'] != 0 ? $item['subtotal'] : null;
+
+                $qty = $this->input->post($item['rowid'] . '[qty]');
+                // Validasi qty tidak boleh kosong
+                if (empty($qty)) {
+                    $this->session->set_flashdata('warning', 'Jumlah barang tidak boleh kosong.');
+                    redirect('cart/detail');
+                }
+
+                $keterangan = $this->input->post($item['rowid'] . '_keterangan');
+                // Validasi keterangan tidak boleh kosong
+                if (empty($keterangan)) {
+                    $this->session->set_flashdata('warning', 'Keterangan barang tidak boleh kosong.');
+                    redirect('cart/detail');
+                }
+
                 $data_perm = array(
                     'kode_perm' => $kode_perm,
                     'id_user' => $id_user,
                     'id_barang' => $item['id'],
-                    'jumlah_perm' => $item['qty'],
+                    'jumlah_perm' => $qty,
                     'sub_total' => $sub_total,
+                    'ket' => $keterangan
                 );
                 $this->db->insert('tb_perm', $data_perm);
-                $inserted_ids[] = $this->db->insert_id(); // Collect inserted IDs
+                $inserted_ids[] = $this->db->insert_id();
             }
 
             date_default_timezone_set('Asia/Jakarta');
 
-            // Calculate total_bayar and set it to null if it's zero
             $total_bayar = $this->cart->total() != 0 ? $this->cart->total() : null;
 
-            // Insert into 'tb_konfperm' using the first inserted ID
             if (!empty($inserted_ids)) {
                 $first_inserted_id = $inserted_ids[0];
                 $data_konfperm = array(
@@ -129,28 +116,42 @@ class Cart extends CI_Controller
                     'tanggal_konfperm' => date('Y-m-d H:i:s'),
                     'status_konfperm' => 1,
                     'total_bayar' => $total_bayar,
-                    'keterangan' => $this->input->post('keterangan')
                 );
                 $this->db->insert('tb_konfperm', $data_konfperm);
             }
 
-            // Clear the cart after saving data
             $this->cart->destroy();
 
             $this->session->set_flashdata('success', 'Permintaan berhasil ditambahkan.');
-            // Redirect or show success message
             redirect('home');
-        }
 
-        if (empty($this->cart->contents())) {
-            redirect('home');
-        }
+            if (empty($this->cart->contents())) {
+                redirect('home');
+            }
 
-        $data = array(
-            'title'         => 'Detail Barang Permintaan',
-            'konten'        => 'home/v_detail_cart',
-        );
-        $this->load->view('layout/v_home_wrapper', $data, FALSE);
+            $data = array(
+                'title_website' => 'Simpan | ATK DPMPTSP Kabupaten Agam',
+                'home'         => 'Home',
+                'title1'         => 'Detail',
+                'title2'        => 'Detail Barang Permintaan',
+                'konten'        => 'home/v_detail_cart',
+            );
+            $this->load->view('layout/v_home_wrapper', $data, FALSE);
+        } elseif ($action == 'perbarui') {
+            $i = 1;
+            foreach ($this->cart->contents() as $items) {
+                $data = array(
+                    'rowid' => $items['rowid'],
+                    'qty'   => $this->input->post($i . '[qty]')
+                );
+
+                $this->cart->update($data);
+                $i++;
+            }
+
+            $this->session->set_flashdata('success', 'Permintaan berhasil diupdate.');
+            redirect('cart/detail');
+        }
     }
 }
 

@@ -9,14 +9,14 @@
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">
-                        <?php if ($this->session->userdata('id_role') != 2 && $this->session->userdata('id_role') != 3 && $this->session->userdata('id_role') != 4) : ?>
+                        <!-- <?php if ($this->session->userdata('id_role') != 2 && $this->session->userdata('id_role') != 3 && $this->session->userdata('id_role') != 4) : ?>
                             <div class="d-flex mb-3">
                                 <a href="<?= base_url('permintaan/add'); ?>" class="btn btn-outline-primary btn-sm">
                                     <i class="fas fa-plus p-1"></i>
                                     Tambah Data
                                 </a>
                             </div>
-                        <?php endif; ?>
+                        <?php endif; ?> -->
                         <table id="TabelData1" class="table table-bordered table-sm table-hover">
                             <thead>
                                 <tr>

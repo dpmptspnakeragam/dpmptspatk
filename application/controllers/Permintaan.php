@@ -105,7 +105,7 @@ class Permintaan extends CI_Controller
 
         $this->M_permintaan->konfirmasi_permintaan($id_konfperm, $data_konfirmasi);
 
-        $this->session->set_flashdata('success', 'Permintaan berhasil dikonfirmasi.');
+        $this->session->set_flashdata('success', 'Permintaan berhasil dikonfirmasi oleh Kasubag Umum.');
         redirect('permintaan', 'refresh');
     }
 
@@ -117,7 +117,7 @@ class Permintaan extends CI_Controller
 
         $this->M_permintaan->konfirmasi_permintaan($id_konfperm, $data_konfirmasi);
 
-        $this->session->set_flashdata('success', 'Permintaan berhasil dikonfirmasi.');
+        $this->session->set_flashdata('success', 'Permintaan berhasil dikonfirmasi oleh Sekretaris.');
         redirect('permintaan', 'refresh');
     }
 
@@ -130,7 +130,7 @@ class Permintaan extends CI_Controller
 
         $this->M_permintaan->konfirmasi_permintaan($id_konfperm, $data_konfirmasi);
 
-        $this->session->set_flashdata('success', 'Permintaan berhasil dikonfirmasi dan ditanda tangan.');
+        $this->session->set_flashdata('success', 'Permintaan berhasil dikonfirmasi oleh Kepala Dinas.');
         redirect('permintaan', 'refresh');
     }
     // ------------------------- ./Konfirmasi permintaan 1, 2, dan 3 -------------------------

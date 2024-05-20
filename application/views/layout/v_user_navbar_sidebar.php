@@ -80,7 +80,6 @@
                 <div class="user-panel mb-1 d-flex"></div>
 
                 <?php if ($data_login->id_role == 1) : ?>
-
                     <li class="nav-item <?= in_array(
                                             $this->uri->segment(1),
                                             [
@@ -142,8 +141,6 @@
                             </li>
                         </ul>
                     </li>
-
-                    <div class="user-panel mb-1 d-flex"></div>
                 <?php endif; ?>
 
                 <li class="nav-item <?= in_array(
@@ -175,14 +172,13 @@
                         </li>
                         <li class="nav-item">
                             <a href="<?= base_url('tte_index'); ?>" class="nav-link <?= $this->uri->segment(1) == 'tte_index' ? 'active' : ''; ?>">
-                                <i class="<?= $this->uri->segment(2) == 'tte_index' ? 'fas' : 'far'; ?> fa-circle nav-icon <?= $this->uri->segment(2) == 'tte_index' ? 'text-primary' : ''; ?>"></i>
+                                <i class="<?= $this->uri->segment(1) == 'tte_index' ? 'fas' : 'far'; ?> fa-circle nav-icon <?= $this->uri->segment(1) == 'tte_index' ? 'text-primary' : ''; ?>"></i>
                                 <p>TTE ATK</p>
                             </a>
                         </li>
                     </ul>
                 </li>
 
-                <div class="user-panel mb-1 d-flex"></div>
 
                 <?php if ($data_login->id_role == 1) : ?>
                     <li class="nav-item <?= in_array(
@@ -213,7 +209,33 @@
                         </ul>
                     </li>
 
-                    <div class="user-panel mb-1 d-flex"></div>
+                    <li class="nav-item <?= in_array(
+                                            $this->uri->segment(1),
+                                            [
+                                                'role',
+                                            ]
+                                        ) ? 'menu-open' : ''; ?>">
+                        <a href="" class="nav-link <?= in_array(
+                                                        $this->uri->segment(1),
+                                                        [
+                                                            'role',
+                                                        ]
+                                                    ) ? 'active' : ''; ?>">
+                            <i class="nav-icon fas fa-file-invoice"></i>
+                            <p>
+                                Report
+                                <i class="right fas fa-angle-left"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="<?= base_url('rekap_barang'); ?>" class="nav-link <?= $this->uri->segment(1) == 'rekap_barang' ? 'active' : ''; ?>">
+                                    <i class="<?= $this->uri->segment(1) == 'rekap_barang' ? 'fas' : 'far'; ?> fa-circle nav-icon <?= $this->uri->segment(1) == 'rekap_barang' ? 'text-primary' : ''; ?>"></i>
+                                    <p>Rekap Barang</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
                 <?php endif; ?>
 
             </ul>
