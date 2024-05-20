@@ -213,7 +213,7 @@ class Permintaan extends CI_Controller
             $this->session->set_flashdata('error', 'Gagal menghapus data. Kode permintaan tidak ditemukan.');
         }
 
-        redirect('tte_index', 'refresh');
+        redirect('view_laporan_perm', 'refresh');
     }
     // ------------------------- ./menghapus data riwayat permintaan atk -------------------------
 
