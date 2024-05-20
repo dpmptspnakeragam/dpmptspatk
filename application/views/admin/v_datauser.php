@@ -11,7 +11,7 @@
                     <div class="card-body">
 
                         <div class="d-flex mb-3">
-                            <a href="<?= base_url('datauser/add'); ?>" class="btn btn-outline-primary btn-sm">
+                            <a href="<?= base_url('datauser/add'); ?>" class="btn btn-outline-primary">
                                 <i class="fas fa-plus p-1"></i>
                                 Tambah Data
                             </a>
@@ -65,9 +65,9 @@
                                             <?php endif; ?>
                                         </td>
                                         <td class="text-center align-middle">
-                                            <a href="<?= base_url('datauser/update/' . $value->id_user); ?>" class="btn btn-outline-info btn-sm"><i class="fas fa-edit"></i></a>
+                                            <a href="<?= base_url('datauser/update/' . $value->id_user); ?>" class="btn btn-outline-info"><i class="fas fa-edit"></i></a>
                                             <?php if ($value->id_user != 1) : ?>
-                                                <button type="button" data-toggle="modal" data-target="#deleteUser<?= $value->id_user; ?>" class="btn btn-outline-danger btn-sm"><i class="fas fa-trash-alt"></i></button>
+                                                <button type="button" data-toggle="modal" data-target="#deleteUser<?= $value->id_user; ?>" class="btn btn-outline-danger"><i class="fas fa-trash-alt"></i></button>
                                             <?php endif; ?>
                                         </td>
                                     </tr>

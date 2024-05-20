@@ -11,7 +11,7 @@
                     <div class="card-body">
 
                         <div class="d-flex mb-3">
-                            <a href="<?= base_url('databarang/add'); ?>" class="btn btn-outline-primary btn-sm">
+                            <a href="<?= base_url('databarang/add'); ?>" class="btn btn-outline-primary">
                                 <i class="fas fa-plus p-1"></i>
                                 Tambah Data
                             </a>
@@ -37,9 +37,9 @@
                                         <td class="text-center align-middle">Rp. <?= number_format($value->harga, 0, ',', '.'); ?> / <?= $value->nama_satuan; ?></td>
 
                                         <td class="text-center align-middle">
-                                            <button type="button" data-toggle="modal" data-target="#detailBarang<?= $value->id_barang; ?>" class="btn btn-outline-primary btn-sm"><i class="fas fa-search"></i></button>
-                                            <a href="<?= base_url('databarang/update/' . $value->id_barang); ?>" class="btn btn-outline-info btn-sm"><i class="fas fa-edit"></i></a>
-                                            <button type="button" data-toggle="modal" data-target="#deleteBarang<?= $value->id_barang; ?>" class="btn btn-outline-danger btn-sm"><i class="fas fa-trash-alt"></i></button>
+                                            <button type="button" data-toggle="modal" data-target="#detailBarang<?= $value->id_barang; ?>" class="btn btn-outline-primary"><i class="fas fa-search"></i></button>
+                                            <a href="<?= base_url('databarang/update/' . $value->id_barang); ?>" class="btn btn-outline-info"><i class="fas fa-edit"></i></a>
+                                            <button type="button" data-toggle="modal" data-target="#deleteBarang<?= $value->id_barang; ?>" class="btn btn-outline-danger"><i class="fas fa-trash-alt"></i></button>
                                         </td>
                                     </tr>
                                 <?php endforeach; ?>

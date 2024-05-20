@@ -61,7 +61,7 @@
                                     </td>
 
                                     <td class="text-center">
-                                        <a href="<?= base_url('cart/delete/' . $items['rowid']); ?>" class="btn btn-sm btn-danger"><i class="fas fa-trash-alt"></i></a>
+                                        <a href="<?= base_url('cart/delete/' . $items['rowid']); ?>" class="btn btn-outline-danger"><i class="fas fa-trash-alt"></i></a>
                                     </td>
                                 </tr>
                                 <?php $i++; ?>
@@ -82,9 +82,9 @@
                     </table>
                 </div>
                 <div class="card-footer">
-                    <button type="submit" name="action" value="tambah" class="btn btn-sm btn-primary">Tambah</button>
-                    <button type="submit" name="action" value="perbarui" class="btn btn-sm btn-success">Perbarui</button>
-                    <a href="<?= base_url('cart/clear'); ?>" class="btn btn-sm btn-danger">Batal</a>
+                    <button type="submit" name="action" value="tambah" class="btn btn-outline-primary">Tambah</button>
+                    <button type="submit" name="action" value="perbarui" class="btn btn-outline-success">Perbarui</button>
+                    <a href="<?= base_url('cart/clear'); ?>" class="btn btn-outline-danger">Batal</a>
                 </div>
                 <?= form_close(); ?>
             </div>

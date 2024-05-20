@@ -11,7 +11,7 @@
                     <div class="card-body">
                         <!-- <?php if ($this->session->userdata('id_role') != 2 && $this->session->userdata('id_role') != 3 && $this->session->userdata('id_role') != 4) : ?>
                             <div class="d-flex mb-3">
-                                <a href="<?= base_url('permintaan/add'); ?>" class="btn btn-outline-primary btn-sm">
+                                <a href="<?= base_url('permintaan/add'); ?>" class="btn btn-outline-primary">
                                     <i class="fas fa-plus p-1"></i>
                                     Tambah Data
                                 </a>
@@ -71,17 +71,17 @@
                                                 <?php endif; ?>
                                             </td>
                                             <!-- <td class="text-center align-middle">
-                                                <button type="button" data-toggle="modal" data-target="#detail<?= $value->id_konfperm; ?>" class="btn btn-outline-success btn-sm"><i class="fas fa-search"></i></button>
+                                                <button type="button" data-toggle="modal" data-target="#detail<?= $value->id_konfperm; ?>" class="btn btn-outline-success"><i class="fas fa-search"></i></button>
                                             </td> -->
                                             <td class="text-center align-middle">
 
                                                 <?php if ($this->session->userdata('id_role') != 5) : ?>
                                                     <?php if ($value->status_konfperm == 1 && in_array($this->session->userdata('id_user'), [1, 4])) : ?>
-                                                        <button type="button" data-toggle="modal" data-target="#konfirmasi1<?= $value->id_konfperm; ?>" class="btn btn-outline-primary btn-sm mt-1 mb-1"><i class="fas fa-check"></i></button>
+                                                        <button type="button" data-toggle="modal" data-target="#konfirmasi1<?= $value->id_konfperm; ?>" class="btn btn-outline-primary mt-1 mb-1"><i class="fas fa-check"></i></button>
                                                     <?php elseif ($value->status_konfperm == 2 && in_array($this->session->userdata('id_user'), [1, 3])) : ?>
-                                                        <button type="button" data-toggle="modal" data-target="#konfirmasi2<?= $value->id_konfperm; ?>" class="btn btn-outline-primary btn-sm mt-1 mb-1"><i class="fas fa-check-double"></i></button>
+                                                        <button type="button" data-toggle="modal" data-target="#konfirmasi2<?= $value->id_konfperm; ?>" class="btn btn-outline-primary mt-1 mb-1"><i class="fas fa-check-double"></i></button>
                                                     <?php elseif ($value->status_konfperm == 3 && in_array($this->session->userdata('id_user'), [1, 2])) : ?>
-                                                        <button type="button" data-toggle="modal" data-target="#konfirmasi3<?= $value->id_konfperm; ?>" class="btn btn-outline-primary btn-sm mt-1 mb-1"><i class="fas fa-tasks"></i></button>
+                                                        <button type="button" data-toggle="modal" data-target="#konfirmasi3<?= $value->id_konfperm; ?>" class="btn btn-outline-primary mt-1 mb-1"><i class="fas fa-tasks"></i></button>
                                                     <?php endif; ?>
                                                 <?php endif; ?>
 
@@ -91,13 +91,13 @@
                                                     <?php elseif ($value->status_konfperm == 3 && ($this->session->userdata('id_role') == 4 || $this->session->userdata('id_role') == 3)) : ?>
                                                         <!-- Kosongkan bagian ini untuk menyembunyikan button -->
                                                     <?php else : ?>
-                                                        <button type="button" data-toggle="modal" data-target="#tolak<?= $value->id_konfperm; ?>" class="btn btn-outline-danger btn-sm mt-1 mb-1"><i class="fas fa-window-close"></i></button>
+                                                        <button type="button" data-toggle="modal" data-target="#tolak<?= $value->id_konfperm; ?>" class="btn btn-outline-danger mt-1 mb-1"><i class="fas fa-window-close"></i></button>
                                                     <?php endif; ?>
                                                 <?php endif; ?>
 
                                                 <?php if ($this->session->userdata('id_role') != 2 && $this->session->userdata('id_role') != 3 && $this->session->userdata('id_role') != 4) : ?>
                                                     <?php if ($nama_user && ($nama_user->id_user == $this->session->userdata('id_user') || $this->session->userdata('id_user') == 1)) : ?>
-                                                        <button type="button" data-toggle="modal" data-target="#batalkan<?= $value->id_konfperm; ?>" class="btn btn-outline-danger btn-sm"><i class="fas fa-trash-alt"></i></button>
+                                                        <button type="button" data-toggle="modal" data-target="#batalkan<?= $value->id_konfperm; ?>" class="btn btn-outline-danger"><i class="fas fa-trash-alt"></i></button>
                                                     <?php endif; ?>
                                                 <?php endif; ?>
 

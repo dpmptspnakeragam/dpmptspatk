@@ -42,7 +42,7 @@
                                 <?= form_hidden('price', $value->harga); ?>
                                 <?= form_hidden('name', $value->nama_barang); ?>
                                 <?= form_hidden('redirect_page', str_replace('index.php/', '', current_url())); ?>
-                                <div class="card-barang shadow-lg img-thumbnail">
+                                <div class="card-barang shadow-lg img-thumbnail ">
                                     <div class="gambar-barang">
                                         <a href="<?= base_url('assets/image/barang/' . $value->gambar); ?>" data-toggle="lightbox">
                                             <img src="<?= base_url('assets/image/barang/' . $value->gambar); ?>" class="img-thumbnail">
@@ -60,10 +60,10 @@
                                                 Rp. <?= number_format($value->harga, 0, ',', '.'); ?> / <?= $value->nama_satuan; ?>
                                             </a>
                                         </div>
-                                        <div class="text-center">
-                                            <a href="<?= base_url('home/detail/' . $value->id_barang); ?>" class="btn btn-sm btn-info"><i class="fas fa-search"></i></a>
-                                            <button class="btn btn-sm btn-primary swalDefaultSuccess"><i class="fas fa-cart-plus"></i></button>
-                                        </div>
+                                    </div>
+                                    <div class="text-center">
+                                        <a href="<?= base_url('home/detail/' . $value->id_barang); ?>" class="btn btn-outline-success mt-2 mb-2"><i class="fas fa-search"></i> Detail</a>
+                                        <button class="btn btn-outline-primary swalDefaultSuccess mt-2 mb-2"><i class="fas fa-cart-plus"></i></button>
                                     </div>
                                 </div>
                                 <?= form_close(); ?>
@@ -157,7 +157,7 @@
 
     .konten-card {
         position: absolute;
-        bottom: 20px;
+        bottom: 70px;
         left: 20px;
         right: 20px;
         background-color: rgba(0, 0, 0, 0.5);

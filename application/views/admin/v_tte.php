@@ -68,8 +68,7 @@
                                                 <?php if (($value->status_konfperm == 'Selesai' || $value->status_konfperm == 'Menunggu')) : ?>
                                                     <?php if (!empty($value->qr_code)) : ?>
                                                         <!-- Jika qr_code sudah ada, tampilkan tombol Print -->
-                                                        <!-- <a href="<?= base_url('permintaan/cetak/' . $value->id_konfperm); ?>" class="btn btn-outline-success btn-sm"><i class="fas fa-print"></i> Print</a> -->
-                                                        <button class="btn btn-outline-success btn-sm" onclick="print(<?= $value->id_konfperm; ?>)">
+                                                        <button class="btn btn-outline-success" onclick="print(<?= $value->id_konfperm; ?>)">
                                                             <i class="fas fa-print"></i> Print
                                                         </button>
                                                         <script>
@@ -81,13 +80,13 @@
                                                     <?php else : ?>
                                                         <?php if (in_array($this->session->userdata('id_user'), [1, 2])) : ?>
                                                             <!-- Jika qr_code belum ada, tampilkan tombol TTE -->
-                                                            <a href="<?= base_url('permintaan/tte/' . $value->id_konfperm); ?>" class="btn btn-outline-primary btn-sm"><i class="fas fa-qrcode"></i> TTE</a>
+                                                            <a href="<?= base_url('permintaan/tte/' . $value->id_konfperm); ?>" class="btn btn-outline-primary"><i class="fas fa-qrcode"></i> TTE</a>
                                                         <?php endif; ?>
                                                     <?php endif; ?>
                                                 <?php endif; ?>
 
                                                 <?php if ($this->session->userdata('id_role') == 1) : ?>
-                                                    <button type="button" data-toggle="modal" data-target="#delete_riwayat_konfperm<?= $value->id_konfperm; ?>" class="btn btn-outline-danger btn-sm">
+                                                    <button type="button" data-toggle="modal" data-target="#delete_riwayat_konfperm<?= $value->id_konfperm; ?>" class="btn btn-outline-danger">
                                                         <i class="fas fa-trash-alt"></i>
                                                     </button>
                                                 <?php endif; ?>
@@ -170,8 +169,7 @@
                                                 <?php if (($value->status_konfperm == 'Selesai' || $value->status_konfperm == 'Menunggu')) : ?>
                                                     <?php if (!empty($value->qr_code)) : ?>
                                                         <!-- Jika qr_code sudah ada, tampilkan tombol Print -->
-                                                        <!-- <a href="<?= base_url('permintaan/cetak/' . $value->id_konfperm); ?>" class="btn btn-outline-success btn-sm"><i class="fas fa-print"></i> Print</a> -->
-                                                        <button class="btn btn-outline-success btn-sm" onclick="print(<?= $value->id_konfperm; ?>)">
+                                                        <button class="btn btn-outline-success" onclick="print(<?= $value->id_konfperm; ?>)">
                                                             <i class="fas fa-print"></i> Print
                                                         </button>
                                                         <script>
@@ -183,13 +181,13 @@
                                                     <?php else : ?>
                                                         <?php if (in_array($this->session->userdata('id_user'), [1, 2])) : ?>
                                                             <!-- Jika qr_code belum ada, tampilkan tombol TTE -->
-                                                            <a href="<?= base_url('permintaan/tte/' . $value->id_konfperm); ?>" class="btn btn-outline-primary btn-sm"><i class="fas fa-qrcode"></i> TTE</a>
+                                                            <a href="<?= base_url('permintaan/tte/' . $value->id_konfperm); ?>" class="btn btn-outline-primary"><i class="fas fa-qrcode"></i> TTE</a>
                                                         <?php endif; ?>
                                                     <?php endif; ?>
                                                 <?php endif; ?>
 
                                                 <?php if ($this->session->userdata('id_role') == 1) : ?>
-                                                    <button type="button" data-toggle="modal" data-target="#delete_riwayat_konfperm<?= $value->id_konfperm; ?>" class="btn btn-outline-danger btn-sm">
+                                                    <button type="button" data-toggle="modal" data-target="#delete_riwayat_konfperm<?= $value->id_konfperm; ?>" class="btn btn-outline-danger">
                                                         <i class="fas fa-trash-alt"></i>
                                                     </button>
                                                 <?php endif; ?>

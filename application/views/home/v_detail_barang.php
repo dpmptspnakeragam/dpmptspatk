@@ -29,16 +29,10 @@
                         <?= form_hidden('price', $detail_barang->harga); ?>
                         <?= form_hidden('name', $detail_barang->nama_barang); ?>
                         <?= form_hidden('redirect_page', str_replace('index.php/', '', current_url())); ?>
-                        <button type="submit" class="btn btn-primary btn-sm btn-flat swalDefaultSuccess">
-                            <i class="fas fa-cart-plus fa-lg mr-2"></i>
-                            Masukan Keranjang
-                        </button>
+                        <button type="submit" class="btn btn-outline-primary swalDefaultSuccess"><i class="fas fa-cart-plus"></i> Tambah</button>
                         <?= form_close(); ?>
 
-                        <a href="<?= base_url('home'); ?>" class="btn btn-default btn-sm btn-flat float-none">
-                            <i class="fas fa-home fa-lg mr-2"></i>
-                            Kembali
-                        </a>
+                        <a href="<?= base_url('home'); ?>" class="btn btn-outline-secondary"><i class="fas fa-home "></i> Kembali</a>
                     </div>
                 </div>
             </div>
