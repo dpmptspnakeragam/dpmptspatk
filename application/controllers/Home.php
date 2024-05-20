@@ -160,7 +160,9 @@ class Home extends CI_Controller
 			'title2'        => $detail,
 			'konten'        => 'home/v_detail_barang',
 			'detail_barang' => $this->M_home->ambil_detail_barang($id_barang),
-			'view_barang'	=> $this->M_home->ambil_barang()
+			'view_barang'	=> $this->M_home->ambil_barang(),
+			'kategori'      => $this->M_home->kategori(),
+			'produk'        => $this->M_home->produk(),
 		);
 
 		$this->load->view('layout/v_home_wrapper', $data, FALSE);
