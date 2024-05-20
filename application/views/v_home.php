@@ -27,51 +27,45 @@
         </div>
         <div class="card-body pb-0">
             <div class="row">
-                <?php if (isset($pesan)) : ?>
-                    <div class="alert alert-danger" role="alert">
-                        <?= $pesan; ?>
-                    </div>
-                <?php else : ?>
-                    <?php $counter = 0; ?>
-                    <?php foreach ($view_barang as $b => $value) : ?>
-                        <?php if ($counter < 12) : ?>
-                            <div class="col-6 col-sm-4 col-md-3 col-lg-3 d-flex align-items-stretch flex-column">
-                                <?= form_open('cart/add'); ?>
-                                <?= form_hidden('id', $value->id_barang); ?>
-                                <?= form_hidden('qty', 1); ?>
-                                <?= form_hidden('price', $value->harga); ?>
-                                <?= form_hidden('name', $value->nama_barang); ?>
-                                <?= form_hidden('redirect_page', str_replace('index.php/', '', current_url())); ?>
-                                <div class="card-barang shadow-lg img-thumbnail ">
-                                    <div class="gambar-barang">
-                                        <a href="<?= base_url('assets/image/barang/' . $value->gambar); ?>" data-toggle="lightbox">
-                                            <img src="<?= base_url('assets/image/barang/' . $value->gambar); ?>" class="img-thumbnail">
+                <?php $counter = 0; ?>
+                <?php foreach ($view_barang as $b => $value) : ?>
+                    <?php if ($counter < 12) : ?>
+                        <div class="col-6 col-sm-4 col-md-3 col-lg-3 d-flex align-items-stretch flex-column">
+                            <?= form_open('cart/add'); ?>
+                            <?= form_hidden('id', $value->id_barang); ?>
+                            <?= form_hidden('qty', 1); ?>
+                            <?= form_hidden('price', $value->harga); ?>
+                            <?= form_hidden('name', $value->nama_barang); ?>
+                            <?= form_hidden('redirect_page', str_replace('index.php/', '', current_url())); ?>
+                            <div class="card-barang shadow-lg img-thumbnail ">
+                                <div class="gambar-barang">
+                                    <a href="<?= base_url('assets/image/barang/' . $value->gambar); ?>" data-toggle="lightbox">
+                                        <img src="<?= base_url('assets/image/barang/' . $value->gambar); ?>" class="img-thumbnail">
+                                    </a>
+                                </div>
+                                <div class="konten-card">
+                                    <h6>
+                                        <strong>
+                                            <?= $value->nama_barang; ?>
+                                        </strong>
+                                    </h6>
+                                    <hr class="bg-white mt-1 mb-1">
+                                    <div class="text-center mb-2">
+                                        <a href="#" class="text-white">
+                                            Rp. <?= number_format($value->harga, 0, ',', '.'); ?> / <?= $value->nama_satuan; ?>
                                         </a>
                                     </div>
-                                    <div class="konten-card">
-                                        <h6>
-                                            <strong>
-                                                <?= $value->nama_barang; ?>
-                                            </strong>
-                                        </h6>
-                                        <hr class="bg-white mt-1 mb-1">
-                                        <div class="text-center mb-2">
-                                            <a href="#" class="text-white">
-                                                Rp. <?= number_format($value->harga, 0, ',', '.'); ?> / <?= $value->nama_satuan; ?>
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <div class="text-center">
-                                        <a href="<?= base_url('home/detail/' . $value->id_barang); ?>" class="btn btn-outline-success mt-2 mb-2"><i class="fas fa-search"></i> Detail</a>
-                                        <button class="btn btn-outline-primary swalDefaultSuccess mt-2 mb-2"><i class="fas fa-cart-plus"></i></button>
-                                    </div>
                                 </div>
-                                <?= form_close(); ?>
+                                <div class="text-center">
+                                    <a href="<?= base_url('home/detail/' . $value->id_barang); ?>" class="btn btn-outline-success mt-2 mb-2"><i class="fas fa-search"></i> Detail</a>
+                                    <button class="btn btn-outline-primary swalDefaultSuccess mt-2 mb-2"><i class="fas fa-cart-plus"></i></button>
+                                </div>
                             </div>
-                        <?php endif; ?>
+                            <?= form_close(); ?>
+                        </div>
                         <?php $counter++; ?>
-                    <?php endforeach; ?>
-                <?php endif; ?>
+                    <?php endif; ?>
+                <?php endforeach; ?>
             </div>
         </div>
         <div class="card-footer bg-transparent">
