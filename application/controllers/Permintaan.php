@@ -27,8 +27,8 @@ class Permintaan extends CI_Controller
     {
         $data = [
             'home' => 'Transaksi',
-            'title' => 'Permintaan ATK',
-            'action' => 'Permintaan ATK',
+            'title' => 'Permintaan',
+            'action' => 'Permintaan',
             'konten'    => 'admin/v_permintaan',
             'data_konfperm' => $this->M_permintaan->tampilkan_tabel_konfperm(),
         ];
@@ -173,8 +173,8 @@ class Permintaan extends CI_Controller
     {
         $data = [
             'home' => 'Transaksi',
-            'title' => 'Permintaan ATK',
-            'action' => 'Permintaan ATK',
+            'title' => 'Tanda Tangan Elektronik',
+            'action' => 'Tanda Tangan Elektronik',
             'konten'    => 'admin/v_tte',
             'data_konfperm' => $this->M_permintaan->tampilkan_tabel_konfperm(),
         ];
@@ -266,6 +266,23 @@ class Permintaan extends CI_Controller
     }
 
     // ------------------------- ./Bagian View TTE Permintaan ATK -------------------------
+
+    // awal
+    public function view_laporan_perm()
+    {
+        $data = [
+            'home' => 'Laporan',
+            'title' => 'Permintaan',
+            'action' => 'Permintaan',
+            'konten'    => 'admin/laporan/v_permintaan',
+            'data_konfperm' => $this->M_permintaan->tampilkan_tabel_konfperm(),
+        ];
+        $this->load->view('layout/v_user_wrapper', $data, FALSE);
+
+        // load model konfirmasi, delete permintaan
+        $this->load->view('admin/permintaan/v_delete_rkp', $data, FALSE);
+    }
+    // akhir
 }
 
 /* End of file Permintaan.php */

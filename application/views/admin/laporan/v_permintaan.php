@@ -6,11 +6,11 @@
             <div class="col-12">
                 <div class="card card-outline card-primary">
                     <div class="card-header">
-                        <h3 class="card-title">Tabel <?= $action; ?></h3>
+                        <h3 class="card-title">Tabel Riwayat <?= $action; ?></h3>
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">
-                        <table id="TabelData1" class="table table-bordered table-sm table-hover">
+                        <table id="TabelData2" class="table table-bordered table-sm table-hover">
                             <thead>
                                 <tr>
                                     <th class="text-center align-middle" col>No</th>
@@ -23,7 +23,7 @@
                             <tbody>
                                 <?php $count = 1; ?>
                                 <?php foreach ($data_konfperm as $pm => $value) : ?>
-                                    <?php if ($value->status_konfperm == 'Menunggu') : ?>
+                                    <?php if ($value->status_konfperm == 'Selesai' || $value->status_konfperm == 'Ditolak') : ?>
 
                                         <?php
                                         // Panggil query untuk mendapatkan nama user berdasarkan kode permintaan

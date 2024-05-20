@@ -57,4 +57,5 @@ $route['home/(:num)'] = 'Home/index/$1';
 $route['home/kategori/(:num)'] = 'Home/kategori/$1';
 
 $route['tte_index'] = 'permintaan/tte_index';
+$route['laporan_permintaan'] = 'permintaan/view_laporan_perm';
 $route['logout'] = 'login/logout';

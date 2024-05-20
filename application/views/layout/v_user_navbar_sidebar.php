@@ -167,13 +167,13 @@
                         <li class="nav-item">
                             <a href="<?= base_url('permintaan'); ?>" class="nav-link <?= $this->uri->segment(1) == 'permintaan' ? 'active' : ''; ?>">
                                 <i class="<?= $this->uri->segment(1) == 'permintaan' ? 'fas' : 'far'; ?> fa-circle nav-icon <?= $this->uri->segment(1) == 'permintaan' ? 'text-primary' : ''; ?>"></i>
-                                <p>Permintaan ATK</p>
+                                <p>Permintaan</p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a href="<?= base_url('tte_index'); ?>" class="nav-link <?= $this->uri->segment(1) == 'tte_index' ? 'active' : ''; ?>">
                                 <i class="<?= $this->uri->segment(1) == 'tte_index' ? 'fas' : 'far'; ?> fa-circle nav-icon <?= $this->uri->segment(1) == 'tte_index' ? 'text-primary' : ''; ?>"></i>
-                                <p>TTE ATK</p>
+                                <p>TTE</p>
                             </a>
                         </li>
                     </ul>
@@ -208,35 +208,46 @@
                             </li>
                         </ul>
                     </li>
-
-                    <li class="nav-item <?= in_array(
-                                            $this->uri->segment(1),
-                                            [
-                                                'role',
-                                            ]
-                                        ) ? 'menu-open' : ''; ?>">
-                        <a href="" class="nav-link <?= in_array(
-                                                        $this->uri->segment(1),
-                                                        [
-                                                            'role',
-                                                        ]
-                                                    ) ? 'active' : ''; ?>">
-                            <i class="nav-icon fas fa-file-invoice"></i>
-                            <p>
-                                Report
-                                <i class="right fas fa-angle-left"></i>
-                            </p>
-                        </a>
-                        <ul class="nav nav-treeview">
-                            <li class="nav-item">
-                                <a href="<?= base_url('rekap_barang'); ?>" class="nav-link <?= $this->uri->segment(1) == 'rekap_barang' ? 'active' : ''; ?>">
-                                    <i class="<?= $this->uri->segment(1) == 'rekap_barang' ? 'fas' : 'far'; ?> fa-circle nav-icon <?= $this->uri->segment(1) == 'rekap_barang' ? 'text-primary' : ''; ?>"></i>
-                                    <p>Rekap Barang</p>
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
                 <?php endif; ?>
+
+                <li class="nav-item <?= in_array(
+                                        $this->uri->segment(1),
+                                        [
+                                            'laporan_permintaan',
+                                            'rekap_barang',
+                                        ]
+                                    ) ? 'menu-open' : ''; ?>">
+                    <a href="" class="nav-link <?= in_array(
+                                                    $this->uri->segment(1),
+                                                    [
+                                                        'laporan_permintaan',
+                                                        'rekap_barang',
+                                                    ]
+                                                ) ? 'active' : ''; ?>">
+                        <i class="nav-icon fas fa-file-invoice"></i>
+                        <p>
+                            Laporan
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="<?= base_url('laporan_permintaan'); ?>" class="nav-link <?= $this->uri->segment(1) == 'laporan_permintaan' ? 'active' : ''; ?>">
+                                <i class="<?= $this->uri->segment(1) == 'laporan_permintaan' ? 'fas' : 'far'; ?> fa-circle nav-icon <?= $this->uri->segment(1) == 'laporan_permintaan' ? 'text-primary' : ''; ?>"></i>
+                                <p>Permintaan</p>
+                            </a>
+                        </li>
+                    </ul>
+                    <!-- <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="<?= base_url('rekap_barang'); ?>" class="nav-link <?= $this->uri->segment(1) == 'rekap_barang' ? 'active' : ''; ?>">
+                                <i class="<?= $this->uri->segment(1) == 'rekap_barang' ? 'fas' : 'far'; ?> fa-circle nav-icon <?= $this->uri->segment(1) == 'rekap_barang' ? 'text-primary' : ''; ?>"></i>
+                                <p>Rekap Barang</p>
+                            </a>
+                        </li>
+                    </ul> -->
+                </li>
+
 
             </ul>
         </nav>
