@@ -44,6 +44,8 @@ class Cart extends CI_Controller
             'title2'        => 'Detail Barang Permintaan',
             'konten'        => 'home/v_detail_cart',
             'produk'        => $this->M_home->produk(),
+            'kategori'      => $this->M_home->kategori(),
+            'produk'        => $this->M_home->produk(),
         );
         $this->load->view('layout/v_home_wrapper', $data, FALSE);
     }
