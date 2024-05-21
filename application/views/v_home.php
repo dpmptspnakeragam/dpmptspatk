@@ -40,7 +40,7 @@
                             <div class="card-barang shadow img-thumbnail ">
                                 <div class="gambar-barang">
                                     <button href="<?= base_url('assets/image/barang/' . $value->gambar); ?>" class="border-0 bg-transparent" data-toggle="lightbox">
-                                        <img src="<?= base_url('assets/image/barang/' . $value->gambar); ?>" class="img-thumbnail">
+                                        <img src="<?= base_url('assets/image/barang/' . $value->gambar); ?>">
                                     </button>
                                 </div>
                                 <div class="konten-card">
@@ -56,9 +56,13 @@
                                         </a>
                                     </div>
                                 </div>
-                                <div class="text-center">
-                                    <a href="<?= base_url('home/detail/' . $value->id_barang); ?>" class="btn btn-outline-success mt-2 mb-2"><i class="fas fa-search"></i> Detail</a>
-                                    <button class="btn btn-outline-primary swalDefaultSuccess mt-2 mb-2"><i class="fas fa-cart-plus"></i></button>
+                                <div class="row">
+                                    <div class="col-6">
+                                        <a href="<?= base_url('home/detail/' . $value->id_barang); ?>" class="btn btn-outline-success btn-block mt-2"><i class="fas fa-search"></i> Detail</a>
+                                    </div>
+                                    <div class="col-6">
+                                        <button class="btn btn-outline-primary btn-block swalDefaultSuccess mt-2"><i class="fas fa-cart-plus"></i> Tambah</button>
+                                    </div>
                                 </div>
                             </div>
                             <?= form_close(); ?>
@@ -152,7 +156,7 @@
 
     .konten-card {
         position: absolute;
-        bottom: 55px;
+        bottom: 60px;
         left: 10px;
         right: 10px;
         background-color: rgba(0, 0, 0, 0.5);

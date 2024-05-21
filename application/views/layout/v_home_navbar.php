@@ -31,7 +31,12 @@
                     <ul aria-labelledby="dropdownKategori" class="dropdown-menu border-0 shadow" style="max-height: 300px; overflow-y: auto;">
                         <?php foreach ($kategori as $item) : ?>
                             <div class="dropdown-divider mt-0 mb-1"></div>
-                            <li><a id="kategori<?= $item->id_kategori; ?>" href="<?= base_url('home/kategori/' . $item->id_kategori); ?>" class="dropdown-item"><?= $item->nama_kategori; ?></a></li>
+                            <li>
+                                <a id="kategori<?= $item->id_kategori; ?>" href="<?= base_url('home/kategori/' . $item->id_kategori); ?>" class="dropdown-item">
+                                    <i class="<?= $this->uri->segment(3) == $item->id_kategori ? 'fas' : 'far'; ?> fa-circle nav-icon <?= $this->uri->segment(3) == $item->id_kategori ? 'text-primary' : ''; ?>"></i>
+                                    <?= $item->nama_kategori; ?>
+                                </a>
+                            </li>
                             <div class="dropdown-divider mt-1 mb-0"></div>
                         <?php endforeach; ?>
                     </ul>
@@ -147,7 +152,7 @@
                             </div>
                         </div>
                         <div class="dropdown-divider"></div>
-                        <a href="<?= base_url('cart/detail'); ?>" class="dropdown-item dropdown-footer bg-primary">Tampilkan semua</a>
+                        <a href="<?= base_url('cart/detail'); ?>" class="dropdown-item dropdown-footer bg-primary"><i class="fas fa-list-ol"></i> Tampilkan semua</a>
                     <?php endif; ?>
 
                 </div>

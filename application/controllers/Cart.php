@@ -144,14 +144,14 @@ class Cart extends CI_Controller
             foreach ($this->cart->contents() as $items) {
                 $data = array(
                     'rowid' => $items['rowid'],
-                    'qty'   => $this->input->post($i . '[qty]')
+                    'qty'   => $this->input->post($items['rowid'] . '[qty]')
                 );
 
                 $this->cart->update($data);
                 $i++;
             }
 
-            $this->session->set_flashdata('success', 'Permintaan berhasil diupdate.');
+            $this->session->set_flashdata('success', 'Permintaan berhasil diperbarui.');
             redirect('cart/detail');
         }
     }

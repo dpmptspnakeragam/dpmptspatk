@@ -10,7 +10,7 @@
                 </div>
                 <?= form_open('cart/simpan'); ?>
                 <div class="card-body">
-                    <table id="TabelData1" cellpadding="6" cellspacing="1" style="width:100%" border="1">
+                    <table id="TabelData2" class="table table-bordered table-sm table-hover">
                         <thead>
                             <tr>
                                 <th class="text-center" style="width: 85px;">QTY</th>
@@ -25,7 +25,8 @@
                             <?php $i = 1; ?>
                             <?php foreach ($this->cart->contents() as $items) : ?>
                                 <tr>
-                                    <td><?= form_input(array(
+                                    <td>
+                                        <?= form_input(array(
                                             'name' => $items['rowid'] . '[qty]',
                                             'value' => $items['qty'],
                                             'maxlength' => '3',
@@ -38,8 +39,14 @@
 
                                     <td><?= $items['name']; ?></td>
 
-                                    <td class="text-center" style="width: 10px;">
-                                        <input class="border-0" type="text" name="<?= $items['rowid'] ?>_keterangan" style="width: 200px;" placeholder="Keterangan Barang" autofocus>
+                                    <td><?= form_input(array(
+                                            'name' => $items['rowid'] . '_keterangan',
+                                            'placeholder' => 'Masukan keterangan',
+                                            'autofocus' => 'on',
+                                            'size' => 'auto',
+                                            'type' => 'text',
+                                            'class' => 'form-control border-0'
+                                        )); ?>
                                     </td>
 
                                     <td class="text-left border-right-0">Rp. </td>
@@ -82,9 +89,10 @@
                     </table>
                 </div>
                 <div class="card-footer">
-                    <button type="submit" name="action" value="tambah" class="btn btn-outline-primary">Tambah</button>
-                    <button type="submit" name="action" value="perbarui" class="btn btn-outline-success">Perbarui</button>
-                    <a href="<?= base_url('cart/clear'); ?>" class="btn btn-outline-danger">Batal</a>
+                    <button type="submit" name="action" value="tambah" class="btn btn-outline-primary"><i class="fas fa-file-upload"></i> Tambah</button>
+                    <button type="submit" name="action" value="perbarui" class="btn btn-outline-success"><i class="fas fa-undo"></i> Perbarui</button>
+                    <a href="<?= base_url('cart/clear'); ?>" class="btn btn-outline-danger"><i class="fas fa-magic"></i> Bersihkan</a>
+                    <a href="<?= base_url('home'); ?>" class="btn btn-outline-secondary"><i class="fas fa-home"></i> Kembali</a>
                 </div>
                 <?= form_close(); ?>
             </div>
