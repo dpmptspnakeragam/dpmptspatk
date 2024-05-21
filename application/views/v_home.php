@@ -23,7 +23,7 @@
 <div class="content">
     <div class="container-fluid">
         <div class="card-header text-center bg-transparent border-bottom-0">
-            <h4><strong>Produk Alat Tulis Kantor</strong></h4>
+            <h4><strong>Barang Alat Tulis Kantor</strong></h4>
         </div>
         <div class="card-body pb-0">
             <div class="row">
@@ -37,11 +37,11 @@
                             <?= form_hidden('price', $value->harga); ?>
                             <?= form_hidden('name', $value->nama_barang); ?>
                             <?= form_hidden('redirect_page', str_replace('index.php/', '', current_url())); ?>
-                            <div class="card-barang shadow-lg img-thumbnail ">
+                            <div class="card-barang shadow img-thumbnail ">
                                 <div class="gambar-barang">
-                                    <a href="<?= base_url('assets/image/barang/' . $value->gambar); ?>" data-toggle="lightbox">
+                                    <button href="<?= base_url('assets/image/barang/' . $value->gambar); ?>" class="border-0 bg-transparent" data-toggle="lightbox">
                                         <img src="<?= base_url('assets/image/barang/' . $value->gambar); ?>" class="img-thumbnail">
-                                    </a>
+                                    </button>
                                 </div>
                                 <div class="konten-card">
                                     <h6>
@@ -134,6 +134,7 @@
         cursor: pointer;
         transition: transform 0.3s ease-in-out;
         margin-bottom: 13px;
+        box-shadow: 0.2rem 0.2rem rgba(0, 0, 0, .175) !important;
     }
 
     .card-barang:hover {
@@ -151,9 +152,9 @@
 
     .konten-card {
         position: absolute;
-        bottom: 70px;
-        left: 20px;
-        right: 20px;
+        bottom: 55px;
+        left: 10px;
+        right: 10px;
         background-color: rgba(0, 0, 0, 0.5);
         padding: 10px;
         border-radius: 8px;

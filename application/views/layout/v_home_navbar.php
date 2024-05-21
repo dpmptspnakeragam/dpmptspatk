@@ -30,10 +30,66 @@
                     <a id="dropdownKategori" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle">Kategori</a>
                     <ul aria-labelledby="dropdownKategori" class="dropdown-menu border-0 shadow" style="max-height: 300px; overflow-y: auto;">
                         <?php foreach ($kategori as $item) : ?>
+                            <div class="dropdown-divider mt-0 mb-1"></div>
                             <li><a id="kategori<?= $item->id_kategori; ?>" href="<?= base_url('home/kategori/' . $item->id_kategori); ?>" class="dropdown-item"><?= $item->nama_kategori; ?></a></li>
+                            <div class="dropdown-divider mt-1 mb-0"></div>
                         <?php endforeach; ?>
                     </ul>
                 </li>
+
+                <div class="dropdown-divider mt-0 mb-0"></div>
+
+                <?php
+                $id_user = $this->session->userdata('id_user');
+                $this->db->select('tb_user.*, tb_role.nama_role');
+                $this->db->from('tb_user');
+                $this->db->join('tb_role', 'tb_user.id_role = tb_role.id_role', 'left');
+                $this->db->where('id_user', $id_user);
+                $data = $this->db->get();
+                $data_login = $data->row();
+                ?>
+                <!-- Nav Item - User Information -->
+                <?php if ($this->session->userdata('id_user')) : ?>
+                    <li class="nav-item dropdown no-arrow">
+                        <!-- Dropdown - User Information -->
+                        <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <!-- class = d-none d-lg-inline (kalau ingin nama sembunyi saat mode smartphone) -->
+                            <span class="mr-2"><?= $data_login->nama_user; ?></span>
+                            <img class="img-profile rounded-circle" style="width:25px;" src="<?= base_url('assets/image/profile/' . $data_login->profile); ?>">
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+                            <a class="dropdown-item" href="<?= base_url('dashboard'); ?>">
+                                <i class="fas fa-tachometer-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                Dashboard
+                            </a>
+                            <div class="dropdown-divider"></div>
+                            <?php if ($this->session->userdata('id_user')) : ?>
+                                <!-- Jika user sudah login, tampilkan tombol Logout -->
+                                <a href="<?= base_url('logout'); ?>" class="nav-link" data-toggle="modal" data-target="#logoutModal">
+                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Logout
+                                </a>
+                            <?php else : ?>
+                                <!-- Jika user belum login, tampilkan tombol Login -->
+                                <a href="<?= base_url('login'); ?>" class="nav-link">
+                                    <i class="fas fa-sign-in-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Login
+                                </a>
+                            <?php endif; ?>
+
+                            <script>
+                                $(document).ready(function() {
+                                    // Check if user is logged in
+                                    if (<?= $this->session->userdata('id_user') ? 'true' : 'false' ?>) {
+                                        $('#loginLink').hide(); // Hide the login link
+                                    }
+                                });
+                            </script>
+                        </div>
+                    </li>
+                <?php else : ?>
+                    <a href="<?= base_url('login'); ?>" class="btn btn-outline-primary"><i class="fas fa-sign-in-alt"></i> Login</a>
+                <?php endif; ?>
 
             </ul>
         </div>
@@ -77,82 +133,27 @@
                     <div class="dropdown-divider"></div>
 
                     <?php if (empty($cart)) : ?>
-                        <strong class="dropdown-footer">Keranjang Kosong</strong>
+                        <strong class="dropdown-footer bg-secondary">Keranjang Kosong</strong>
                     <?php elseif ($cart) : ?>
                         <div class="mt-2 mb-2 mr-2 ml-2">
                             <div class="media">
                                 <div class="media-body">
                                     <tr>
                                         <td colspan="2"> </td>
-                                        <td class="right"><strong>Total Bayar</strong></td>
+                                        <td class="right"><strong>Total Bayar: </strong></td>
                                         <td class="right">Rp <?= number_format($this->cart->total()); ?></td>
                                     </tr>
                                 </div>
                             </div>
                         </div>
                         <div class="dropdown-divider"></div>
-                        <a href="<?= base_url('cart/detail'); ?>" class="dropdown-item dropdown-footer">Tampilkan semua</a>
+                        <a href="<?= base_url('cart/detail'); ?>" class="dropdown-item dropdown-footer bg-primary">Tampilkan semua</a>
                     <?php endif; ?>
 
                 </div>
             </li>
 
             <div class="topbar-divider d-none d-sm-block"></div>
-
-            <?php
-            $id_user = $this->session->userdata('id_user');
-            $this->db->select('tb_user.*, tb_role.nama_role');
-            $this->db->from('tb_user');
-            $this->db->join('tb_role', 'tb_user.id_role = tb_role.id_role', 'left');
-            $this->db->where('id_user', $id_user);
-            $data = $this->db->get();
-            $data_login = $data->row();
-            ?>
-            <!-- Nav Item - User Information -->
-            <?php if ($this->session->userdata('id_user')) : ?>
-                <li class="nav-item dropdown no-arrow">
-                    <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <span class="mr-2 d-none d-lg-inline"><?= $data_login->nama_user; ?></span>
-                        <img class="img-profile rounded-circle" style="width:25px;" src="<?= base_url('assets/image/profile/' . $data_login->profile); ?>">
-                    </a>
-                    <!-- Dropdown - User Information -->
-                    <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                        <a class="dropdown-item" href="<?= base_url('dashboard'); ?>">
-                            <i class="fas fa-tachometer-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                            Dashboard
-                        </a>
-                        <!-- <a class="dropdown-item" href="#">
-                            <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                            Profile
-                        </a> -->
-                        <div class="dropdown-divider"></div>
-                        <?php if ($this->session->userdata('id_user')) : ?>
-                            <!-- Jika user sudah login, tampilkan tombol Logout -->
-                            <a href="<?= base_url('logout'); ?>" class="nav-link" data-toggle="modal" data-target="#logoutModal">
-                                <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                                Logout
-                            </a>
-                        <?php else : ?>
-                            <!-- Jika user belum login, tampilkan tombol Login -->
-                            <a href="<?= base_url('login'); ?>" class="nav-link">
-                                <i class="fas fa-sign-in-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                                Login
-                            </a>
-                        <?php endif; ?>
-
-                        <script>
-                            $(document).ready(function() {
-                                // Check if user is logged in
-                                if (<?= $this->session->userdata('id_user') ? 'true' : 'false' ?>) {
-                                    $('#loginLink').hide(); // Hide the login link
-                                }
-                            });
-                        </script>
-                    </div>
-                </li>
-            <?php else : ?>
-                <a href="<?= base_url('login'); ?>" class="btn btn-sm btn-primary ml-3 mr-3">Login</a>
-            <?php endif; ?>
         </ul>
 
         <!-- Button toggle Menu -->

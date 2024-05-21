@@ -13,18 +13,20 @@
             </div>
             <div class="modal-body">Pilih "Logout" di bawah ini jika Anda yakin untuk mengakhiri sesi Anda saat ini.</div>
             <div class="modal-footer">
-                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                <a class="btn btn-primary" href="<?= base_url('logout'); ?>">Logout</a>
+                <button class="btn btn-outline-secondary" type="button" data-dismiss="modal">Cancel</button>
+                <form action="<?= base_url('logout'); ?>">
+                    <button type="submit" class="btn btn-outline-primary">Logout</button>
+                </form>
             </div>
         </div>
     </div>
 </div>
 
 <!-- Main Footer -->
-<footer class="main-footer">
+<footer class="main-footer shadow-lg">
     <!-- To the right -->
     <div class="float-right d-none d-sm-inline">
-        Version 0.1
+        Version 0.1.3
     </div>
     <!-- Default to the left -->
     <strong>Copyright &copy; 2024-<?= date("Y"); ?> Development by IT <a href="https://dpmptsp.agamkab.go.id">DPMPTSP Kabupaten Agam</a>.</strong> All rights reserved.
