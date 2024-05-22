@@ -15,14 +15,19 @@
                     <!-- <a href="javascript:void(0);" onclick="scrollToElement('homeSection');" class="nav-link">Home</a> -->
                 </li>
 
-                <!-- <li class="nav-item dropdown">
+                <li class="nav-item dropdown">
                     <a id="dropdownProduk" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle">Produk</a>
                     <ul aria-labelledby="dropdownProduk" class="dropdown-menu border-0 shadow" style="max-height: 300px; overflow-y: auto;">
                         <?php foreach ($produk as $item) : ?>
-                            <li><a id="kategori<?= $item->id_nama; ?>" href="<?= base_url('kategori/' . $item->id_nama); ?>" class="dropdown-item"><?= $item->nama_barang; ?></a></li>
+                            <li>
+                                <a id="kategori<?= $item->id_nama; ?>" href="<?= base_url('home/produk/' . $item->id_nama); ?>" class="dropdown-item">
+                                    <i class="<?= $this->uri->segment(3) == $item->id_nama ? 'fas' : 'far'; ?> fa-circle nav-icon <?= $this->uri->segment(3) == $item->id_nama ? 'text-primary' : ''; ?>"></i>
+                                    <?= $item->nama_barang; ?>
+                                </a>
+                            </li>
                         <?php endforeach; ?>
                     </ul>
-                </li> -->
+                </li>
 
                 <div class="dropdown-divider mt-0 mb-0"></div>
 
@@ -30,14 +35,12 @@
                     <a id="dropdownKategori" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle">Kategori</a>
                     <ul aria-labelledby="dropdownKategori" class="dropdown-menu border-0 shadow" style="max-height: 300px; overflow-y: auto;">
                         <?php foreach ($kategori as $item) : ?>
-                            <div class="dropdown-divider mt-0 mb-1"></div>
                             <li>
                                 <a id="kategori<?= $item->id_kategori; ?>" href="<?= base_url('home/kategori/' . $item->id_kategori); ?>" class="dropdown-item">
                                     <i class="<?= $this->uri->segment(3) == $item->id_kategori ? 'fas' : 'far'; ?> fa-circle nav-icon <?= $this->uri->segment(3) == $item->id_kategori ? 'text-primary' : ''; ?>"></i>
                                     <?= $item->nama_kategori; ?>
                                 </a>
                             </li>
-                            <div class="dropdown-divider mt-1 mb-0"></div>
                         <?php endforeach; ?>
                     </ul>
                 </li>
@@ -108,12 +111,12 @@
                 $jumlah_item = $jumlah_item + $value['qty'];
             }
             ?>
-            <li class="nav-item dropdown">
+            <li class="nav-item dropdown mr-1">
                 <a class="nav-link" data-toggle="dropdown" href="#">
                     <i class="fas fa-cart-plus"></i>
                     <span class="badge badge-danger navbar-badge"><?= $jumlah_item; ?></span>
                 </a>
-                <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+                <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right" style="max-height: 400px; overflow-y: auto;">
                     <?php foreach ($cart as $key => $value) : ?>
                         <?php foreach ($produk as $item) : ?>
                             <?php if ($item->id_nama == $value['id']) : ?>
@@ -152,7 +155,9 @@
                             </div>
                         </div>
                         <div class="dropdown-divider"></div>
-                        <a href="<?= base_url('cart/detail'); ?>" class="dropdown-item dropdown-footer bg-primary"><i class="fas fa-list-ol"></i> Tampilkan semua</a>
+                        <div class="dropdown-footer">
+                            <a href="<?= base_url('cart/detail'); ?>" class="btn btn-outline-primary btn-block"><i class="fas fa-money-check"></i> Lakukan Pembayaran</a>
+                        </div>
                     <?php endif; ?>
 
                 </div>

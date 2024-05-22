@@ -25,52 +25,52 @@
         <div class="card-header text-center bg-transparent border-bottom-0">
             <h4><strong>Barang Alat Tulis Kantor</strong></h4>
         </div>
-        <div class="card-body pb-0">
-            <div class="row">
-                <?php $counter = 0; ?>
-                <?php foreach ($view_barang as $b => $value) : ?>
-                    <?php if ($counter < 12) : ?>
-                        <div class="col-6 col-sm-4 col-md-3 col-lg-3 d-flex align-items-stretch flex-column">
-                            <?= form_open('cart/add'); ?>
-                            <?= form_hidden('id', $value->id_barang); ?>
-                            <?= form_hidden('qty', 1); ?>
-                            <?= form_hidden('price', $value->harga); ?>
-                            <?= form_hidden('name', $value->nama_barang); ?>
-                            <?= form_hidden('redirect_page', str_replace('index.php/', '', current_url())); ?>
-                            <div class="card-barang shadow img-thumbnail ">
-                                <div class="gambar-barang">
-                                    <button href="<?= base_url('assets/image/barang/' . $value->gambar); ?>" class="border-0 bg-transparent" data-toggle="lightbox">
-                                        <img src="<?= base_url('assets/image/barang/' . $value->gambar); ?>">
-                                    </button>
+        <div class="row">
+            <?php $counter = 0; ?>
+            <?php foreach ($view_barang as $b => $value) : ?>
+                <?php if ($counter < 12) : ?>
+                    <div class="col-6 col-sm-4 col-md-3 col-lg-3 d-flex align-items-stretch flex-column">
+                        <?= form_open('cart/add'); ?>
+                        <?= form_hidden('id', $value->id_barang); ?>
+                        <?= form_hidden('qty', 1); ?>
+                        <?= form_hidden('price', $value->harga); ?>
+                        <?= form_hidden('name', $value->nama_barang); ?>
+                        <?= form_hidden('redirect_page', str_replace('index.php/', '', current_url())); ?>
+                        <div class="card-barang shadow img-thumbnail ">
+                            <div class="gambar-barang">
+                                <button href="<?= base_url('assets/image/barang/' . $value->gambar); ?>" class="border-0 bg-transparent" data-toggle="lightbox">
+                                    <img src="<?= base_url('assets/image/barang/' . $value->gambar); ?>">
+                                </button>
+                            </div>
+                            <div class="konten-card">
+                                <h6>
+                                    <strong>
+                                        <?= $value->nama_barang; ?>
+                                    </strong>
+                                </h6>
+                                <hr class="bg-white mt-1 mb-1">
+                                <div class="text-center">
+                                    <a href="#" class="text-white">
+                                        Rp. <?= number_format($value->harga, 0, ',', '.'); ?> / <?= $value->nama_satuan; ?>
+                                    </a>
                                 </div>
-                                <div class="konten-card">
-                                    <h6>
-                                        <strong>
-                                            <?= $value->nama_barang; ?>
-                                        </strong>
-                                    </h6>
-                                    <hr class="bg-white mt-1 mb-1">
-                                    <div class="text-center mb-2">
-                                        <a href="#" class="text-white">
-                                            Rp. <?= number_format($value->harga, 0, ',', '.'); ?> / <?= $value->nama_satuan; ?>
-                                        </a>
-                                    </div>
-                                </div>
+                            </div>
+                            <div class="card-footer">
                                 <div class="row">
                                     <div class="col-6">
-                                        <a href="<?= base_url('home/detail/' . $value->id_barang); ?>" class="btn btn-outline-success btn-block mt-2"><i class="fas fa-search"></i> Detail</a>
+                                        <a href="<?= base_url('home/detail/' . $value->id_barang); ?>" class="btn btn-sm btn-outline-success btn-block"><i class="fas fa-search"></i></a>
                                     </div>
                                     <div class="col-6">
-                                        <button class="btn btn-outline-primary btn-block swalDefaultSuccess mt-2"><i class="fas fa-cart-plus"></i> Tambah</button>
+                                        <button class="btn btn-sm btn-outline-primary btn-block swalDefaultSuccess"><i class="fas fa-cart-plus"></i></button>
                                     </div>
                                 </div>
                             </div>
-                            <?= form_close(); ?>
                         </div>
-                        <?php $counter++; ?>
-                    <?php endif; ?>
-                <?php endforeach; ?>
-            </div>
+                        <?= form_close(); ?>
+                    </div>
+                    <?php $counter++; ?>
+                <?php endif; ?>
+            <?php endforeach; ?>
         </div>
         <div class="card-footer bg-transparent">
             <?php if (isset($pagination) && $pagination['total_pages'] > 1) : ?>

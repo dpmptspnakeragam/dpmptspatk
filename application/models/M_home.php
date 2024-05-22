@@ -47,6 +47,7 @@ class M_home extends CI_Model
         }
     }
 
+    // Start Produk
     public function produk()
     {
         $this->db->select('*');
@@ -54,6 +55,47 @@ class M_home extends CI_Model
         $this->db->order_by('nama_barang', 'ASC');
         return $this->db->get()->result();
     }
+
+    public function get_produk_by_id($id_nama)
+    {
+        $this->db->select('nama_barang');
+        $this->db->where('id_nama', $id_nama);
+        $query = $this->db->get('tb_nama');
+
+        if ($query->num_rows() > 0) {
+            return $query->row()->nama_barang;
+        } else {
+            return null;
+        }
+    }
+
+    public function ambil_barang_by_produk_paginated($id_nama, $start, $limit)
+    {
+        $this->db->select('*');
+        $this->db->from('tb_barang');
+        $this->db->join('tb_nama', 'tb_barang.id_nama = tb_nama.id_nama');
+        $this->db->join('tb_kategori', 'tb_barang.id_kategori = tb_kategori.id_kategori', 'left');
+        $this->db->join('tb_satuan', 'tb_barang.id_satuan = tb_satuan.id_satuan', 'left');
+        $this->db->where('tb_barang.id_nama', $id_nama); // Filter berdasarkan nama barang
+        $this->db->order_by('tb_barang.id_barang', 'ASC');
+        $this->db->limit($limit, $start);
+
+        return $this->db->get()->result();
+    }
+
+    public function ambil_barang_by_nama_barang($id_nama)
+    {
+        $this->db->select('*');
+        $this->db->from('tb_barang');
+        $this->db->join('tb_nama', 'tb_barang.id_nama = tb_nama.id_nama');
+        $this->db->join('tb_kategori', 'tb_barang.id_kategori = tb_kategori.id_kategori', 'left');
+        $this->db->join('tb_satuan', 'tb_barang.id_satuan = tb_satuan.id_satuan', 'left');
+        $this->db->where('tb_barang.id_nama', $id_nama); // Filter berdasarkan nama Barang
+        $this->db->order_by('tb_barang.id_barang', 'ASC');
+
+        return $this->db->get()->result();
+    }
+    // End Produk
 
     public function searchBarangkeyword($keyword = null)
     {
@@ -71,7 +113,6 @@ class M_home extends CI_Model
         return $this->db->get()->result();
     }
 
-    // Model (M_home)
     public function searchBarangPage($keyword, $start, $per_page)
     {
         $this->db->select('*');

@@ -148,6 +148,43 @@ class Home extends CI_Controller
 		$this->load->view('layout/v_home_wrapper', $data);
 	}
 
+	public function produk($id_nama, $page = 1)
+	{
+		$per_page = 12;
+		$start = ($page - 1) * $per_page;
+
+		$produk = $this->M_home->get_produk_by_id($id_nama);
+
+		$data = array(
+			'title_website' => 'Produk | ATK DPMPTSP Kabupaten Agam',
+			'home'         => 'Home',
+			'title1'         => 'Produk',
+			'title2'         => $produk,
+			'konten'        => 'v_home',
+			'view_barang'   => $this->M_home->ambil_barang_by_produk_paginated($id_nama, $start, $per_page),
+			'kategori'      => $this->M_home->kategori(),
+			'produk'        => $this->M_home->produk(),
+		);
+
+		$this->load->library('pagination');
+
+		$config['base_url'] = base_url("home/produk/$id_nama");
+		$config['total_rows'] = count($this->M_home->ambil_barang_by_nama_barang($id_nama));
+		$config['per_page'] = $per_page;
+		$config['uri_segment'] = 3;
+		$config['use_page_numbers'] = TRUE;
+
+		$this->pagination->initialize($config);
+
+		$data['pagination'] = array(
+			'total_pages' => ceil($config['total_rows'] / $per_page),
+			'current_page' => $page,
+			'kategori_id' => $id_nama,
+		);
+
+		$this->load->view('layout/v_home_wrapper', $data);
+	}
+
 	public function detail($id_barang)
 	{
 

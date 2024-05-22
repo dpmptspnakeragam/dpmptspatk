@@ -72,10 +72,10 @@
                 <div class="dropdown-divider"></div>
 
                 <div class="row">
-                    <div class="col-8">
+                    <div class="col-7">
                         <button type="submit" class="btn btn-outline-primary btn-block"><i class="fas fa-sign-in-alt"></i> Login</button>
                     </div>
-                    <div class="col-4">
+                    <div class="col-5">
                         <a href="<?= base_url('home'); ?>" class="btn btn-outline-secondary btn-block"><i class="fas fa-home"></i> Home</a>
                     </div>
                 </div>
