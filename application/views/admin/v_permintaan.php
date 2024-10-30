@@ -62,8 +62,12 @@
                                             $tanggal_indo = date('d F Y', strtotime($tanggal_konfperm)); // Format default
                                         }
 
+                                        // Gunakan variabel yang konsisten
+                                        $hari_indonesia = $hari_indo;
+                                        $tanggal_indonesia = $tanggal_indo;
+
                                         // Output hasil
-                                        echo $hari_indo . ', ' . $tanggal_indo;
+                                        echo $hari_indonesia . ', ' . $tanggal_indonesia;
                                         ?>
 
                                         <tr>
