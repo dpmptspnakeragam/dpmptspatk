@@ -31,7 +31,7 @@
                                         ?>
 
                                         <?php
-                                        $hari = array(
+                                        $date = array(
                                             'Sunday' => 'Minggu',
                                             'Monday' => 'Senin',
                                             'Tuesday' => 'Selasa',
@@ -40,14 +40,22 @@
                                             'Friday' => 'Jumat',
                                             'Saturday' => 'Sabtu'
                                         );
+
                                         $tanggal_konfperm = $value->tanggal_konfperm; // Tanggal dari data Anda
-                                        $hari_ini = date('l', strtotime($tanggal_konfperm)); // Ambil nama hari dalam Bahasa Inggris
-                                        $hari_indonesia = isset($hari[$hari_ini]) ? $hari[$hari_ini] : $hari_ini; // Ubah nama hari menjadi Bahasa Indonesia
+                                        $sekarang = date('l', strtotime($tanggal_konfperm)); // Ambil nama hari dalam Bahasa Inggris
+                                        $hari_indo = isset($date[$sekarang]) ? $date[$sekarang] : $sekarang; // Ubah nama hari menjadi Bahasa Indonesia
 
-                                        // Format tanggal dalam Bahasa Indonesia
-                                        $format = new IntlDateFormatter('id_ID', IntlDateFormatter::LONG, IntlDateFormatter::NONE);
-                                        $tanggal_indonesia = $format->format(new DateTime($tanggal_konfperm));
+                                        // Coba format tanggal dalam Bahasa Indonesia menggunakan IntlDateFormatter
+                                        if (class_exists('IntlDateFormatter')) {
+                                            $format = new IntlDateFormatter('id_ID', IntlDateFormatter::LONG, IntlDateFormatter::NONE);
+                                            $tanggal_indo = $format->format(new DateTime($tanggal_konfperm));
+                                        } else {
+                                            // Fallback jika IntlDateFormatter tidak tersedia
+                                            $tanggal_indo = date('d F Y', strtotime($tanggal_konfperm)); // Format default
+                                        }
 
+                                        // Output hasil
+                                        echo $hari_indo . ', ' . $tanggal_indo;
                                         ?>
 
                                         <tr>
