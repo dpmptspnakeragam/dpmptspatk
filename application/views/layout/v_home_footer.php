@@ -29,7 +29,7 @@
         Version 0.1.3
     </div>
     <!-- Default to the left -->
-    <strong>Copyright &copy; 2024-<?= date("Y"); ?> Development by IT <a href="https://dpmptsp.agamkab.go.id">DPMPTSP Kabupaten Agam</a>.</strong> All rights reserved.
+    <strong>Copyright &copy; 2024-<?= date("Y"); ?> Powered by IT <a href="https://dpmptsp.agamkab.go.id">DPMPTSP Kabupaten Agam</a>.</strong> All rights reserved.
 </footer>
 </div>
 <!-- ./wrapper -->
