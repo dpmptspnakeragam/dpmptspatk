@@ -18,7 +18,7 @@
 
                     <div class="bg-gray py-2 px-3 mt-4">
                         <h2 class="mb-0">
-                            Harga: Rp. <?= number_format($detail_barang->harga, 0, ',', '.'); ?> / <?= $detail_barang->nama_satuan; ?>
+                            Harga: Rp. <?= number_format($detail_barang->harga ?? 0, 0, ',', '.'); ?> / <?= $detail_barang->nama_satuan; ?>
                         </h2>
                     </div>
 
