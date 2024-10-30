@@ -3,7 +3,7 @@
     <div class="container-fluid">
         <div class="row d-flex justify-content-end">
             <div class="col-md-6">
-                <form action="<?= base_url('home/search'); ?>" method="GET">
+                <form action="<?= site_url('home/search'); ?>" method="GET">
                     <div class="input-group">
                         <input type="search" class="form-control form-control-sm" placeholder="Cari Nama Barang" name="keyword">
                         <div class="input-group-append">
@@ -38,7 +38,7 @@
                         <?= form_hidden('redirect_page', str_replace('index.php/', '', current_url())); ?>
                         <div class="card-barang shadow img-thumbnail ">
                             <div class="gambar-barang">
-                                <button href="<?= base_url('assets/image/barang/' . $value->gambar); ?>" class="border-0 bg-transparent" data-toggle="lightbox">
+                                <button href="<?= site_url('assets/image/barang/' . $value->gambar); ?>" class="border-0 bg-transparent" data-toggle="lightbox">
                                     <img src="<?= base_url('assets/image/barang/' . $value->gambar); ?>">
                                 </button>
                             </div>
@@ -58,7 +58,7 @@
                             <div class="card-footer">
                                 <div class="row">
                                     <div class="col-6">
-                                        <a href="<?= base_url('home/detail/' . $value->id_barang); ?>" class="btn btn-sm btn-outline-success btn-block"><i class="fas fa-search"></i></a>
+                                        <a href="<?= site_url('home/detail/' . $value->id_barang); ?>" class="btn btn-sm btn-outline-success btn-block"><i class="fas fa-search"></i></a>
                                     </div>
                                     <div class="col-6">
                                         <button class="btn btn-sm btn-outline-primary btn-block swalDefaultSuccess"><i class="fas fa-cart-plus"></i></button>
@@ -81,11 +81,11 @@
                             ?>
                             <li class="page-item">
                                 <?php if (isset($pagination['kategori_id'])) : ?>
-                                    <a class="page-link" href="<?= base_url("home/kategori/{$pagination['kategori_id']}/1"); ?>">&laquo;</a>
+                                    <a class="page-link" href="<?= site_url("home/kategori/{$pagination['kategori_id']}/1"); ?>">&laquo;</a>
                                 <?php elseif (isset($pagination['keyword'])) : ?>
-                                    <a class="page-link" href="<?= base_url("home/search?keyword={$pagination['keyword']}&page=1"); ?>">&laquo;</a>
+                                    <a class="page-link" href="<?= site_url("home/search?keyword={$pagination['keyword']}&page=1"); ?>">&laquo;</a>
                                 <?php else : ?>
-                                    <a class="page-link" href="<?= base_url("home/1"); ?>">&laquo;</a>
+                                    <a class="page-link" href="<?= site_url("home/1"); ?>">&laquo;</a>
                                 <?php endif; ?>
                             </li>
                         <?php endif; ?>
@@ -98,11 +98,11 @@
                         ?>
                             <li class="page-item <?= $i == $pagination['current_page'] ? 'active' : ''; ?>">
                                 <?php if (isset($pagination['kategori_id'])) : ?>
-                                    <a class="page-link" href="<?= base_url("home/kategori/{$pagination['kategori_id']}/{$i}"); ?>"><?= $i; ?></a>
+                                    <a class="page-link" href="<?= site_url("home/kategori/{$pagination['kategori_id']}/{$i}"); ?>"><?= $i; ?></a>
                                 <?php elseif (isset($pagination['keyword'])) : ?>
-                                    <a class="page-link" href="<?= base_url("home/search?keyword={$pagination['keyword']}&page={$i}"); ?>"><?= $i; ?></a>
+                                    <a class="page-link" href="<?= site_url("home/search?keyword={$pagination['keyword']}&page={$i}"); ?>"><?= $i; ?></a>
                                 <?php else : ?>
-                                    <a class="page-link" href="<?= base_url("home/{$i}"); ?>"><?= $i; ?></a>
+                                    <a class="page-link" href="<?= site_url("home/{$i}"); ?>"><?= $i; ?></a>
                                 <?php endif; ?>
                             </li>
                         <?php endfor; ?>
@@ -112,11 +112,11 @@
                             ?>
                             <li class="page-item">
                                 <?php if (isset($pagination['kategori_id'])) : ?>
-                                    <a class="page-link" href="<?= base_url("home/kategori/{$pagination['kategori_id']}/{$pagination['total_pages']}"); ?>">&raquo;</a>
+                                    <a class="page-link" href="<?= site_url("home/kategori/{$pagination['kategori_id']}/{$pagination['total_pages']}"); ?>">&raquo;</a>
                                 <?php elseif (isset($pagination['keyword'])) : ?>
-                                    <a class="page-link" href="<?= base_url("home/search?keyword={$pagination['keyword']}&page={$pagination['total_pages']}"); ?>">&raquo;</a>
+                                    <a class="page-link" href="<?= site_url("home/search?keyword={$pagination['keyword']}&page={$pagination['total_pages']}"); ?>">&raquo;</a>
                                 <?php else : ?>
-                                    <a class="page-link" href="<?= base_url("home/{$pagination['total_pages']}"); ?>">&raquo;</a>
+                                    <a class="page-link" href="<?= site_url("home/{$pagination['total_pages']}"); ?>">&raquo;</a>
                                 <?php endif; ?>
                             </li>
                         <?php endif; ?>

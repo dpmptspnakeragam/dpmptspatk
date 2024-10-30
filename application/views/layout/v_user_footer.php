@@ -14,7 +14,7 @@
             <div class="modal-body">Pilih "Logout" di bawah ini jika Anda yakin untuk mengakhiri sesi Anda saat ini.</div>
             <div class="modal-footer">
                 <button class="btn btn-outline-secondary" type="button" data-dismiss="modal">Cancel</button>
-                <form action="<?= base_url('logout'); ?>">
+                <form action="<?= site_url('logout'); ?>">
                     <button type="submit" class="btn btn-outline-primary">Logout</button>
                 </form>
             </div>

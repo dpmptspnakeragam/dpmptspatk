@@ -32,7 +32,7 @@
                         <button type="submit" class="btn btn-outline-primary swalDefaultSuccess"><i class="fas fa-cart-plus"></i> Tambah</button>
                         <?= form_close(); ?>
 
-                        <a href="<?= base_url('home'); ?>" class="btn btn-outline-secondary"><i class="fas fa-home "></i> Kembali</a>
+                        <a href="<?= site_url('home'); ?>" class="btn btn-outline-secondary"><i class="fas fa-home "></i> Kembali</a>
                     </div>
                 </div>
             </div>
