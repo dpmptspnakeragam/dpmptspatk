@@ -51,7 +51,7 @@
                                 <hr class="bg-white mt-1 mb-1">
                                 <div class="text-center">
                                     <a href="#" class="text-white">
-                                        Rp. <?= number_format($value->harga, 0, ',', '.'); ?> / <?= $value->nama_satuan; ?>
+                                        Rp. <?= number_format($value->harga ?? 0, 0, ',', '.'); ?> / <?= $value->nama_satuan; ?>
                                     </a>
                                 </div>
                             </div>
