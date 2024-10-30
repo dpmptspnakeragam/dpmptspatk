@@ -34,7 +34,7 @@
                                         <td class="text-center align-middle"><?= $count++; ?></td>
                                         <td class="text-center align-middle"><?= $value->nama_barang; ?></td>
                                         <td class="text-center align-middle"><?= $value->nama_kategori; ?></td>
-                                        <td class="text-center align-middle">Rp. <?= number_format($value->harga, 0, ',', '.'); ?> / <?= $value->nama_satuan; ?></td>
+                                        <td class="text-center align-middle">Rp. <?= number_format($value->harga ?? 0, 0, ',', '.'); ?> / <?= $value->nama_satuan; ?></td>
 
                                         <td class="text-center align-middle">
                                             <button type="button" data-toggle="modal" data-target="#detailBarang<?= $value->id_barang; ?>" class="btn btn-outline-primary"><i class="fas fa-search"></i></button>

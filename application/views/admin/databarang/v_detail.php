@@ -31,7 +31,7 @@
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label for="harga">Harga Barang</label>
-                                <input type="text" id="harga" class="form-control form-control-sm" value="Rp. <?= number_format($value->harga, 0, ',', '.'); ?>" readonly>
+                                <input type="text" id="harga" class="form-control form-control-sm" value="Rp. <?= number_format($value->harga ?? 0, 0, ',', '.'); ?>" readonly>
                             </div>
                         </div>
                         <div class="col-md-8">
