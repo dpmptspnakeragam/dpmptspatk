@@ -35,7 +35,7 @@
 <!-- Main Sidebar Container -->
 <aside class="main-sidebar sidebar-light-primary">
     <!-- Brand Logo -->
-    <a href="<?= site_url($this->uri->segment(1)); ?>" class="brand-link">
+    <a href="<?= base_url($this->uri->segment(1)); ?>" class="brand-link">
         <img src="<?= base_url('assets/'); ?>image/logo/agam.png" alt="AdminLTE Logo" class="brand-image">
         <span class="brand-text">
             <strong>ATK DPMPTSP</strong>
@@ -52,7 +52,7 @@
             </div>
             <div class="info d-flex justify-content-between align-items-center w-100">
                 <span class="d-block"><?= $data_login->nama_user; ?></span>
-                <a href="<?= site_url('logout'); ?>" data-toggle="modal" data-target="#logoutModal">
+                <a href="<?= base_url('logout'); ?>" data-toggle="modal" data-target="#logoutModal">
                     <i class="fas fa-sign-out-alt"></i>
                 </a>
             </div>
@@ -62,7 +62,7 @@
         <nav class="mt-0">
             <ul class="nav nav-pills nav-sidebar flex-column nav-child-indent" data-widget="treeview" role="menu" data-accordion="false">
                 <li class="nav-item">
-                    <a href="<?= site_url('home'); ?>" class="nav-link <?php if (in_array($this->uri->segment(1), ['home'])) echo "active"; ?>">
+                    <a href="<?= base_url('home'); ?>" class="nav-link <?php if (in_array($this->uri->segment(1), ['home'])) echo "active"; ?>">
                         <i class="nav-icon fas fa-home"></i>
                         <p>Home</p>
                     </a>
@@ -71,7 +71,7 @@
                 <div class="user-panel mb-1 d-flex"></div>
 
                 <li class="nav-item">
-                    <a href="<?= site_url('dashboard'); ?>" class="nav-link <?php if (in_array($this->uri->segment(1), ['dashboard'])) echo "active"; ?>">
+                    <a href="<?= base_url('dashboard'); ?>" class="nav-link <?php if (in_array($this->uri->segment(1), ['dashboard'])) echo "active"; ?>">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
                         <p>Dashboard</p>
                     </a>
@@ -110,31 +110,31 @@
                         </a>
                         <ul class="nav nav-treeview">
                             <li class="nav-item">
-                                <a href="<?= site_url('datauser'); ?>" class="nav-link <?= $this->uri->segment(1) == 'datauser' ? 'active' : ''; ?>">
+                                <a href="<?= base_url('datauser'); ?>" class="nav-link <?= $this->uri->segment(1) == 'datauser' ? 'active' : ''; ?>">
                                     <i class="<?= $this->uri->segment(1) == 'datauser' ? 'fas' : 'far'; ?> fa-circle nav-icon <?= $this->uri->segment(1) == 'datauser' ? 'text-primary' : ''; ?>"></i>
                                     <p>Data User</p>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="<?= site_url('databarang'); ?>" class="nav-link <?= $this->uri->segment(1) == 'databarang' ? 'active' : ''; ?>">
+                                <a href="<?= base_url('databarang'); ?>" class="nav-link <?= $this->uri->segment(1) == 'databarang' ? 'active' : ''; ?>">
                                     <i class="<?= $this->uri->segment(1) == 'databarang' ? 'fas' : 'far'; ?> fa-circle nav-icon <?= $this->uri->segment(1) == 'databarang' ? 'text-primary' : ''; ?>"></i>
                                     <p>Data Barang</p>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="<?= site_url('namabarang'); ?>" class="nav-link <?= $this->uri->segment(1) == 'namabarang' ? 'active' : ''; ?>">
+                                <a href="<?= base_url('namabarang'); ?>" class="nav-link <?= $this->uri->segment(1) == 'namabarang' ? 'active' : ''; ?>">
                                     <i class="<?= $this->uri->segment(1) == 'namabarang' ? 'fas' : 'far'; ?> fa-circle nav-icon <?= $this->uri->segment(1) == 'namabarang' ? 'text-primary' : ''; ?>"></i>
                                     <p>Nama Barang</p>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="<?= site_url('kategoribarang'); ?>" class="nav-link <?= $this->uri->segment(1) == 'kategoribarang' ? 'active' : ''; ?>">
+                                <a href="<?= base_url('kategoribarang'); ?>" class="nav-link <?= $this->uri->segment(1) == 'kategoribarang' ? 'active' : ''; ?>">
                                     <i class="<?= $this->uri->segment(1) == 'kategoribarang' ? 'fas' : 'far'; ?> fa-circle nav-icon <?= $this->uri->segment(1) == 'kategoribarang' ? 'text-primary' : ''; ?>"></i>
                                     <p>Kategori Barang</p>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="<?= site_url('satuanbarang'); ?>" class="nav-link <?= $this->uri->segment(1) == 'satuanbarang' ? 'active' : ''; ?>">
+                                <a href="<?= base_url('satuanbarang'); ?>" class="nav-link <?= $this->uri->segment(1) == 'satuanbarang' ? 'active' : ''; ?>">
                                     <i class="<?= $this->uri->segment(1) == 'satuanbarang' ? 'fas' : 'far'; ?> fa-circle nav-icon <?= $this->uri->segment(1) == 'satuanbarang' ? 'text-primary' : ''; ?>"></i>
                                     <p>Satuan Barang</p>
                                 </a>
@@ -165,13 +165,13 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="<?= site_url('permintaan'); ?>" class="nav-link <?= $this->uri->segment(1) == 'permintaan' ? 'active' : ''; ?>">
+                            <a href="<?= base_url('permintaan'); ?>" class="nav-link <?= $this->uri->segment(1) == 'permintaan' ? 'active' : ''; ?>">
                                 <i class="<?= $this->uri->segment(1) == 'permintaan' ? 'fas' : 'far'; ?> fa-circle nav-icon <?= $this->uri->segment(1) == 'permintaan' ? 'text-primary' : ''; ?>"></i>
                                 <p>Permintaan</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="<?= site_url('tte_index'); ?>" class="nav-link <?= $this->uri->segment(1) == 'tte_index' ? 'active' : ''; ?>">
+                            <a href="<?= base_url('tte_index'); ?>" class="nav-link <?= $this->uri->segment(1) == 'tte_index' ? 'active' : ''; ?>">
                                 <i class="<?= $this->uri->segment(1) == 'tte_index' ? 'fas' : 'far'; ?> fa-circle nav-icon <?= $this->uri->segment(1) == 'tte_index' ? 'text-primary' : ''; ?>"></i>
                                 <p>TTE</p>
                             </a>
@@ -201,7 +201,7 @@
                         </a>
                         <ul class="nav nav-treeview">
                             <li class="nav-item">
-                                <a href="<?= site_url('role'); ?>" class="nav-link <?= $this->uri->segment(1) == 'role' ? 'active' : ''; ?>">
+                                <a href="<?= base_url('role'); ?>" class="nav-link <?= $this->uri->segment(1) == 'role' ? 'active' : ''; ?>">
                                     <i class="<?= $this->uri->segment(1) == 'role' ? 'fas' : 'far'; ?> fa-circle nav-icon <?= $this->uri->segment(1) == 'role' ? 'text-primary' : ''; ?>"></i>
                                     <p>Role</p>
                                 </a>
@@ -232,7 +232,7 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="<?= site_url('laporan_permintaan'); ?>" class="nav-link <?= $this->uri->segment(1) == 'laporan_permintaan' ? 'active' : ''; ?>">
+                            <a href="<?= base_url('laporan_permintaan'); ?>" class="nav-link <?= $this->uri->segment(1) == 'laporan_permintaan' ? 'active' : ''; ?>">
                                 <i class="<?= $this->uri->segment(1) == 'laporan_permintaan' ? 'fas' : 'far'; ?> fa-circle nav-icon <?= $this->uri->segment(1) == 'laporan_permintaan' ? 'text-primary' : ''; ?>"></i>
                                 <p>Permintaan</p>
                             </a>
@@ -267,13 +267,13 @@
                 </div><!-- /.col -->
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="<?= site_url($this->uri->segment(1)); ?>"><?= $home; ?></a></li>
+                        <li class="breadcrumb-item"><a href="<?= base_url($this->uri->segment(1)); ?>"><?= $home; ?></a></li>
 
                         <!-- Breadcrumb untuk Uri Segment 1 atau 2 -->
                         <?php if ($this->uri->segment(1) && !$this->uri->segment(2)) : ?>
                             <li class="breadcrumb-item active"><?= $title; ?></li>
                         <?php elseif ($this->uri->segment(1) && $this->uri->segment(2)) : ?>
-                            <li class="breadcrumb-item active"><a href="<?= site_url($this->uri->segment(1)); ?>"><?= $title; ?></a></li>
+                            <li class="breadcrumb-item active"><a href="<?= base_url($this->uri->segment(1)); ?>"><?= $title; ?></a></li>
                         <?php endif; ?>
 
                         <!-- Breadcrumb untuk Halaman Tambah User, Update User, Hapus User -->

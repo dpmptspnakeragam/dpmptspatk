@@ -2,7 +2,7 @@
 <nav class="main-header navbar navbar-expand-md navbar-light navbar-white elevation-2">
     <div class="container-fluid">
 
-        <a href="<?= site_url('home'); ?>" class="navbar-brand mt-2 ml-2">
+        <a href="<?= base_url('home'); ?>" class="navbar-brand mt-2 ml-2">
             <img src="<?= base_url('assets/'); ?>image/logo/atk.png" alt="AdminLTE Logo" class="brand-image">
         </a>
 
@@ -11,7 +11,7 @@
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item active">
                     <!-- <button type="button" class="nav-link btn btn-link" onclick="scrollToElement('myCarousel');">Home</button> -->
-                    <a href="<?= site_url('home'); ?>" class="nav-link">Home</i></a>
+                    <a href="<?= base_url('home'); ?>" class="nav-link">Home</i></a>
                     <!-- <a href="javascript:void(0);" onclick="scrollToElement('homeSection');" class="nav-link">Home</a> -->
                 </li>
 
@@ -20,7 +20,7 @@
                     <ul aria-labelledby="dropdownProduk" class="dropdown-menu border-0 shadow" style="max-height: 300px; overflow-y: auto;">
                         <?php foreach ($produk as $item) : ?>
                             <li>
-                                <a id="kategori<?= $item->id_nama; ?>" href="<?= site_url('home/produk/' . $item->id_nama); ?>" class="dropdown-item">
+                                <a id="kategori<?= $item->id_nama; ?>" href="<?= base_url('home/produk/' . $item->id_nama); ?>" class="dropdown-item">
                                     <i class="<?= $this->uri->segment(3) == $item->id_nama ? 'fas' : 'far'; ?> fa-circle nav-icon <?= $this->uri->segment(3) == $item->id_nama ? 'text-primary' : ''; ?>"></i>
                                     <?= $item->nama_barang; ?>
                                 </a>
@@ -36,7 +36,7 @@
                     <ul aria-labelledby="dropdownKategori" class="dropdown-menu border-0 shadow" style="max-height: 300px; overflow-y: auto;">
                         <?php foreach ($kategori as $item) : ?>
                             <li>
-                                <a id="kategori<?= $item->id_kategori; ?>" href="<?= site_url('home/kategori/' . $item->id_kategori); ?>" class="dropdown-item">
+                                <a id="kategori<?= $item->id_kategori; ?>" href="<?= base_url('home/kategori/' . $item->id_kategori); ?>" class="dropdown-item">
                                     <i class="<?= $this->uri->segment(3) == $item->id_kategori ? 'fas' : 'far'; ?> fa-circle nav-icon <?= $this->uri->segment(3) == $item->id_kategori ? 'text-primary' : ''; ?>"></i>
                                     <?= $item->nama_kategori; ?>
                                 </a>
@@ -66,20 +66,20 @@
                             <img class="img-profile rounded-circle" style="width:25px;" src="<?= base_url('assets/image/profile/' . $data_login->profile); ?>">
                         </a>
                         <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                            <a class="dropdown-item" href="<?= site_url('dashboard'); ?>">
+                            <a class="dropdown-item" href="<?= base_url('dashboard'); ?>">
                                 <i class="fas fa-tachometer-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                                 Dashboard
                             </a>
                             <div class="dropdown-divider"></div>
                             <?php if ($this->session->userdata('id_user')) : ?>
                                 <!-- Jika user sudah login, tampilkan tombol Logout -->
-                                <a href="<?= site_url('logout'); ?>" class="nav-link" data-toggle="modal" data-target="#logoutModal">
+                                <a href="<?= base_url('logout'); ?>" class="nav-link" data-toggle="modal" data-target="#logoutModal">
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Logout
                                 </a>
                             <?php else : ?>
                                 <!-- Jika user belum login, tampilkan tombol Login -->
-                                <a href="<?= site_url('login'); ?>" class="nav-link">
+                                <a href="<?= base_url('login'); ?>" class="nav-link">
                                     <i class="fas fa-sign-in-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Login
                                 </a>
@@ -96,7 +96,7 @@
                         </div>
                     </li>
                 <?php else : ?>
-                    <a href="<?= site_url('login'); ?>" class="btn btn-outline-primary"><i class="fas fa-sign-in-alt"></i> Login</a>
+                    <a href="<?= base_url('login'); ?>" class="btn btn-outline-primary"><i class="fas fa-sign-in-alt"></i> Login</a>
                 <?php endif; ?>
 
             </ul>
@@ -156,7 +156,7 @@
                         </div>
                         <div class="dropdown-divider"></div>
                         <div class="dropdown-footer">
-                            <a href="<?= site_url('cart/detail'); ?>" class="btn btn-outline-primary btn-block"><i class="fas fa-money-check"></i> Lakukan Pembayaran</a>
+                            <a href="<?= base_url('cart/detail'); ?>" class="btn btn-outline-primary btn-block"><i class="fas fa-money-check"></i> Lakukan Pembayaran</a>
                         </div>
                     <?php endif; ?>
 
@@ -182,11 +182,11 @@
             <div class="row">
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-left">
-                        <li class="breadcrumb-item"><a href="<?= site_url($this->uri->segment(1)); ?>"><?= $home; ?></a></li>
+                        <li class="breadcrumb-item"><a href="<?= base_url($this->uri->segment(1)); ?>"><?= $home; ?></a></li>
 
                         <?php if ($this->uri->segment(1) == 'home') : ?>
                             <li class="breadcrumb-item">
-                                <a href="<?= site_url($this->uri->segment(1) . '/' . $this->uri->segment(2) . '/' . $this->uri->segment(3)); ?>">
+                                <a href="<?= base_url($this->uri->segment(1) . '/' . $this->uri->segment(2) . '/' . $this->uri->segment(3)); ?>">
                                     <?= $title1; ?>
                                 </a>
                             </li>

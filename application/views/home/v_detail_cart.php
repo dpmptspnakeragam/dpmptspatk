@@ -13,7 +13,7 @@
 
                     <div class="d-flex mb-3">
                         <button type="submit" name="action" value="perbarui" class="btn btn-outline-success mr-2"><i class="fas fa-undo"></i> Perbarui</button>
-                        <a href="<?= site_url('cart/clear'); ?>" class="btn btn-outline-danger"><i class="fas fa-magic"></i> Bersihkan</a>
+                        <a href="<?= base_url('cart/clear'); ?>" class="btn btn-outline-danger"><i class="fas fa-magic"></i> Bersihkan</a>
                     </div>
 
                     <table id="TabelData1" class="table table-bordered table-sm table-hover">
@@ -72,7 +72,7 @@
                                     </td> -->
 
                                     <td class="text-center align-middle">
-                                        <a href="<?= site_url('cart/delete/' . $items['rowid']); ?>" class="btn btn-sm btn-outline-danger"><i class="fas fa-trash-alt"></i></a>
+                                        <a href="<?= base_url('cart/delete/' . $items['rowid']); ?>" class="btn btn-sm btn-outline-danger"><i class="fas fa-trash-alt"></i></a>
                                     </td>
                                 </tr>
                                 <?php $i++; ?>
@@ -95,7 +95,7 @@
                 </div>
                 <div class="card-footer">
                     <button type="submit" name="action" value="tambah" class="btn btn-outline-primary mr-1"><i class="fas fa-file-upload"></i> Tambah</button>
-                    <a href="<?= site_url('home'); ?>" class="btn btn-outline-secondary"><i class="fas fa-home"></i> Kembali</a>
+                    <a href="<?= base_url('home'); ?>" class="btn btn-outline-secondary"><i class="fas fa-home"></i> Kembali</a>
                 </div>
                 <?= form_close(); ?>
             </div>
