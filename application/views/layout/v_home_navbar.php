@@ -182,7 +182,7 @@
             <div class="row">
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-left">
-                        <li class="breadcrumb-item"><a href="<?= base_url($this->uri->segment(1)); ?>"><?= $home; ?></a></li>
+                        <li class="breadcrumb-item"><a href="<?= site_url($this->uri->segment(1)); ?>"><?= $home; ?></a></li>
 
                         <?php if ($this->uri->segment(1) == 'home') : ?>
                             <li class="breadcrumb-item">
